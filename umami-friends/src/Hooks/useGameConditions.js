@@ -1,14 +1,16 @@
 import React, {useState, createContext, useContext} from 'react'
 
-const context = createContext()
-
-export function ContextProvider(props){
+const gameContext = createContext()
+export function GameConditionsProvider(props){
+    //game conditions
     const [win, setWin] = useState(false)
-    const {Provider} = context;
+
+
+    const {Provider} = gameContext;
     const providerValue = {win, setWin}
     return <Provider value={providerValue}>{props.children}</Provider>
 }
 
-export default function useContextProvider(){
-    return useContext(context)
+export default function useGameConditions(){
+    return useContext(gameContext)
 }

@@ -1,10 +1,9 @@
-// Chat.js
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:3030');
 
-const Game = () => {
+const Game = (props) => {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
 
