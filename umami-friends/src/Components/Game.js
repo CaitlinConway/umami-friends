@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5050'); // Replace with your server URL
+const socket = io('http://localhost:3030'); // Replace with your server URL
 
 const Game = () => {
   const [messages, setMessages] = useState([]);
@@ -15,9 +15,9 @@ const Game = () => {
     });
 
     // Clean up the socket connection when the component unmounts
-    return () => {
-      socket.disconnect();
-    };
+    // return () => {
+    //   socket.disconnect();
+    // };
   }, []);
 
   const sendMessage = () => {
@@ -26,7 +26,7 @@ const Game = () => {
     // Emit a message to the server
     socket.emit('message', messageInput);
 
-    // Update the local state with the sent message
+    // // Update the local state with the sent message
     setMessages((prevMessages) => [...prevMessages, { user: 'You', text: messageInput }]);
 
     // Clear the message input field
