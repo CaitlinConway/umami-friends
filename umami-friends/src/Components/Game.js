@@ -15,9 +15,9 @@ const Game = () => {
     });
 
     // Clean up the socket connection when the component unmounts
-    // return () => {
-    //   socket.disconnect();
-    // };
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   const sendMessage = () => {
