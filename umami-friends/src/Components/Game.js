@@ -47,6 +47,7 @@ const Game = () => {
           type="text"
           value={messageInput}
           onChange={(e) => setMessageInput(e.target.value)}
+          onKeyDown={(e) => e.key == 'Enter' ? sendMessage() : null}
         />
         <button onClick={sendMessage}>Send</button>
       </div>
