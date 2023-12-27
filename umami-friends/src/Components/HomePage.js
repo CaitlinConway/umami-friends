@@ -25,9 +25,11 @@ function HomePage() {
         setUserInput('');
     };
 
+    //TODO: Add slice of state for room code and another input box. Second button for start new?
     return (
         <div>
             Umami Friends
+            {userName ? <div className='userName'>User: {userName}</div> : <></>}
             <div className='userInput'>
                 <input
                     type="text"
