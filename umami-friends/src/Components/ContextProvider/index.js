@@ -1,1 +1,1 @@
-export {default} from './ContextProvider'
+export { default } from './ContextProvider'

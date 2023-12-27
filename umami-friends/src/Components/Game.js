@@ -10,7 +10,7 @@ const Game = (props) => {
   useEffect(() => {
     // Listen for incoming messages from the server
     socket.on('message', (message) => {
-      setMessages( (prevMessages) =>message.user !== socket.id ?[...prevMessages, message]: [...prevMessages]);
+      setMessages((prevMessages) => message.user !== socket.id ? [...prevMessages, message] : [...prevMessages]);
     });
 
     // Clean up the socket connection when the component unmounts
@@ -23,7 +23,7 @@ const Game = (props) => {
     console.log(`Sending message: ${messageInput}`);
 
     // Emit a message to the server
-    const message = {user: socket.id, text: messageInput}
+    const message = { user: socket.id, text: messageInput }
     socket.emit('message', message);
     // // Update the local state with the sent message
     setMessages((prevMessages) => [...prevMessages, { user: socket.id, text: messageInput }]);
@@ -35,7 +35,7 @@ const Game = (props) => {
   return (
     <div>
       <div>
-        {messages.map((msg, index) =>  (
+        {messages.map((msg, index) => (
           <div key={index}>
             <strong>{msg.user}:</strong> {msg.text}
           </div>

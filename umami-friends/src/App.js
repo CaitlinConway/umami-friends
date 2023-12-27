@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import {Route} from 'react-router'
-import {BrowserRouter, Routes} from 'react-router-dom'
+import { Route } from 'react-router'
+import { BrowserRouter, Routes } from 'react-router-dom'
 import ContextProvider from './Components/ContextProvider/ContextProvider'
 import HomePage from './Components/HomePage';
 import Game from './Components/Game'
@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage></HomePage>}></Route>
-          <Route path ='/game' element={<Game></Game>}></Route>
+          <Route path='/game' element={<Game></Game>}></Route>
         </Routes>
       </BrowserRouter>
     </ContextProvider>
