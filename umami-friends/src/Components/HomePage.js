@@ -8,10 +8,10 @@ const socket = io('http://localhost:3030');
 
 function HomePage() {
     //make this hook
-    const { userName, setUserName } = useUserInfo();
+    const { userName, setUserName, setRoomCode, roomCode } = useUserInfo();
     const [userInput, setUserInput] = useState('');
 
-    const sendMessage = () => {
+    const sendUser = () => {
         console.log(`Setting user: ${userInput}`);
 
         // Emit a message to the server
@@ -35,9 +35,17 @@ function HomePage() {
                     type="text"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    onKeyDown={(e) => e.key == 'Enter' ? sendMessage() : null}
+                    onKeyDown={(e) => e.key == 'Enter' ? sendUser() : null}
                 />
-                <button onClick={sendMessage}>Set User Name</button>
+                <button onClick={sendUser}>Set User Name</button>
+                <button onClick={enterNewRoom}>Enter new room</button>
+                <input
+                    type="text"
+                    value={userInput}
+                    onChange={(e) => setRoomCode(e.target.value)}
+                    onKeyDown={(e) => e.key == 'Enter' ? enterExistingRoom() : null}
+                />
+                <button onClick={enterExistingRoom}>Enter existing room</button>
             </div>
         </div>
     )
