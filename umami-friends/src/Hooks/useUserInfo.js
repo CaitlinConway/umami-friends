@@ -5,11 +5,9 @@ export function UserInfoProvider(props) {
 
     //user info
     const [userName, setUserName] = useState("")
-    const [roomCode, setRoomCode] = useState('')
-
 
     const { Provider } = userInfoContext;
-    const providerValue = { userName, setUserName, roomCode, setRoomCode }
+    const providerValue = { userName, setUserName }
     return <Provider value={providerValue}>{props.children}</Provider>
 }
 

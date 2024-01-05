@@ -1,13 +1,18 @@
 import React, { useState, createContext, useContext } from 'react'
-
+import { initialGame } from '../Helpers/initialGameState'
+import { io } from 'socket.io-client'
 const gameContext = createContext()
+
 export function GameConditionsProvider(props) {
     //game conditions
-    const [win, setWin] = useState(false)
-
-
+    const [roomCode, setRoomCode] = useState('')
+    const [gameState, setGameState] = useState(initialGame)
+    const socket = io('http://localhost:3030');
+    socket.on('updateGameState', newState => {
+        setGameState(newState)
+    })
     const { Provider } = gameContext;
-    const providerValue = { win, setWin }
+    const providerValue = { gameState, roomCode, setRoomCode, socket }
     return <Provider value={providerValue}>{props.children}</Provider>
 }
 

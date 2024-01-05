@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import Game from "./Game";
 import useUserInfo from '../Hooks/useUserInfo'
+import useGameConditions from '../Hooks/useGameConditions'
 
-const socket = io('http://localhost:3030');
+// const socket = io('http://localhost:3030');
 
 const generateRandomRoom = () => {
     //uppercase letters and numbers so make sure to force into uppercase when joining same room
@@ -20,7 +21,8 @@ const generateRandomRoom = () => {
 
 function HomePage() {
     //make this hook
-    const { userName, setUserName, setRoomCode, roomCode } = useUserInfo();
+    const { userName, setUserName } = useUserInfo();
+    const { roomCode, setRoomCode, gameState, socket } = useGameConditions();
     const [userInput, setUserInput] = useState('');
     const [roomInput, setRoomInput] = useState('')
 
