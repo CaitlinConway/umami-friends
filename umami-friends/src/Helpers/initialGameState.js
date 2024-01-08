@@ -3,6 +3,7 @@ import { rareRecipes } from "../Constants/cards"
 export const initialGame = {
     roomCode: '',
     //either 2 or 4 users for valid game
+    //user object should have name and character
     users: [],
     //10 rare recipes
     rareRecipes: shuffleRareRecipes(rareRecipes),
