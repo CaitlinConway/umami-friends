@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import useUserInfo from '../Hooks/useUserInfo'
 
 const socket = io('http://localhost:3030');
 
 const Game = (props) => {
+  const { userName, setUserName } = useUserInfo()
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
 
@@ -37,7 +39,7 @@ const Game = (props) => {
       <div>
         {messages.map((msg, index) => (
           <div key={index}>
-            <strong>{msg.user}:</strong> {msg.text}
+            <strong>{userName}:</strong> {msg.text}
           </div>
         ))}
       </div>

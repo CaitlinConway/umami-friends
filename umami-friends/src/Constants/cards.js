@@ -28,7 +28,7 @@ export const basicRecipes = [
         },
         energy: 1,
         description: "All other players draw +1 card",
-        actions: ["energy1", "placeIngredients2", "otherPlayersDraw"]
+        actions: ["otherPlayersDraw"]
     }
 ]
 

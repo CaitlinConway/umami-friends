@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import Game from "./Game";
 import useUserInfo from '../Hooks/useUserInfo'
 import useGameConditions from '../Hooks/useGameConditions'
+import { useNavigate } from 'react-router';
 
 // const socket = io('http://localhost:3030');
 
@@ -20,7 +21,7 @@ const generateRandomRoom = () => {
 };
 
 function HomePage() {
-    //make this hook
+    const navigate = useNavigate()
     const { userName, setUserName } = useUserInfo();
     const { roomCode, setRoomCode, gameState, socket } = useGameConditions();
     const [userInput, setUserInput] = useState('');
@@ -45,6 +46,7 @@ function HomePage() {
         socket.emit('joinNewRoom', newRoomCode)
         setRoomCode(newRoomCode)
         setRoomInput('')
+        navigate('/game')
     }
     const enterExistingRoom = () => {
         if (roomInput != "") {
@@ -54,7 +56,9 @@ function HomePage() {
         socket.emit('joinRoom', roomInput)
         setRoomCode(roomInput)
         setRoomInput('')
+        navigate('/game')
     }
+
 
     //TODO: Add slice of state for room code and another input box. Second button for start new?
     return (

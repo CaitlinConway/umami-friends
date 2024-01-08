@@ -3,7 +3,7 @@ import { GameConditionsProvider } from '../Hooks/useGameConditions'
 import { UserInfoProvider } from '../Hooks/useUserInfo'
 
 
-export default function ContextProvider(props) {
+export function ContextProvider(props) {
     return (
         <UserInfoProvider>
             <GameConditionsProvider>
