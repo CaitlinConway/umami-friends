@@ -16,3 +16,36 @@ export const rareRecipes = [
         actions: ["energy1", "placeIngredients2", "otherPlayersDraw"]
     }
 ]
+
+export const basicRecipes = [
+    {
+        name: "Healthy Snack",
+        pictureName: "healthySnack",
+        points: 1,
+        status: "basicPlant",
+        cost: {
+            greenCircle: 2
+        },
+        energy: 1,
+        description: "All other players draw +1 card",
+        actions: ["energy1", "placeIngredients2", "otherPlayersDraw"]
+    }
+]
+
+export const ingredients = [
+    {
+        name: "Bean Burger",
+        pictureName: "beanBurger",
+        value: {
+            burger: 1,
+            plant: 1,
+            colorless: 0,
+            spicy: 0,
+            noodle: 0,
+            sauce: 0,
+            taco: 0,
+            egg: 0,
+            sweet: 0
+        }
+    }
+]
