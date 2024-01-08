@@ -1,9 +1,11 @@
+import { shuffleRareRecipes } from "./cardHelper"
+
 export const initialGame = {
     roomCode: '',
     //either 2 or 4 users for valid game
     users: [],
     //10 rare recipes
-    rareRecipes: [],
+    rareRecipes: shuffleRareRecipes(rareRecipes),
     commonRecipes: {
         healthySnack: 6,
         spicyRamen: 5,
