@@ -7,7 +7,7 @@ export const initialGame = {
     users: [],
     //10 rare recipes
     rareRecipes: shuffleRareRecipes(rareRecipes),
-    commonRecipes: {
+    basicRecipes: {
         healthySnack: 6,
         spicyRamen: 5,
         fancyBurger: 5,
