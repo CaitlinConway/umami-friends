@@ -1,0 +1,16 @@
+const { getGameState, updateGameState } = require("./gameStateHelper");
+
+export function gameActionHelper(socket, io, action, roomCode, userName) {
+    const gameState = getGameState(roomCode)
+    const userIndex = gameState.users.findIndex(user => user.name === userName)
+    const userRole = gameState.users[userIndex].role
+    switch (action.actionType) {
+        case 'setRole':
+            gameState.users[userIndex].role = action.role
+            break;
+        case 'startGame':
+        //add logic to start game
+    }
+    updateGameState(roomCode, gameState)
+    io.sockets.in(roomCode).emit('updateGameState', gameState)
+}
