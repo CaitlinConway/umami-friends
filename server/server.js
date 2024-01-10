@@ -2,8 +2,7 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
-const cors = require('cors')
-import { loadCommands } from './Helpers/socketCommands.mjs'
+import { loadCommands } from './Helpers/socketCommands.js'
 
 const app = express();
 const server = http.createServer(app);
