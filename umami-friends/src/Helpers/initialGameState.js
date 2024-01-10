@@ -33,7 +33,7 @@ export const initialGame = {
     },
     player1Energy: 1,
     player2Energy: 1,
-    playerTurn: 1,
+    playerTurn: 0,
     turnCount: 0,
     player1Points: 0,
     player2Points: 0,

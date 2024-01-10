@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import useUserInfo from '../Hooks/useUserInfo'
+import { Grid } from './Grid';
+import { Header } from './Header';
 
 const socket = io('http://localhost:3030');
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo()
+  const { gameState, setGameState } = useGameConditions()
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
 
@@ -34,9 +37,20 @@ const Game = (props) => {
     setMessageInput('');
   };
 
+  //TODO: actually fix this logic
+  const startGame = () => {
+    socket.emit('startGame', gameState.roomCode)
+    setGameState((prevState) => {
+      return { ...prevState, playerTurn: 1 };
+    });
+    socket.emit('updateGameState', gameState)
+  }
+
   return (
     <div>
-      <div>
+      <Header userName={userName} roomCode={gameState.roomCode} />
+      <Grid gameState={gameState} startGame={startGame} />
+      <div className='message-container'>
         {messages.map((msg, index) => (
           <div key={index}>
             <strong>{userName}:</strong> {msg.text}
