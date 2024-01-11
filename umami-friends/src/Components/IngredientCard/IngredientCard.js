@@ -1,4 +1,5 @@
 import React from "react";
+import './IngredientCard.css'
 
 // Sample Card with props
 // Future improvement could make dynamic so ez change rules instead of static whole card pics

@@ -1,0 +1,13 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 1rem;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+.recipeCard {
+    max-width: 100%;
+}

@@ -4,6 +4,7 @@ import useUserInfo from '../../Hooks/useUserInfo'
 import { Grid } from '../Grid/Grid';
 import { Header } from '../Header/Header';
 import { default as useGameConditions } from '../../Hooks/useGameConditions'
+import './Game.css'
 
 const socket = io('http://localhost:3030');
 

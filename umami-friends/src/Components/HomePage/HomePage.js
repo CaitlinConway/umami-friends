@@ -4,6 +4,7 @@ import Game from "../Game/Game";
 import useUserInfo from '../../Hooks/useUserInfo'
 import useGameConditions from '../../Hooks/useGameConditions'
 import { useNavigate } from 'react-router';
+import './HomePage.css'
 
 // const socket = io('http://localhost:3030');
 
@@ -62,7 +63,7 @@ function HomePage() {
 
     //TODO: Add slice of state for room code and another input box. Second button for start new?
     return (
-        <div>
+        <div className='homePage'>
             <div className='UF-title'>Umami Friends</div>
             {userName ? <div className='userName'>User: {userName}</div> : <></>}
             {!userName ? (<div className='userInput'>
@@ -75,7 +76,9 @@ function HomePage() {
                 <button onClick={sendUser}>Set User Name</button>
             </div>) : null}
             <div className='roomInput'>
-                <button onClick={enterNewRoom}>Enter new room</button>
+                <div className='enterNewRoom'>
+                    <button onClick={enterNewRoom} className='enterRoomButton'>Create new room</button>
+                </div>
                 <input
                     type="text"
                     value={roomInput}

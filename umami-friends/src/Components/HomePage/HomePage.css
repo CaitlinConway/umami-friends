@@ -1,7 +1,26 @@
-.userName {}
+.userName {
+    padding: 5%;
+}
 
-.userInput {}
+.userInput {
+    padding: 5%;
+    justify-content: space-around;
+}
 
-.roomInput {}
+.roomInput {
+    padding: 5%;
+}
 
 .UF-title {}
+
+.enterNewRoom {
+    padding: 5%;
+}
+
+.homePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
