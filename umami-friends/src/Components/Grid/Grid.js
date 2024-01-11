@@ -26,18 +26,18 @@ export const Grid = (props) => {
                 )
             })}
             {rareRecipes.map((recipe, index) => {
-                const img = require(`../../Pictures/${recipe.pictureName}.png`)
+                const img2 = require(`../../Pictures/${recipe.pictureName}.png`)
                 return (
                     <div className='grid-item' key={index}>
-                        <img data-tooltip-id={`imageTooltip${index}`} className='recipeCard' alt={`${recipe}`} src={img} />
+                        <img data-tooltip-id={`rareTooltip${index}`} className='recipeCard' alt={`${recipe}`} src={img2} />
                         <Tooltip className='tooltip'
-                            id={`imageTooltip${index}`}
+                            id={`rareTooltip${index}`}
                             place="bottom"
                             data-tooltip-position-strategy="fixed"
                             border={"none"}
                             opacity={1}
                         >
-                            <img className='hoveredImage' alt={`${recipe}`} src={img} />
+                            <img className='hoveredImage' alt={`${recipe}`} src={img2} />
                         </Tooltip>
                     </div>
                 )
