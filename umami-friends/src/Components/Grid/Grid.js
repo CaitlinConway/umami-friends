@@ -9,14 +9,14 @@ export const Grid = (props) => {
         <div className="grid-container">
             {Object.keys(basicRecipes).map((recipe, index) => {
                 return (
-                    <div key={index}>
+                    <div className='grid-item' key={index}>
                         <img className='recipeCard' alt={`${recipe}`} src={require(`../../Pictures/${recipe}.png`)} />
                     </div>
                 )
             })}
             {rareRecipes.map((recipe, index) => {
                 return (
-                    <div key={index}>
+                    <div className='grid-item' key={index}>
                         <img className='recipeCard' alt={`${recipe}`} src={require(`../../Pictures/${recipe.pictureName}.png`)} />
                     </div>
                 )

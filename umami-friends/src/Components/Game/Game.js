@@ -49,10 +49,10 @@ const Game = (props) => {
   }
 
   return (
-    <div>
+    <div className='gameContainer'>
       <Header userName={userName} roomCode={gameState.roomCode} />
       <Grid gameState={gameState} startGame={startGame} />
-      <div className='message-container'>
+      {/* <div className='message-container'>
         {messages.map((msg, index) => (
           <div key={index}>
             <strong>{userName}:</strong> {msg.text}
@@ -67,7 +67,7 @@ const Game = (props) => {
           onKeyDown={(e) => e.key == 'Enter' ? sendMessage() : null}
         />
         <button onClick={sendMessage}>Send</button>
-      </div>
+      </div> */}
     </div>
   );
 };

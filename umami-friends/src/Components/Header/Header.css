@@ -1,0 +1,42 @@
+.header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Styles for the top row child element */
+.header-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.header-subtitle {
+    font-style: italic;
+}
+
+/* Styles for the row with four evenly spaced elements */
+.header-bottom-row {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+/* Styles for each of the four elements in the bottom row */
+.bottom-element {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    /* Adjust as needed */
+    border: 1px solid #ccc;
+    /* Optional border for visual separation */
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    padding-bottom: 10px;
+}

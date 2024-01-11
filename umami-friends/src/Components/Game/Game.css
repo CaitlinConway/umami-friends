@@ -1,0 +1,9 @@
+.gameContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* 100% of the viewport height */
+    overflow: hidden;
+    /* Hide any content that exceeds the viewport */
+
+}
