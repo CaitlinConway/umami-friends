@@ -22,4 +22,31 @@
     /* Ensure grid items don't exceed the available width */
     max-height: 100%;
     /* Ensure grid items don't exceed the available height */
+    position: relative;
 }
+
+/* .grid-item:hover img {
+    transform: scale(3);
+    transform-origin: center center;
+    /* Center the transformed image within the container */
+
+/* Increase scale on hover (adjust as needed) */
+/* } */
+
+.tooltip {
+    max-width: 200%;
+    max-height: 200%;
+    z-index: 100;
+    background: none !important
+}
+
+.hoveredImage {
+    max-width: 100%;
+    max-height: 100%;
+    /* object-fit: contain; */
+}
+
+/*
+.image-container:hover .tooltip {
+    opacity: 1;
+} */
