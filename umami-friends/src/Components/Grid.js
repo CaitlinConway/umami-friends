@@ -3,6 +3,7 @@ import { default as useGameConditions } from '../Hooks/useGameConditions'
 
 export const Grid = (props) => {
     const { gameState } = useGameConditions()
+    debugger;
     const { basicRecipes, rareRecipes } = gameState
     return (
         <div className="grid-container">
