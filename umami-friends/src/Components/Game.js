@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import useUserInfo from '../Hooks/useUserInfo'
 import { Grid } from './Grid';
 import { Header } from './Header';
+import { default as useGameConditions } from '../Hooks/useGameConditions'
 
 const socket = io('http://localhost:3030');
 
