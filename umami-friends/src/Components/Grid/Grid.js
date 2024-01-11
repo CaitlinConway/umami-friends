@@ -1,5 +1,5 @@
 import React from "react";
-import { default as useGameConditions } from '../Hooks/useGameConditions'
+import { default as useGameConditions } from '../../Hooks/useGameConditions'
 
 export const Grid = (props) => {
     const { gameState } = useGameConditions()
