@@ -1,6 +1,6 @@
-import { getGameState, updateGameState } from './gameStateHelper';
+import { getGameState, updateGameState } from './gameStateHelper.js';
 
-export function joinRoomHelper(socket, io, roomCode, userName) {
+export function roomHelper(socket, io, roomCode, userName) {
     const gameState = getGameState(roomCode)
     const newUser = { name: userName, role: '' }
     const existingUser = gameState.users.find(user => user.name === userName)

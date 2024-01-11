@@ -1,4 +1,5 @@
-import { initialGame } from "../../umami-friends/src/Helpers/initialGameState";
+import { initialGame } from "../Constants/initialGameState.js";
+
 
 const activeGames = [];
 export const getGameState = (roomCode) => {

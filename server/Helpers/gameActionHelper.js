@@ -1,4 +1,4 @@
-const { getGameState, updateGameState } = require("./gameStateHelper");
+import { getGameState, updateGameState } from "./gameStateHelper.js";
 
 export function gameActionHelper(socket, io, action, roomCode, userName) {
     const gameState = getGameState(roomCode)

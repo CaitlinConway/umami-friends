@@ -1,5 +1,5 @@
-import { shuffleRareRecipes } from "./cardHelper"
-import { rareRecipes } from "../Constants/cards"
+import { shuffleRareRecipes } from "../Helpers/cardHelper.js"
+import { rareRecipes } from "../Constants/cards.js"
 export const initialGame = {
     roomCode: '',
     //either 2 or 4 users for valid game

@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from 'react'
-import { initialGame } from '../Helpers/initialGameState'
+import { initialGame } from '../../../server/Constants/initialGameState'
 import { io } from 'socket.io-client'
 const gameContext = createContext()
 

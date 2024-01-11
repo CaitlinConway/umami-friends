@@ -1,9 +1,9 @@
-import { joinRoomHelper } from './roomHelper'
-import { gameActionHelper } from './gameActionHelper'
-import { messageHelper } from './messageHelper'
+import { roomHelper } from './roomHelper.js'
+import { gameActionHelper } from './gameActionHelper.js'
+import { messageHelper } from './messageHelper.js'
 
 export function loadCommands(socket, io) {
-    socket.on('create', (roomCode, userName) => joinRoomHelper(socket, io, roomCode, userName))
+    socket.on('create', (roomCode, userName) => roomHelper(socket, io, roomCode, userName))
     socket.on('message', (message, roomCode, userName) => messageHelper(socket, io, message, roomCode, userName))
     socket.on('gameAction', (action, roomCode, userName) => gameActionHelper(socket, io, action, roomCode, userName))
 }
