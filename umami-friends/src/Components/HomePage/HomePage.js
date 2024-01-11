@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import Game from "./Game";
-import useUserInfo from '../Hooks/useUserInfo'
-import useGameConditions from '../Hooks/useGameConditions'
+import Game from "../Game/Game";
+import useUserInfo from '../../Hooks/useUserInfo'
+import useGameConditions from '../../Hooks/useGameConditions'
 import { useNavigate } from 'react-router';
 
 // const socket = io('http://localhost:3030');
@@ -63,7 +63,7 @@ function HomePage() {
     //TODO: Add slice of state for room code and another input box. Second button for start new?
     return (
         <div>
-            Umami Friends
+            <div className='UF-title'>Umami Friends</div>
             {userName ? <div className='userName'>User: {userName}</div> : <></>}
             {!userName ? (<div className='userInput'>
                 <input

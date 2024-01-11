@@ -12,7 +12,7 @@ export const Grid = (props) => {
                     {Object.keys(basicRecipes).map((recipe, index) => {
                         return (
                             <div key={index}>
-                                <img className='recipeCard' alt={`${recipe}`} src={require(`../Pictures/${recipe}.png`)} />
+                                <img className='recipeCard' alt={`${recipe}`} src={require(`../../Pictures/${recipe}.png`)} />
                             </div>
                         )
                     })}
@@ -23,7 +23,7 @@ export const Grid = (props) => {
                     {rareRecipes.map((recipe, index) => {
                         return (
                             <div key={index}>
-                                <img className='recipeCard' alt={`${recipe}`} src={require(`../Pictures/${recipe.pictureName}.png`)} />
+                                <img className='recipeCard' alt={`${recipe}`} src={require(`../../Pictures/${recipe.pictureName}.png`)} />
                             </div>
                         )
                     })}
