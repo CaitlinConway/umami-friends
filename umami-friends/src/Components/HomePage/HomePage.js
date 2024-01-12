@@ -64,6 +64,7 @@ function HomePage() {
     //TODO: Add slice of state for room code and another input box. Second button for start new?
     return (
         <div className='homeBackground'>
+            <img className='umamiLogo' alt='umami-logo' src={require(`../../Pictures/logo.jpg`)}/>
         <div className='homePage'>
             {userName ? <div className='userName'>User: {userName}</div> : <></>}
             {!userName ? (<div className='userInput'>
@@ -76,16 +77,17 @@ function HomePage() {
                 <button onClick={sendUser}>Set User Name</button>
             </div>) : null}
             <div className='roomInput'>
-                <div className='enterNewRoom'>
-                    <button onClick={enterNewRoom} className='enterRoomButton'>Create new room</button>
-                </div>
+
                 <input
                     type="text"
                     value={roomInput}
                     onChange={(e) => setRoomInput(e.target.value)}
                     onKeyDown={(e) => e.key == 'Enter' ? enterExistingRoom() : null}
                 />
-                <button onClick={enterExistingRoom}>Enter existing room</button>
+                <button onClick={enterExistingRoom}>Enter Existing Room</button>
+                <div className='enterNewRoom'>
+                    <button onClick={enterNewRoom} className='enterRoomButton'>Create New Game</button>
+                </div>
             </div>
         </div>
         </div>

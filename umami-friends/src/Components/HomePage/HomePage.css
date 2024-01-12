@@ -1,5 +1,5 @@
 .homeBackground {
-    background-image: url('../../Pictures/homeBackground.png'); /* Replace 'your-background-image.jpg' with the path to your image */
+    background-color: rgb(255, 242,208);
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -11,7 +11,7 @@
   .homePage {
     text-align: center;
     padding: 20px;
-    background-color: rgba(255, 0, 0, 0.5); /* Transparent red background */
+background-color: rgba(255, 0, 0, 0.5); /* Transparent red background */
     border-radius: 10px;
     position: fixed;
     bottom: 0;
@@ -19,11 +19,26 @@
     transform: translate(-50%, -50%);
     color: white; /* Text color */
   }
+  .umamiLogo {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    max-width: 40%;
+    transform: translate(-50%, -50%);
+    color: white; /* Text color */
+  }
+  
   
   .userInput input,
-  .roomInput input {
+  .roomInput input,
+  .enterRoomButton {
     padding: 10px;
     margin-right: 10px;
+    margin-bottom: 10px;
+
   }
   
   .userInput button,
@@ -35,13 +50,13 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  .enterRoomButton{
-    margin-bottom: 10px;
-  }
+  } 
   
   .userName {
     font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .userInput{
     margin-bottom: 10px;
   }
   
