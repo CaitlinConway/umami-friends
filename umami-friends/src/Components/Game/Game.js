@@ -49,6 +49,7 @@ const Game = (props) => {
   }
 
   return (
+    <div className='gameBackground'>
     <div className='gameContainer'>
       <Header userName={userName} roomCode={gameState.roomCode} />
       <Grid gameState={gameState} startGame={startGame} />
@@ -68,6 +69,7 @@ const Game = (props) => {
         />
         <button onClick={sendMessage}>Send</button>
       </div> */}
+    </div>
     </div>
   );
 };

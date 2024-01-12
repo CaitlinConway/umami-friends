@@ -7,3 +7,12 @@
     /* Hide any content that exceeds the viewport */
 
 }
+.gameBackground {
+    background-image: url('../../Pictures/plainBackground.png'); /* Replace 'your-background-image.jpg' with the path to your image */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }

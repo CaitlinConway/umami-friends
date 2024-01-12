@@ -63,8 +63,8 @@ function HomePage() {
 
     //TODO: Add slice of state for room code and another input box. Second button for start new?
     return (
+        <div className='homeBackground'>
         <div className='homePage'>
-            <div className='UF-title'>Umami Friends</div>
             {userName ? <div className='userName'>User: {userName}</div> : <></>}
             {!userName ? (<div className='userInput'>
                 <input
@@ -87,6 +87,7 @@ function HomePage() {
                 />
                 <button onClick={enterExistingRoom}>Enter existing room</button>
             </div>
+        </div>
         </div>
     )
 }
