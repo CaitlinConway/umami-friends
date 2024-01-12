@@ -51,7 +51,7 @@ function HomePage() {
     }
     const enterExistingRoom = () => {
         if (roomInput != "") {
-            roomInput = roomInput.toUpperCase()
+            setRoomInput(roomInput.toUpperCase())
         }
         console.log(`Entering room: ${roomInput}`)
         socket.emit('joinRoom', roomInput)
@@ -82,7 +82,7 @@ function HomePage() {
                 <input
                     type="text"
                     value={roomInput}
-                    onChange={(e) => setRoomCode(e.target.value)}
+                    onChange={(e) => setRoomInput(e.target.value)}
                     onKeyDown={(e) => e.key == 'Enter' ? enterExistingRoom() : null}
                 />
                 <button onClick={enterExistingRoom}>Enter existing room</button>
