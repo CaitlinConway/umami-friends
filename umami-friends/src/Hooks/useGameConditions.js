@@ -7,7 +7,8 @@ export function GameConditionsProvider(props) {
     //game conditions
     const [roomCode, setRoomCode] = useState('')
     const [gameState, setGameState] = useState(initialGame)
-    const socket = io('http://localhost:3030');
+    const socket = io('http://localhost:8080');
+    console.log(socket)
     socket.on('updateGameState', newState => {
         setGameState(newState)
     })

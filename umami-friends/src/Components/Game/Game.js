@@ -6,11 +6,11 @@ import { Header } from '../Header/Header';
 import { default as useGameConditions } from '../../Hooks/useGameConditions'
 import './Game.css'
 
-const socket = io('http://localhost:3030');
+// const socket = io('http://localhost:8080');
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo()
-  const { gameState, setGameState } = useGameConditions()
+  const { gameState, setGameState, socket } = useGameConditions()
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
 

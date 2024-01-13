@@ -6,7 +6,7 @@ import useGameConditions from '../../Hooks/useGameConditions'
 import { useNavigate } from 'react-router';
 import './HomePage.css'
 
-// const socket = io('http://localhost:3030');
+// const socket = io('http://localhost:8080');
 
 const generateRandomRoom = () => {
     //uppercase letters and numbers so make sure to force into uppercase when joining same room
@@ -28,13 +28,19 @@ function HomePage() {
     const [userInput, setUserInput] = useState('');
     const [roomInput, setRoomInput] = useState('')
 
+    console.log("socket", roomCode)
+    socket?.on('joinedRoom', (room) =>{
+        console.log("Joined room")
+        navigate('/game')
+
+    })
     const sendUser = () => {
         console.log(`Setting user: ${userInput}`);
 
         // Emit a message to the server
-        const user = { userId: socket.id, userName: userInput }
-        //TODO add handling on server for new user
-        socket.emit('user', user);
+        // const user = { userId: socket.id, userName: userInput }
+        // //TODO add handling on server for new user
+        // socket.emit('user', user);
         // // Update the local state with the sent message
         setUserName(userInput);
 
@@ -44,20 +50,18 @@ function HomePage() {
     const enterNewRoom = () => {
         const newRoomCode = generateRandomRoom()
         console.log(`Entering new`)
-        socket.emit('joinNewRoom', newRoomCode)
+        socket?.emit('joinRoom', newRoomCode, userName)
         setRoomCode(newRoomCode)
-        setRoomInput('')
-        navigate('/game')
+        // setRoomInput('')
     }
     const enterExistingRoom = () => {
         if (roomInput != "") {
             setRoomInput(roomInput.toUpperCase())
         }
         console.log(`Entering room: ${roomInput}`)
-        socket.emit('joinRoom', roomInput)
+        socket?.emit('joinRoom', roomInput, userName)
         setRoomCode(roomInput)
-        setRoomInput('')
-        navigate('/game')
+        // setRoomInput('')
     }
 
 

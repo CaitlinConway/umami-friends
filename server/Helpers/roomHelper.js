@@ -5,10 +5,11 @@ export function roomHelper(socket, io, roomCode, userName) {
     const newUser = { name: userName, role: '' }
     const existingUser = gameState.users.find(user => user.name === userName)
     if (existingUser < 0 && userName) {
+        console.log(`${userName} joining ${roomCode}`)
         socket.join(roomCode)
         gameState.users.push(newUser)
         updateGameState(roomCode, gameState)
-        io.to(socket.id).emit('message', `User ${userName} joined room ${roomCode}`)
+        io.sockets.in(room).emit('message', `User ${userName} joined room ${roomCode}`)
         io.to(socket.id).emit('joinedRoom', userName, roomCode)
         io.sockets.in(roomCode).emit('updateGameState', gameState)
     }
