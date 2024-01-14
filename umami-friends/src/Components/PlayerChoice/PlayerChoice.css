@@ -1,0 +1,61 @@
+/* Modal Styling */
+.playerChoiceModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 60%;
+    background:  rgba(37, 244, 247, 1);
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.playerChoiceContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerChoiceCard {
+    width: 150px; /* Adjust the width as needed */
+    height: 200px; /* Adjust the height as needed */
+    margin: 10px; /* Adjust the margin as needed */
+    background-color: #fff; /* Card background color */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(243, 231, 58, 0.792); /* Card shadow */
+}
+
+.playerChoiceCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire card */
+    border-radius: 8px; /* Border radius to match card */
+}
+
+.characterChoiceText {
+    background-color: yellow;
+    width: 40%;
+    font-size: large;
+    border-radius: 10%;
+    font-weight: bold;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    display: flex; /* Align text to middle */
+    align-items: center; /* Align text to middle */
+}
+.tooltip {
+    max-width: 70%;
+    max-height: 200%;
+    z-index: 100;
+    background: none !important
+}
+
+  
