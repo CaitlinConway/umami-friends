@@ -14,7 +14,9 @@ const Game = (props) => {
   const { gameState, setGameState, socket } = useGameConditions();
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-
+  console.log("gameState", gameState);
+  let user = gameState?.users?.find((user) => user.name === userName);
+  const role = user?.role;
   useEffect(() => {
     // Listen for incoming messages from the server
     socket.on("message", (message) => {
@@ -56,13 +58,11 @@ const Game = (props) => {
     socket.emit("updateGameState", gameState);
   };
 
-  let user = gameState?.users?.find((user) => user.name === userName);
-  let role = user?.role;
   return (
     <div className="gameBackground">
       <div className="gameContainer">
         {role === "" && <PlayerChoice user={user} />}
-        <Header userName={userName} roomCode={gameState.roomCode} />
+        <Header userName={userName} roomCode={gameState.roomCode} role={role} />
         <Grid gameState={gameState} startGame={startGame} />
         {/* <div className='message-container'>
         {messages.map((msg, index) => (

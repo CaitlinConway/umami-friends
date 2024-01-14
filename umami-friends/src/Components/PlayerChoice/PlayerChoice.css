@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
     width: 40%;
-    height: 60%;
+    height: 50%;
     background:  rgba(37, 244, 247, 1);
     z-index: 1000;
     left: 50%;
@@ -24,12 +24,12 @@
 }
 
 .playerChoiceCard {
-    width: 150px; /* Adjust the width as needed */
-    height: 200px; /* Adjust the height as needed */
+    width: 100px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
     margin: 10px; /* Adjust the margin as needed */
     background-color: #fff; /* Card background color */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(243, 231, 58, 0.792); /* Card shadow */
+    border-radius: 1px;
+    box-shadow: 0 0 1px rgba(243, 231, 58, 0.792); /* Card shadow */
 }
 
 .playerChoiceCard img {
@@ -41,7 +41,7 @@
 
 .characterChoiceText {
     background-color: yellow;
-    width: 40%;
+    width: 50%;
     font-size: large;
     border-radius: 10%;
     font-weight: bold;

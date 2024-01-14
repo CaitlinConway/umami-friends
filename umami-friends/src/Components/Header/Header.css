@@ -1,18 +1,22 @@
-/* Header.css */
-
 .header {
     color: rgb(0, 0, 0);
     padding: 15px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr 1fr 1fr; /* Four sections with specified fractions */
     align-items: center;
     text-align: left;
-    /* Align text to the left */
 }
 
 .header-title {
     font-size: 24px;
     font-weight: bold;
+    text-align: center;
+}
+
+.header-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .header-subtitle {
@@ -22,23 +26,18 @@
 }
 
 .header-middle {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /* Align items to the left */
     margin-left: 20px;
-    /* Adjust margin as needed */
 }
 
 .header-userName,
 .header-roomCode {
     margin-bottom: 5px;
-    /* Add margin between username and room code */
 }
 
 .header-right {
     display: flex;
     align-items: center;
+    justify-content: flex-end; /* Align items to the far right */
 }
 
 .start-button {
@@ -48,7 +47,7 @@
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
-    margin-right: 10px;
 }
-
-/* Add any additional styling as needed */
+.roleIconImage{
+    max-width: 60%
+}

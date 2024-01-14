@@ -87,13 +87,23 @@ function HomePage() {
         <div className="roomInput">
           <input
             type="text"
-            value={roomInput}
+            value={roomInput.toUpperCase()}
+            maxLength={5}
             onChange={(e) => setRoomInput(e.target.value)}
             onKeyDown={(e) => (e.key == "Enter" ? enterExistingRoom() : null)}
           />
-          <button onClick={enterExistingRoom}>Enter Existing Room</button>
+          <button
+            disabled={!userName || roomInput.length !== 5}
+            onClick={enterExistingRoom}
+          >
+            Enter Existing Room
+          </button>
           <div className="enterNewRoom">
-            <button onClick={enterNewRoom} className="enterRoomButton">
+            <button
+              disabled={!userName}
+              onClick={enterNewRoom}
+              className="enterRoomButton"
+            >
               Create New Game
             </button>
           </div>
