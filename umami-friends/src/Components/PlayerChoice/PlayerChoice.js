@@ -37,7 +37,7 @@ export const PlayerChoice = (props) => {
                 data-tooltip-id={`playerTooltip${index}`}
               />
               <Tooltip
-                className="tooltip"
+                className="tooltip-playerChoice"
                 id={`playerTooltip${index}`}
                 place="bottom"
                 data-tooltip-position-strategy="fixed"

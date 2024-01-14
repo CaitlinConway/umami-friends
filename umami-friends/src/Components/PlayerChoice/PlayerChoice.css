@@ -51,7 +51,7 @@
     display: flex; /* Align text to middle */
     align-items: center; /* Align text to middle */
 }
-.tooltip {
+.tooltip-playerChoice {
     max-width: 70%;
     max-height: 200%;
     z-index: 100;
