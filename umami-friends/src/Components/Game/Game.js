@@ -11,7 +11,7 @@ import "./Game.css";
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
-  const { gameState, setGameState, socket } = useGameConditions();
+  const { gameState, setGameState, socket, roomCode } = useGameConditions();
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   console.log("gameState", gameState);
@@ -51,11 +51,7 @@ const Game = (props) => {
 
   //TODO: actually fix this logic
   const startGame = () => {
-    socket.emit("startGame", gameState.roomCode);
-    setGameState((prevState) => {
-      return { ...prevState, playerTurn: 1 };
-    });
-    socket.emit("updateGameState", gameState);
+    socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
   };
 
   return (

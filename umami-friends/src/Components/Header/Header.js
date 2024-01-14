@@ -3,6 +3,9 @@ import "./Header.css";
 import useGameConditions from "../../Hooks/useGameConditions";
 
 export const Header = (props) => {
+  const { gameState } = useGameConditions();
+  const waitingForOpponents =
+    gameState?.users?.length != 2 || gameState?.users?.length != 4;
   return (
     <div className="header">
       <div className="header-middle">
@@ -23,10 +26,17 @@ export const Header = (props) => {
         <div className="header-subtitle">A game of culinary creation</div>
       </div>
       <div className="header-right">
-        <button className="start-button" onClick={props.startGame}>
+        <button
+          className="start-button"
+          disabled={waitingForOpponents}
+          onClick={props.startGame}
+        >
           Start Game
         </button>
       </div>
+      {waitingForOpponents && (
+        <div className="waiting">Waiting for opponents...</div>
+      )}
     </div>
   );
 };

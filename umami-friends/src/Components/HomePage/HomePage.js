@@ -84,30 +84,32 @@ function HomePage() {
             <button onClick={sendUser}>Set User Name</button>
           </div>
         ) : null}
-        <div className="roomInput">
-          <input
-            type="text"
-            value={roomInput.toUpperCase()}
-            maxLength={5}
-            onChange={(e) => setRoomInput(e.target.value)}
-            onKeyDown={(e) => (e.key == "Enter" ? enterExistingRoom() : null)}
-          />
-          <button
-            disabled={!userName || roomInput.length !== 5}
-            onClick={enterExistingRoom}
-          >
-            Enter Existing Room
-          </button>
-          <div className="enterNewRoom">
+        {userName && (
+          <div className="roomInput">
+            <input
+              type="text"
+              value={roomInput.toUpperCase()}
+              maxLength={5}
+              onChange={(e) => setRoomInput(e.target.value)}
+              onKeyDown={(e) => (e.key == "Enter" ? enterExistingRoom() : null)}
+            />
             <button
-              disabled={!userName}
-              onClick={enterNewRoom}
-              className="enterRoomButton"
+              disabled={roomInput.length !== 5}
+              onClick={enterExistingRoom}
             >
-              Create New Game
+              Enter Existing Room
             </button>
+            <div className="enterNewRoom">
+              <button
+                disabled={!userName}
+                onClick={enterNewRoom}
+                className="enterRoomButton"
+              >
+                Create New Game
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
