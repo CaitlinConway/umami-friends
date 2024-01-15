@@ -7,7 +7,6 @@ import {
 export function roomHelper(socket, io, roomCode, userName) {
   console.log(`roomHelper: ${roomCode}, ${userName}`);
   const gameState = getGameState(roomCode);
-  console.log("gameState", gameState);
   const newUser = {
     name: userName,
     role: "",
@@ -22,7 +21,6 @@ export function roomHelper(socket, io, roomCode, userName) {
     socket.join(roomCode);
     gameState.users.push(newUser);
     updateGameState(roomCode, gameState);
-    console.log("updatedGameState", gameState);
     io.sockets
       .in(roomCode)
       .emit("message", `User ${userName} joined room ${roomCode}`);

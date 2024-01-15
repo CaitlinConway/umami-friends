@@ -1,10 +1,19 @@
 import { initialGame } from "../Constants/initialGameState.js";
 
-const activeGames = {};
+let activeGames = {};
+
+// Function to create a deep copy of an object
+const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
+
+// Function to create a new instance of the initial game state
+const createInitialGameState = () => {
+  return deepCopy(initialGame);
+};
 export const getGameState = (roomCode) => {
-  let gameState = initialGame;
+  let gameState = createInitialGameState();
   if (activeGames[roomCode] === undefined) {
     gameState.roomCode = roomCode;
+    activeGames[roomCode] = gameState;
   } else {
     gameState = activeGames[roomCode];
   }
@@ -13,6 +22,7 @@ export const getGameState = (roomCode) => {
 
 export const updateGameState = (roomCode, gameState) => {
   activeGames[roomCode] = gameState;
+  console.log("activeGames", activeGames);
 };
 export const deleteGameState = (roomCode) => {
   if (activeGames[roomCode]) {
