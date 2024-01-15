@@ -3,7 +3,6 @@ import { gameActionHelper } from "./gameActionHelper.js";
 import { messageHelper } from "./messageHelper.js";
 
 export function loadCommands(socket, io) {
-  console.log("load commands");
   socket.on("joinRoom", (roomCode, userName) =>
     roomHelper(socket, io, roomCode, userName)
   );

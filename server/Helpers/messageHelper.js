@@ -1,3 +1,4 @@
 export function messageHelper(socket, io, message, roomCode, userName) {
-    io.sockets.in(roomCode).emit('message', `${userName}: ${message}`)
+  console.log("in message helper", message);
+  io.sockets.in(roomCode).emit("messaged", message, userName);
 }

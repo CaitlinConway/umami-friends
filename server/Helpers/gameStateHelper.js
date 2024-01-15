@@ -22,7 +22,6 @@ export const getGameState = (roomCode) => {
 
 export const updateGameState = (roomCode, gameState) => {
   activeGames[roomCode] = gameState;
-  console.log("activeGames", activeGames);
 };
 export const deleteGameState = (roomCode) => {
   if (activeGames[roomCode]) {

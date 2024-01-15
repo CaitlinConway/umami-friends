@@ -10,7 +10,6 @@ export const PlayerChoice = (props) => {
   const { userName } = useUserInfo();
   const { socket, roomCode } = useGameConditions();
   const chooseCharacter = (role) => {
-    console.log("chooseCharacter", role);
     socket?.emit(
       "gameAction",
       { actionType: "setRole", role: role },

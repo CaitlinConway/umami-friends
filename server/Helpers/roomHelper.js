@@ -21,16 +21,16 @@ export function roomHelper(socket, io, roomCode, userName) {
     socket.join(roomCode);
     gameState.users.push(newUser);
     updateGameState(roomCode, gameState);
-    io.sockets
-      .in(roomCode)
-      .emit("message", `User ${userName} joined room ${roomCode}`);
+    // io.sockets
+    //   .in(roomCode)
+    //   .emit("message", `User ${userName} joined room ${roomCode}`);
     io.sockets.in(roomCode).emit("joinedRoom", userName, roomCode);
     io.sockets.in(roomCode).emit("updateGameState", gameState);
   } else {
-    io.to(socket.id).emit(
-      "message",
-      `User ${userName} already exists in room ${roomCode}`
-    );
+    // io.to(socket.id).emit(
+    //   "message",
+    //   `User ${userName} already exists in room ${roomCode}`
+    // );
   }
 
   socket.on("disconnect", () => {

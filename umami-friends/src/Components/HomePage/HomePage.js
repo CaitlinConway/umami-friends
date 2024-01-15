@@ -28,27 +28,17 @@ function HomePage() {
   const [userInput, setUserInput] = useState("");
   const [roomInput, setRoomInput] = useState("");
 
-  console.log("socket", roomCode);
-  socket?.on("joinedRoom", (room) => {
-    console.log("Joined room");
+  socket?.on("joinedRoom", (user, room) => {
     navigate("/game");
   });
   const sendUser = () => {
     console.log(`Setting user: ${userInput}`);
-
-    // Emit a message to the server
-    // const user = { userId: socket.id, userName: userInput }
-    // //TODO add handling on server for new user
-    // socket.emit('user', user);
-    // // Update the local state with the sent message
     setUserName(userInput);
-
     // Clear the message input field
     setUserInput("");
   };
   const enterNewRoom = () => {
     const newRoomCode = generateRandomRoom();
-    console.log(`Entering new`, socket);
     socket.emit("joinRoom", newRoomCode, userName);
     setRoomCode(newRoomCode);
     // setRoomInput('')
@@ -57,7 +47,6 @@ function HomePage() {
     if (roomInput != "") {
       setRoomInput(roomInput.toUpperCase());
     }
-    console.log(`Entering room: ${roomInput}`);
     socket?.emit("joinRoom", roomInput, userName);
     setRoomCode(roomInput);
     // setRoomInput('')
