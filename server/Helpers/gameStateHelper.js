@@ -5,7 +5,6 @@ export const getGameState = (roomCode) => {
   let gameState = initialGame;
   if (activeGames[roomCode] === undefined) {
     gameState.roomCode = roomCode;
-    activeGames[roomCode] = gameState;
   } else {
     gameState = activeGames[roomCode];
   }
@@ -13,11 +12,7 @@ export const getGameState = (roomCode) => {
 };
 
 export const updateGameState = (roomCode, gameState) => {
-  if (activeGames[roomCode] === undefined) {
-    activeGames[roomCode] = gameState;
-  } else {
-    activeGames[roomCode] = gameState;
-  }
+  activeGames[roomCode] = gameState;
 };
 export const deleteGameState = (roomCode) => {
   if (activeGames[roomCode]) {
