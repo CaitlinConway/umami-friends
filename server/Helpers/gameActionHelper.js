@@ -11,6 +11,10 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
     case "startGame":
       gameState.playerTurn = 1;
       break;
+    //TODO: update for 4p later
+    case "endTurn":
+      gameState.playerTurn === 1 ? gameState.playerTurn = 2 : gameState.playerTurn = 1;
+      break;
   }
   updateGameState(roomCode, gameState);
   io.sockets.in(roomCode).emit("updateGameState", gameState);

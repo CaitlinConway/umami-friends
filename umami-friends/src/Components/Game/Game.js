@@ -17,6 +17,8 @@ const Game = (props) => {
   console.log("gameState", gameState);
   let user = gameState?.users?.find((user) => user.name === userName);
   const role = user?.role;
+  //TODO: update when expand to 4 players, will just work for two
+  const opponent = gameState?.users?.find((user) => user.name != userName);
   useEffect(() => {
     // Listen for incoming messages from the server
     socket.on("message", (message) => {
@@ -28,6 +30,7 @@ const Game = (props) => {
     });
 
     // Clean up the socket connection when the component unmounts
+    //TODO add some removal of user on disconnnect from the gamestate
     return () => {
       socket.disconnect();
     };
@@ -54,28 +57,13 @@ const Game = (props) => {
     socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
   };
 
+
   return (
     <div className="gameBackground">
       <div className="gameContainer">
         {role === "" && <PlayerChoice user={user} />}
-        <Header userName={userName} roomCode={gameState.roomCode} role={role} />
+        <Header userName={userName} roomCode={gameState.roomCode} role={role} opponent={opponent} />
         <Grid gameState={gameState} startGame={startGame} />
-        {/* <div className='message-container'>
-        {messages.map((msg, index) => (
-          <div key={index}>
-            <strong>{userName}:</strong> {msg.text}
-          </div>
-        ))}
-      </div>
-      <div>
-        <input
-          type="text"
-          value={messageInput}
-          onChange={(e) => setMessageInput(e.target.value)}
-          onKeyDown={(e) => e.key == 'Enter' ? sendMessage() : null}
-        />
-        <button onClick={sendMessage}>Send</button>
-      </div> */}
       </div>
     </div>
   );

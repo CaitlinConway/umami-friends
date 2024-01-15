@@ -1,7 +1,7 @@
 import { initialGame } from "../Constants/initialGameState.js";
 
 
-const activeGames = [];
+let activeGames = [];
 export const getGameState = (roomCode) => {
     let gameState = initialGame;
     const activeGameIndex = activeGames.findIndex((game) => game.roomCode === roomCode);
@@ -21,5 +21,11 @@ export const updateGameState = (roomCode, gameState) => {
     }
     else {
         activeGames[activeGameIndex] = gameState;
+    }
+}
+export const deleteGameState = (roomCode) => {
+    const activeGameIndex = activeGames.findIndex((game) => game.roomCode === roomCode);
+    if (activeGameIndex >= 0) {
+        activeGames.filter((game) => game.roomCode !== roomCode );
     }
 }

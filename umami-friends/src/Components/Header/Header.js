@@ -37,6 +37,19 @@ export const Header = (props) => {
       {waitingForOpponents && (
         <div className="waiting">Waiting for opponents...</div>
       )}
+      {!waitingForOpponents && (
+        <div className='opponentHeader'> Opponent: {`${props?.opponent?.name}`}
+          <div className="roleIcon">
+            {props?.opponent?.role && (
+              <img
+                className="roleIconImage"
+                src={require(`../../Pictures/${props?.opponent?.role}.png`)}
+                alt="Example"
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -18,9 +18,6 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log("connected");
   loadCommands(socket, io);
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
 });
 
 const PORT = process.env.PORT || 8080;
