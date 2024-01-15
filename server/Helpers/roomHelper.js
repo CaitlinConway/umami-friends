@@ -1,4 +1,8 @@
-import { deleteGameState, getGameState, updateGameState } from "./gameStateHelper.js";
+import {
+  deleteGameState,
+  getGameState,
+  updateGameState,
+} from "./gameStateHelper.js";
 
 export function roomHelper(socket, io, roomCode, userName) {
   console.log(`roomHelper: ${roomCode}, ${userName}`);
@@ -30,11 +34,11 @@ export function roomHelper(socket, io, roomCode, userName) {
   }
 
   socket.on("disconnect", () => {
-    socket.leave(roomCode)
     gameState.users = gameState.users.filter((user) => user.name !== userName);
-    if (gameState.users.length === 0){
-    deleteGameState(roomCode);}
-    console.log("user disconnected")
-
+    if (gameState.users.length === 0) {
+      deleteGameState(roomCode);
+    }
+    socket.leave(roomCode);
+    console.log("user disconnected");
   });
 }
