@@ -1,31 +1,26 @@
 import { initialGame } from "../Constants/initialGameState.js";
 
-
-let activeGames = [];
+const activeGames = {};
 export const getGameState = (roomCode) => {
-    let gameState = initialGame;
-    const activeGameIndex = activeGames.findIndex((game) => game.roomCode === roomCode);
-    if (activeGameIndex < 0) {
-        gameState.roomCode = roomCode;
-    }
-    else {
-        gameState = activeGames[activeGameIndex];
-    }
-    return gameState;
-}
+  let gameState = initialGame;
+  if (activeGames[roomCode] === undefined) {
+    gameState.roomCode = roomCode;
+    activeGames[roomCode] = gameState;
+  } else {
+    gameState = activeGames[roomCode];
+  }
+  return gameState;
+};
 
 export const updateGameState = (roomCode, gameState) => {
-    const activeGameIndex = activeGames.findIndex((game) => game.roomCode === roomCode);
-    if (activeGameIndex < 0) {
-        activeGames.push(gameState);
-    }
-    else {
-        activeGames[activeGameIndex] = gameState;
-    }
-}
+  if (activeGames[roomCode] === undefined) {
+    activeGames[roomCode] = gameState;
+  } else {
+    activeGames[roomCode] = gameState;
+  }
+};
 export const deleteGameState = (roomCode) => {
-    const activeGameIndex = activeGames.findIndex((game) => game.roomCode === roomCode);
-    if (activeGameIndex >= 0) {
-        activeGames.filter((game) => game.roomCode !== roomCode );
-    }
-}
+  if (activeGames[roomCode]) {
+    delete activeGames[roomCode];
+  }
+};

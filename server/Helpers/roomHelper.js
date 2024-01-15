@@ -7,6 +7,7 @@ import {
 export function roomHelper(socket, io, roomCode, userName) {
   console.log(`roomHelper: ${roomCode}, ${userName}`);
   const gameState = getGameState(roomCode);
+  console.log("gameState", gameState);
   const newUser = {
     name: userName,
     role: "",
@@ -21,10 +22,11 @@ export function roomHelper(socket, io, roomCode, userName) {
     socket.join(roomCode);
     gameState.users.push(newUser);
     updateGameState(roomCode, gameState);
+    console.log("updatedGameState", gameState);
     io.sockets
       .in(roomCode)
       .emit("message", `User ${userName} joined room ${roomCode}`);
-    io.to(socket.id).emit("joinedRoom", userName, roomCode);
+    io.sockets.in(roomCode).emit("joinedRoom", userName, roomCode);
     io.sockets.in(roomCode).emit("updateGameState", gameState);
   } else {
     io.to(socket.id).emit(
@@ -39,6 +41,6 @@ export function roomHelper(socket, io, roomCode, userName) {
       deleteGameState(roomCode);
     }
     socket.leave(roomCode);
-    console.log("user disconnected");
+    console.log(`${userName} disconnected from ${roomCode}`);
   });
 }
