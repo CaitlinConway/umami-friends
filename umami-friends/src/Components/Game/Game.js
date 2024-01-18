@@ -33,17 +33,17 @@ const Game = (props) => {
         opponent={opponent}
       />
       <div className="gameContainer">
-        <div className="cardStackContainer">
+        {/* <div className="cardStackContainer">
           <CardStack ingredient={true}></CardStack>
           <CardStack ingredient={false}></CardStack>
         </div>
-        <PlayerHand></PlayerHand>
+        <PlayerHand></PlayerHand> */}
         <Grid gameState={gameState} startGame={startGame} />
       </div>
 
-      <div className="messageContainer">
+      {/* <div className="messageContainer">
         <Messages user={userName}></Messages>
-      </div>
+      </div> */}
     </div>
   );
 };
