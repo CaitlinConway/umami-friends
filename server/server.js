@@ -9,7 +9,7 @@ const server = createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", // Replace with your React app's URL
+    origin: "*",
     methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
     credentials: true,
   },

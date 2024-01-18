@@ -5,8 +5,10 @@ import { Grid } from "../Grid/Grid";
 import { Header } from "../Header/Header";
 import { Messages } from "../Messages/Messages";
 import { PlayerChoice } from "../PlayerChoice/PlayerChoice";
+import { CardStack } from "../CardStack/CardStack";
 import { default as useGameConditions } from "../../Hooks/useGameConditions";
 import "./Game.css";
+import PlayerHand from "../PlayerHand/PlayerHand";
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
@@ -23,16 +25,22 @@ const Game = (props) => {
 
   return (
     <div className="gameBackground">
+      {role === "" && <PlayerChoice user={user} />}
+      <Header
+        userName={userName}
+        roomCode={gameState.roomCode}
+        role={role}
+        opponent={opponent}
+      />
       <div className="gameContainer">
-        {role === "" && <PlayerChoice user={user} />}
-        <Header
-          userName={userName}
-          roomCode={gameState.roomCode}
-          role={role}
-          opponent={opponent}
-        />
+        <div className="cardStackContainer">
+          <CardStack ingredient={true}></CardStack>
+          <CardStack ingredient={false}></CardStack>
+        </div>
+        <PlayerHand></PlayerHand>
         <Grid gameState={gameState} startGame={startGame} />
       </div>
+
       <div className="messageContainer">
         <Messages user={userName}></Messages>
       </div>

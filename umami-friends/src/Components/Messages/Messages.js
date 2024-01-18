@@ -4,14 +4,18 @@ import useUserInfo from "../../Hooks/useUserInfo";
 export const Messages = (props) => {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-  const { gameState, setGameState, socket, roomCode } = useGameConditions();
+  const { gameState, setGameState, roomCode, socket } = useGameConditions();
   const { userName } = useUserInfo();
   const sendMessage = () => {
     console.log(`Sending message: ${messageInput}`);
     socket.emit("message", messageInput, roomCode, userName);
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { user: userName, text: messageInput },
+    ]);
     setMessageInput("");
   };
-  socket?.on("messaged", (message, userName) => {
+  socket?.on("message", (message, userName) => {
     console.log("messageRecieved");
     setMessages((prevMessages) => [
       ...prevMessages,

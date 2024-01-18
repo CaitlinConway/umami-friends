@@ -4,8 +4,8 @@ import useGameConditions from "../../Hooks/useGameConditions";
 
 export const Header = (props) => {
   const { gameState } = useGameConditions();
-  const waitingForOpponents =
-    gameState?.users?.length != 2 || gameState?.users?.length != 4;
+  const opponentsReady =
+    gameState?.users?.length === 2 || gameState?.users?.length === 4;
   return (
     <div className="header">
       <div className="header-middle">
@@ -28,17 +28,19 @@ export const Header = (props) => {
       <div className="header-right">
         <button
           className="start-button"
-          disabled={waitingForOpponents}
+          disabled={!opponentsReady}
           onClick={props.startGame}
         >
           Start Game
         </button>
       </div>
-      {waitingForOpponents && (
+      {!opponentsReady && (
         <div className="waiting">Waiting for opponents...</div>
       )}
-      {!waitingForOpponents && (
-        <div className='opponentHeader'> Opponent: {`${props?.opponent?.name}`}
+      {opponentsReady && (
+        <div className="opponentHeader">
+          {" "}
+          Opponent: {`${props?.opponent?.name}`}
           <div className="roleIcon">
             {props?.opponent?.role && (
               <img
