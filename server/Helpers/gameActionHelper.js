@@ -1,5 +1,6 @@
 import { getGameState, updateGameState } from "./gameStateHelper.js";
 import { ingredients } from "../Constants/cards.js";
+import { shuffleCards } from "./cardHelper.js";
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   const gameState = getGameState(roomCode);
   const userIndex = gameState.users.findIndex((user) => user.name === userName);
@@ -10,7 +11,11 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startGame":
       gameState.playerTurn = 1;
-      gameState.users[userIndex].hand = shuffleCards(ingredients, 5);
+      gameState.users.forEach((user) => {
+        user.hand = shuffleCards(ingredients, 4);
+      });
+      console.log("gameState", gameState);
+      // gameState.users[userIndex].hand = shuffleCards(ingredients, 4);
       break;
     //TODO: update for 4p later
     case "endTurn":

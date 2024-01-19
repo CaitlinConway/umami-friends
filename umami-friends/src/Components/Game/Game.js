@@ -31,14 +31,15 @@ const Game = (props) => {
         roomCode={gameState.roomCode}
         role={role}
         opponent={opponent}
+        startGame={startGame}
       />
       <div className="gameContainer">
         {/* <div className="cardStackContainer">
           <CardStack ingredient={true}></CardStack>
           <CardStack ingredient={false}></CardStack>
-        </div>
-        <PlayerHand></PlayerHand> */}
-        <Grid gameState={gameState} startGame={startGame} />
+        </div> */}
+        <PlayerHand></PlayerHand>
+        <Grid gameState={gameState} />
       </div>
 
       {/* <div className="messageContainer">
