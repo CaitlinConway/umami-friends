@@ -21,19 +21,6 @@ export const Header = (props) => {
           />
         )}
       </div>
-      <div className="header-title-container">
-        <div className="header-title">Umami Friends</div>
-        <div className="header-subtitle">A game of culinary creation</div>
-      </div>
-      <div className="header-right">
-        <button
-          className="start-button"
-          disabled={!opponentsReady}
-          onClick={props.startGame}
-        >
-          Start Game
-        </button>
-      </div>
       {!opponentsReady && (
         <div className="waiting">Waiting for opponents...</div>
       )}
@@ -52,6 +39,34 @@ export const Header = (props) => {
           </div>
         </div>
       )}
+      <div className="header-title-container">
+        <div className="header-title">Umami Friends</div>
+        <div className="header-subtitle">A game of culinary creation</div>
+      </div>
+      <div className="header-right">
+        {gameState.playerTurn === 0 && (
+          <button
+            className="start-button"
+            disabled={!opponentsReady}
+            onClick={props.startGame}
+          >
+            Start Game
+          </button>
+        )}
+        {gameState.playerTurn === 1 && (
+          <button className="drawcard-button" onClick={props.drawCard}>
+            Draw Card
+          </button>
+        )}
+        {gameState.playerTurn === 2 && (
+          <button
+            className="drawcard-button"
+            onClick={(e) => e.preventDefault()}
+          >
+            Waiting for Opponent
+          </button>
+        )}
+      </div>
     </div>
   );
 };

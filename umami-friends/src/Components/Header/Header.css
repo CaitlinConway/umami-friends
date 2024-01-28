@@ -1,8 +1,8 @@
 .header {
   color: rgb(0, 0, 0);
-  padding: 15px;
+  padding: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr 1fr 1fr; /* Four sections with specified fractions */
+  grid-template-columns: 1fr 1fr 1fr 4fr 1fr; /* Four sections with specified fractions */
   align-items: center;
   text-align: left;
 }

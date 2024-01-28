@@ -9,6 +9,7 @@ import { CardStack } from "../CardStack/CardStack";
 import { default as useGameConditions } from "../../Hooks/useGameConditions";
 import "./Game.css";
 import PlayerHand from "../PlayerHand/PlayerHand";
+import PlayerBoard from "../PlayerBoard/PlayerBoard";
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
@@ -21,6 +22,9 @@ const Game = (props) => {
   //TODO: actually fix this logic
   const startGame = () => {
     socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
+  };
+  const drawCard = () => {
+    socket.emit("gameAction", { actionType: "drawCard" }, roomCode, userName);
   };
 
   return (
@@ -41,6 +45,10 @@ const Game = (props) => {
         <div className="playerHandContainer">
           <div className="playerHandTitle">{userName}'s Hand</div>
           <PlayerHand />
+        </div>
+        <div className="playerHandContainer">
+          <div className="playerHandTitle">{userName}'s Board</div>
+          <PlayerBoard />
         </div>
         <Grid gameState={gameState} />
       </div>
