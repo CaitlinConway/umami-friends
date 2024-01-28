@@ -12,7 +12,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
     case "startGame":
       gameState.playerTurn = 1;
       gameState.users.forEach((user) => {
-        user.hand = shuffleCards(ingredients, 4);
+        user.hand = shuffleCards(ingredients, 5);
       });
       console.log("gameState", gameState);
       // gameState.users[userIndex].hand = shuffleCards(ingredients, 4);

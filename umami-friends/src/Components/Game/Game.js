@@ -38,7 +38,10 @@ const Game = (props) => {
           <CardStack ingredient={true}></CardStack>
           <CardStack ingredient={false}></CardStack>
         </div> */}
-        <PlayerHand></PlayerHand>
+        <div className="playerHandContainer">
+          <div className="playerHandTitle">{userName}'s Hand</div>
+          <PlayerHand />
+        </div>
         <Grid gameState={gameState} />
       </div>
 

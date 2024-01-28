@@ -9,9 +9,9 @@ export const PlayerHand = (props) => {
   return (
     <div>
       {playerHand?.map((item, index) => (
-        <div className="card-body">
+        <div className="player-card-body">
           <img
-            className="recipeCard"
+            className="playerRecipeCard"
             alt={`${item.name}`}
             src={require(`../../Pictures/${item.pictureName}.png`)}
           />

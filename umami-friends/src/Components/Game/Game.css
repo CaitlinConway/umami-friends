@@ -1,17 +1,66 @@
+/* Game Container */
 .gameContainer {
   display: flex;
   flex-direction: row;
-  height: 100vh;
-  /* 100% of the viewport height */
+  height: calc(100vh - 50px); /* Adjusted for header height */
   overflow: hidden;
-  /* Hide any content that exceeds the viewport */
 }
+
+/* Player Hand Container */
+.playerHandContainer {
+  border: 2px solid #ccc; /* Border around player hand */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Padding for inner content */
+  margin-top: 20px;
+  margin-right: 20px; /* Add some space between player hand and grid */
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* Player Hand Title */
+.playerHandTitle {
+  font-size: 18px; /* Adjust font size as needed */
+  font-weight: bold; /* Make the title bold */
+  margin-bottom: 10px; /* Add space between title and hand */
+}
+
+/* Player Hand */
+.playerHand {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto; /* Enable horizontal scrolling if hand overflows */
+  gap: 10px; /* Adjust spacing between cards */
+
+}
+
+.player-card-body {
+  width: 100px; /* Adjust card width as needed */
+}
+
+/* Card Image */
+.playerRecipeCard {
+  width: 100%; /* Ensure image takes full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Add rounded corners to cards */
+}
+
+/* Header */
+.header {
+  height: 50px; /* Fixed header height */
+}
+
+/* Game Background */
 .gameBackground {
-  background-image: url("../../Pictures/plainBackground.png"); /* Replace 'your-background-image.jpg' with the path to your image */
+  background-image: url("../../Pictures/plainBackground.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
+}
+
+/* Messages Container */
+.messageContainer {
+  /* Define styles for messages container if needed */
 }
