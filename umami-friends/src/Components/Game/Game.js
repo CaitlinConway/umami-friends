@@ -19,15 +19,16 @@ const Game = (props) => {
   //TODO: update when expand to 4 players, will just work for two
   const opponent = gameState?.users?.find((user) => user.name != userName);
 
-  //TODO: actually fix this logic
   const startGame = () => {
     socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
   const drawCard = () => {
     socket.emit("gameAction", { actionType: "drawCard" }, roomCode, userName);
   };
   const endTurn = () => {
     socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
 
   return (

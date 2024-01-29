@@ -23,6 +23,17 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
         ? (gameState.playerTurn = 2)
         : (gameState.playerTurn = 1);
       break;
+    case "startTurn":
+      const sweetIngredients = gameState.users[userIndex].hand.filter(
+        (ingredient) => ingredient.sweet >= 1
+      );
+      console.log("Sweet ingredients:", sweetIngredients);
+      gameState.users[userIndex].hand = gameState.users[userIndex].hand.filter(
+        (ingredient) => ingredient.sweet < 1
+      );
+      sweetIngredients && gameState.board.push(...sweetIngredients);
+      gameState.users[gameState.playerturn - 1].energy = 1;
+      break;
     case "drawCard":
       user.hand.push(shuffleCards(ingredients, 1)[0]);
       break;
