@@ -26,6 +26,9 @@ const Game = (props) => {
   const drawCard = () => {
     socket.emit("gameAction", { actionType: "drawCard" }, roomCode, userName);
   };
+  const endTurn = () => {
+    socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
+  };
 
   return (
     <div className="gameBackground">
@@ -36,6 +39,8 @@ const Game = (props) => {
         role={role}
         opponent={opponent}
         startGame={startGame}
+        drawCard={drawCard}
+        endTurn={endTurn}
       />
       <div className="gameContainer">
         {/* <div className="cardStackContainer">

@@ -23,6 +23,9 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
         ? (gameState.playerTurn = 2)
         : (gameState.playerTurn = 1);
       break;
+    case "drawCard":
+      user.hand.push(shuffleCards(ingredients, 1)[0]);
+      break;
   }
   updateGameState(roomCode, gameState);
   io.sockets.in(roomCode).emit("updateGameState", gameState);
