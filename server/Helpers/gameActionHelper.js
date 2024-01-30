@@ -15,6 +15,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       gameState.users.forEach((user) => {
         user.hand = shuffleCards(ingredients, 5);
       });
+      gameState.turnCount = 1;
       console.log("gameState", gameState);
       // gameState.users[userIndex].hand = shuffleCards(ingredients, 4);
       break;
@@ -23,6 +24,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       gameState.playerTurn === 1
         ? (gameState.playerTurn = 2)
         : (gameState.playerTurn = 1);
+      gameState.turnCount++;
       break;
     case "startTurn":
       const sweetIngredients = currentPlayer.hand.filter(

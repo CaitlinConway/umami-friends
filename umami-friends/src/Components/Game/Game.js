@@ -61,9 +61,13 @@ const Game = (props) => {
         </div>
         <div className="playerHandContainer">
           <div className="playerHandTitle">{userName}'s Board</div>
-          <PlayerBoard />
+          <PlayerBoard user={user} />
         </div>
         <Grid gameState={gameState} />
+        <div className="playerHandContainer">
+          <div className="playerHandTitle">{opponent?.name}'s Board</div>
+          <PlayerBoard user={opponent} />
+        </div>
       </div>
 
       {/* <div className="messageContainer">
