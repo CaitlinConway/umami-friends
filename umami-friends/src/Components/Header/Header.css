@@ -5,6 +5,7 @@
   grid-template-columns: 1fr 1fr 1fr 4fr 1fr; /* Four sections with specified fractions */
   align-items: center;
   text-align: left;
+  margin-bottom: 40px;
 }
 
 .header-title {

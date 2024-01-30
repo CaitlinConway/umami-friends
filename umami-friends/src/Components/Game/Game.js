@@ -15,10 +15,16 @@ const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
   const { gameState, setGameState, socket, roomCode } = useGameConditions();
   let user = gameState?.users?.find((user) => user.name === userName);
+  const userIndex = gameState?.users?.findIndex(
+    (user) => user.name === userName
+  );
+  const playerNumber = userIndex + 1;
+  //boolean to check if user is also current player
+  const currentPlayer = gameState?.playerTurn === playerNumber;
   const role = user?.role;
   //TODO: update when expand to 4 players, will just work for two
   const opponent = gameState?.users?.find((user) => user.name != userName);
-
+  console.log("gameState", gameState);
   const startGame = () => {
     socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
     socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
@@ -42,6 +48,7 @@ const Game = (props) => {
         startGame={startGame}
         drawCard={drawCard}
         endTurn={endTurn}
+        currentPlayer={currentPlayer}
       />
       <div className="gameContainer">
         {/* <div className="cardStackContainer">

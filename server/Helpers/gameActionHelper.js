@@ -28,7 +28,6 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       const sweetIngredients = currentPlayer.hand.filter(
         (ingredient) => ingredient.value.sweet >= 1
       );
-      console.log("Sweet ingredients:", sweetIngredients);
       currentPlayer.hand = currentPlayer.hand.filter(
         (ingredient) => ingredient.value.sweet < 1
       );

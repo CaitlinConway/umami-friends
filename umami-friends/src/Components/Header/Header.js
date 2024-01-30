@@ -53,15 +53,15 @@ export const Header = (props) => {
             Start Game
           </button>
         )}
-        {gameState.playerTurn === 1 && (
+        {props.currentPlayer && (
           <button className="drawcard-button" onClick={props.drawCard}>
             Draw Card
           </button>
         )}
-        {gameState.playerTurn === 2 && (
+        {gameState.playerTurn != 0 && !props.currentPlayer && (
           <div className="waiting">{`${props?.opponent?.name}'s Turn`}</div>
         )}
-        {gameState.playerTurn === 1 && (
+        {props.currentPlayer && (
           <button className="start-button" onClick={props.endTurn}>
             End Turn
           </button>
