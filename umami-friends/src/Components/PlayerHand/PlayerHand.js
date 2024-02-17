@@ -4,8 +4,9 @@ import useGameConditions from "../../Hooks/useGameConditions";
 export const PlayerHand = (props) => {
   const { userName } = useUserInfo();
   const { gameState } = useGameConditions();
-  const user = gameState?.users.find((user) => (user.name = userName));
+  const user = gameState?.users.find((user) => user.name === userName);
   const playerHand = user?.hand;
+  debugger;
   return (
     <div>
       {playerHand?.map((item, index) => (

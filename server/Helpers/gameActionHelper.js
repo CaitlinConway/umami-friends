@@ -17,6 +17,9 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       });
       gameState.turnCount = 1;
       console.log("gameState", gameState);
+      console.log("user1Hand", gameState.users[0].hand);
+      console.log("user2Hand", gameState.users[1].hand);
+      console.log("ingredients", ingredients);
       // gameState.users[userIndex].hand = shuffleCards(ingredients, 4);
       break;
     //TODO: update for 4p later

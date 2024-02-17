@@ -47,6 +47,7 @@ function HomePage() {
     if (roomInput != "") {
       setRoomInput(roomInput.toUpperCase());
     }
+    debugger;
     socket?.emit("joinRoom", roomInput, userName);
     setRoomCode(roomInput);
     // setRoomInput('')
