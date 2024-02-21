@@ -4,7 +4,6 @@ import { initialGame } from "../Constants/initialGameState";
 const gameContext = createContext();
 
 export function GameConditionsProvider(props) {
-  //game conditions
   let socket;
   const [roomCode, setRoomCode] = useState("");
   const [gameState, setGameState] = useState(initialGame);
