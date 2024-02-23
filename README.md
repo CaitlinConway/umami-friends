@@ -26,7 +26,17 @@ All slices of this state can be accessed via custom hooks in the components on t
 ![image](https://github.com/CaitlinConway/umami-friends/assets/65358987/4068cb3e-fc08-4fb6-84d3-32ab0fe26377)
 
 
-
+#### Components
+Umami Friends has the following components on screen
+- Header -- This component contains user name, room code, user role icon, opponent role icon, opponent name, game title, and start game button.
+- Player boards -- This component is displayed twice to show both the current user's board and their opponent's board
+- Player hands -- Users can see all cards in their hands
+- Card grid -- just like the original card game, 10 basic recipes and 10 rare recipes are displayed on screen
+- Role choice modal -- Players will select a character prior to start of game
+- Messaging box/game log -- Players can communicate with other opponents in the same game room
+- Ingredient card stack -- Players can select this to draw cards
+- Ingredient/Recipe cards -- These populate the player hands, player boards, and card grid
+  
 
 
 
