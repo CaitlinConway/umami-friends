@@ -11,7 +11,12 @@ export const PlayerBoard = (props) => {
   return (
     <div>
       {playerBoard?.candy?.map((item, index) => (
-        <div className="player-card-body">
+        <div
+          className={`player-card-body ${
+            props.selectedCards.includes(item) && "selected"
+          }`}
+          onClick={() => props.cardClick(item)}
+        >
           <img
             className="playerRecipeCard"
             alt={`${item.name}`}

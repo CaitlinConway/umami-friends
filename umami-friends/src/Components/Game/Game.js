@@ -14,6 +14,7 @@ import PlayerBoard from "../PlayerBoard/PlayerBoard";
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
   const { gameState, setGameState, socket, roomCode } = useGameConditions();
+  const [selectedCards, setSelectedCards] = useState([]);
   let user = gameState?.users?.find((user) => user.name === userName);
   const userIndex = gameState?.users?.findIndex(
     (user) => user.name === userName
@@ -36,6 +37,16 @@ const Game = (props) => {
     socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
     socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
+  const cardClick = (clickedCard) => {
+    // Check if card is already selected
+    if (selectedCards.includes(clickedCard)) {
+      // If selected, remove from selected cards
+      setSelectedCards(selectedCards.filter((card) => card !== clickedCard));
+    } else {
+      // If not selected, add to selected cards
+      setSelectedCards([...selectedCards, clickedCard]);
+    }
+  };
 
   return (
     <div className="gameBackground">
@@ -57,13 +68,21 @@ const Game = (props) => {
         </div> */}
         <div className="playerHandContainer">
           <div className="playerHandTitle">{userName}'s Hand</div>
-          <PlayerHand />
+          <PlayerHand selectedCards={selectedCards} cardClick={cardClick} />
         </div>
         <div className="playerHandContainer">
           <div className="playerHandTitle">{userName}'s Board</div>
-          <PlayerBoard user={user} />
+          <PlayerBoard
+            user={user}
+            selectedCards={selectedCards}
+            cardClick={cardClick}
+          />
         </div>
-        <Grid gameState={gameState} />
+        <Grid
+          gameState={gameState}
+          selectedCards={selectedCards}
+          cardClick={cardClick}
+        />
         <div className="playerHandContainer">
           <div className="playerHandTitle">{opponent?.name}'s Board</div>
           <PlayerBoard user={opponent} />

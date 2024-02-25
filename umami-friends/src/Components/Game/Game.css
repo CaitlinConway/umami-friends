@@ -30,7 +30,6 @@
   flex-direction: row;
   overflow-x: auto; /* Enable horizontal scrolling if hand overflows */
   gap: 10px; /* Adjust spacing between cards */
-
 }
 
 .player-card-body {
@@ -63,4 +62,9 @@
 /* Messages Container */
 .messageContainer {
   /* Define styles for messages container if needed */
+}
+
+/* Selected Cards */
+.selected {
+  border: 10px solid #8f0404 !important; /* Border around selected cards */
 }
