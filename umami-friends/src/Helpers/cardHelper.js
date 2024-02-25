@@ -14,3 +14,10 @@ export const shuffleRareRecipes = (recipes) => {
   const copiedRecipes = Array(10).fill(firstRecipe);
   return copiedRecipes;
 };
+
+export const selectCards = (card) => {
+  card.className = "selectedCards";
+};
+export const deselectCards = (card) => {
+  card.className = "";
+};

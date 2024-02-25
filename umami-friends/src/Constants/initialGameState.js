@@ -8,7 +8,7 @@ export const initialGame = {
   //user object should have name and character
   users: [],
   //10 rare recipes
-  rareRecipes: shuffleCards(rareRecipes, 10),
+  rareRecipes: [],
   basicRecipes: {
     healthySnack: 6,
     spicyRamen: 5,
