@@ -58,7 +58,7 @@ export const Header = (props) => {
             Draw Card
           </button>
         )}
-        {gameState.playerTurn != 0 && !props.currentPlayer && (
+        {gameState.playerTurn !== 0 && !props.currentPlayer && (
           <div className="waiting">{`${props?.opponent?.name}'s Turn`}</div>
         )}
         {props.currentPlayer && (
