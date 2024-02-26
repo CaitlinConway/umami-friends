@@ -13,7 +13,7 @@ export const PlayerHand = (props) => {
           className={`player-card-body ${
             props.selectedCards.includes(item) && "selected"
           }`}
-          onClick={() => props.cardClick(item)}
+          onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
         >
           <img
             className="playerRecipeCard"

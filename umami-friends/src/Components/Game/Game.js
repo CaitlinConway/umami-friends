@@ -10,11 +10,16 @@ import { default as useGameConditions } from "../../Hooks/useGameConditions";
 import "./Game.css";
 import PlayerHand from "../PlayerHand/PlayerHand";
 import PlayerBoard from "../PlayerBoard/PlayerBoard";
+import { initialHandValue } from "../../Constants/cards";
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
   const { gameState, setGameState, socket, roomCode } = useGameConditions();
-  const [selectedCards, setSelectedCards] = useState([]);
+  const [selected, setSelected] = useState([]);
+  const [selectedHand, setSelectedHand] = useState([]);
+  const [selectedHandValues, setSelectedHandValues] =
+    useState(initialHandValue);
+  const [selectedCost, setSelectedCost] = useState({});
   let user = gameState?.users?.find((user) => user.name === userName);
   const userIndex = gameState?.users?.findIndex(
     (user) => user.name === userName
@@ -37,16 +42,28 @@ const Game = (props) => {
     socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
     socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
-  const cardClick = (clickedCard) => {
+  const cardClick = (clickedCard, hand) => {
+    if (hand) {
+      if (selectedHand.includes(clickedCard)) {
+        // If selected, remove from selected cards
+        setSelectedHand(selectedHand.filter((card) => card !== clickedCard));
+      } else {
+        // If not selected, add to selected cards
+        setSelectedHand([...selectedHand, clickedCard]);
+      }
+    }
     // Check if card is already selected
-    if (selectedCards.includes(clickedCard)) {
+    if (selected.includes(clickedCard)) {
       // If selected, remove from selected cards
-      setSelectedCards(selectedCards.filter((card) => card !== clickedCard));
+      setSelected(selected.filter((card) => card !== clickedCard));
     } else {
       // If not selected, add to selected cards
-      setSelectedCards([...selectedCards, clickedCard]);
+      setSelected([...selected, clickedCard]);
     }
   };
+  useEffect(() => {
+    console.log(selectedHand);
+  }, [selectedHand]);
 
   return (
     <div className="gameBackground">
@@ -68,24 +85,33 @@ const Game = (props) => {
         </div> */}
         <div className="playerHandContainer">
           <div className="playerHandTitle">{userName}'s Hand</div>
-          <PlayerHand selectedCards={selectedCards} cardClick={cardClick} />
+          <PlayerHand
+            selectedCards={selectedHand}
+            cardClick={cardClick}
+            disabled={!currentPlayer}
+          />
         </div>
         <div className="playerHandContainer">
           <div className="playerHandTitle">{userName}'s Board</div>
           <PlayerBoard
             user={user}
-            selectedCards={selectedCards}
+            selectedCards={selectedHand}
             cardClick={cardClick}
+            disabled={!currentPlayer}
           />
         </div>
         <Grid
           gameState={gameState}
-          selectedCards={selectedCards}
+          selectedCards={selected}
+          //TODO: add logic if card is less than selected value and can be afforded
+          //do something with the CSS and make clickable
+          selectedCardValues={selectedHandValues}
           cardClick={cardClick}
+          disabled={!currentPlayer}
         />
         <div className="playerHandContainer">
           <div className="playerHandTitle">{opponent?.name}'s Board</div>
-          <PlayerBoard user={opponent} />
+          <PlayerBoard user={opponent} cardClick={() => {}} />
         </div>
       </div>
 
