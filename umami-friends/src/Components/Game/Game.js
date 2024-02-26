@@ -62,7 +62,20 @@ const Game = (props) => {
     }
   };
   useEffect(() => {
-    console.log(selectedHand);
+    console.log("selectedHand", selectedHand);
+    setSelectedHandValues(initialHandValue);
+    if (selectedHand.length > 0) {
+      selectedHand.forEach((card) => {
+        let valueObject = card.value;
+        Object.keys(valueObject).forEach((key) => {
+          setSelectedHandValues((prevValues) => ({
+            ...prevValues,
+            [key]: (prevValues[key] || 0) + valueObject[key],
+          }));
+        });
+      });
+    }
+    console.log("selectedHandValues", selectedHandValues);
   }, [selectedHand]);
 
   return (
