@@ -17,7 +17,7 @@ export const Grid = (props) => {
             className={`grid-item ${
               props.selectedCards.includes(recipe) && "selected"
             }`}
-            onClick={() => props.cardClick(recipe)}
+            onClick={() => (props.disabled ? "" : props.cardClick(recipe))}
           >
             <img
               data-tooltip-id={`imageTooltip${index}`}
@@ -47,7 +47,7 @@ export const Grid = (props) => {
             className={`grid-item ${
               props.selectedCards.includes(recipe) && "selected"
             }`}
-            onClick={() => props.cardClick(recipe)}
+            onClick={() => (props.disabled ? "" : props.cardClick(recipe))}
           >
             <img
               data-tooltip-id={`rareTooltip${index}`}

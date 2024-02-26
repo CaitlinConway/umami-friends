@@ -13,9 +13,9 @@ export const PlayerBoard = (props) => {
       {playerBoard?.candy?.map((item, index) => (
         <div
           className={`player-card-body ${
-            props.selectedCards.includes(item) && "selected"
+            props?.selectedCards?.includes(item) && "selected"
           }`}
-          onClick={() => props.cardClick(item)}
+          onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
         >
           <img
             className="playerRecipeCard"
@@ -25,7 +25,12 @@ export const PlayerBoard = (props) => {
         </div>
       ))}
       {playerBoard?.ingredients?.map((item, index) => (
-        <div className="player-card-body">
+        <div
+          className={`player-card-body ${
+            props?.selectedCards?.includes(item) && "selected"
+          }`}
+          onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
+        >
           <img
             className="playerRecipeCard"
             alt={`${item.name}`}

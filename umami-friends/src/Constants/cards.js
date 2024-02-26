@@ -75,3 +75,27 @@ export const playerRoles = [
     actions: [],
   },
 ];
+
+export const initialHandValue = {
+  basicPlant: 0,
+  basicSpicy: 0,
+  basicBurger: 0,
+  basicColorless: 0,
+  basicTaco: 0,
+  basicSweet: 0,
+  ingredientPlant: 0,
+  ingredientSauce: 0,
+  ingredientNoodle: 0,
+  ingredientTaco: 0,
+  ingredientSweet: 0,
+  ingredientSpicy: 0,
+  ingredientBurger: 0,
+  ingredientEgg: 0,
+  advancedPlant: 0,
+  advancedSpicy: 0,
+  advancedBurger: 0,
+  advancedColorless: 0,
+  advancedTaco: 0,
+  advancedSweet: 0,
+  advancedBurger: 0,
+};
