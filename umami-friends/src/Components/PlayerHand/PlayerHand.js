@@ -10,6 +10,7 @@ export const PlayerHand = (props) => {
     <div>
       {playerHand?.map((item, index) => (
         <div
+          key={index}
           className={`player-card-body ${
             props.selectedCards.includes(item) && "selected"
           }`}
@@ -17,7 +18,7 @@ export const PlayerHand = (props) => {
         >
           <img
             className="playerRecipeCard"
-            alt={`${item.name}`}
+            alt={`${item.pictureName}`}
             src={require(`../../Pictures/${item.pictureName}.png`)}
           />
         </div>

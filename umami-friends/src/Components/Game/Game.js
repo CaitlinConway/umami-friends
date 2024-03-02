@@ -46,7 +46,9 @@ const Game = (props) => {
     if (hand) {
       if (selectedHand.includes(clickedCard)) {
         // If selected, remove from selected cards
-        setSelectedHand(selectedHand.filter((card) => card !== clickedCard));
+        setSelectedHand(
+          selectedHand.filter((card) => card.name !== clickedCard.name)
+        );
       } else {
         // If not selected, add to selected cards
         setSelectedHand([...selectedHand, clickedCard]);
@@ -55,14 +57,23 @@ const Game = (props) => {
     // Check if card is already selected
     if (selected.includes(clickedCard)) {
       // If selected, remove from selected cards
-      setSelected(selected.filter((card) => card !== clickedCard));
+      setSelected(selected.filter((card) => card.name !== clickedCard.name));
     } else {
       // If not selected, add to selected cards
       setSelected([...selected, clickedCard]);
     }
   };
+  const enableCard = (card) => {
+    let enabled = true;
+    let cost = card.cost;
+    for (const key in cost) {
+      if (cost[key] > selectedHandValues[key]) {
+        enabled = false;
+      }
+    }
+    return enabled;
+  };
   useEffect(() => {
-    console.log("selectedHand", selectedHand);
     setSelectedHandValues(initialHandValue);
     if (selectedHand.length > 0) {
       selectedHand.forEach((card) => {
@@ -75,7 +86,6 @@ const Game = (props) => {
         });
       });
     }
-    console.log("selectedHandValues", selectedHandValues);
   }, [selectedHand]);
 
   return (
@@ -121,6 +131,7 @@ const Game = (props) => {
           selectedCardValues={selectedHandValues}
           cardClick={cardClick}
           disabled={!currentPlayer}
+          enableCard={enableCard}
         />
         <div className="playerHandContainer">
           <div className="playerHandTitle">{opponent?.name}'s Board</div>

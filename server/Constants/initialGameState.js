@@ -2,6 +2,7 @@
 // import { rareRecipes } from "../Constants/cards.js";
 import rareRecipes from "../Constants/rareRecipes.json" assert { type: "json" };
 import { shuffleCards } from "../Helpers/cardHelper.js";
+import basicRecipes from "../Constants/basicRecipes.json" assert { type: "json" };
 export const initialGame = {
   roomCode: "",
   //either 2 or 4 users for valid game
@@ -9,18 +10,7 @@ export const initialGame = {
   users: [],
   //10 rare recipes
   rareRecipes: shuffleCards(rareRecipes, 10),
-  basicRecipes: {
-    healthySnack: 6,
-    spicyRamen: 5,
-    fancyBurger: 5,
-    tacoParty: 4,
-    niceCream: 3,
-    gardenSalad: 3,
-    hotPot: 3,
-    megaBurger: 3,
-    bigBurrito: 2,
-    twiceCream: 2,
-  },
+  basicRecipes: basicRecipes,
   playerTurn: 0,
   turnCount: 0,
   win: false,

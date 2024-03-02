@@ -68,3 +68,8 @@
 .selected {
   border: 10px solid #8f0404 !important; /* Border around selected cards */
 }
+
+/* Selected Cards */
+.enabled {
+  border: 10px solid #27c65f !important; /* Border around enabled cards */
+}

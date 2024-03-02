@@ -6,6 +6,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
   const userIndex = gameState.users.findIndex((user) => user.name === userName);
   const userRole = gameState.users[userIndex].role;
   const currentPlayer = gameState.users[gameState.playerTurn - 1];
+  let ingredientsCopy = [...ingredients];
   switch (action.actionType) {
     case "setRole":
       gameState.users[userIndex].role = action.role;
@@ -13,13 +14,12 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
     case "startGame":
       gameState.playerTurn = 1;
       gameState.users.forEach((user) => {
-        user.hand = shuffleCards(ingredients, 5);
+        user.hand = shuffleCards(ingredientsCopy, 5);
       });
       gameState.turnCount = 1;
       console.log("gameState", gameState);
       console.log("user1Hand", gameState.users[0].hand);
       console.log("user2Hand", gameState.users[1].hand);
-      console.log("ingredients", ingredients);
       // gameState.users[userIndex].hand = shuffleCards(ingredients, 4);
       break;
     //TODO: update for 4p later
@@ -31,16 +31,16 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startTurn":
       const sweetIngredients = currentPlayer.hand.filter(
-        (ingredient) => ingredient.value.sweet >= 1
+        (ingredient) => ingredient.value.ingredientSweet >= 1
       );
       currentPlayer.hand = currentPlayer.hand.filter(
-        (ingredient) => ingredient.value.sweet < 1
+        (ingredient) => ingredient.value.ingredientSweet < 1
       );
       sweetIngredients && currentPlayer.board.candy.push(...sweetIngredients);
       currentPlayer.energy = 1;
       break;
     case "drawCard":
-      currentPlayer.hand.push(shuffleCards(ingredients, 1)[0]);
+      currentPlayer.hand.push(shuffleCards(ingredientsCopy, 1)[0]);
       break;
   }
   updateGameState(roomCode, gameState);
