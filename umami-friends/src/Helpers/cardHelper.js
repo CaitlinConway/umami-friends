@@ -21,3 +21,27 @@ export const selectCards = (card) => {
 export const deselectCards = (card) => {
   card.className = "";
 };
+
+export const fillBasicRecipes = (basicRecipes) => {
+  let basicRecipesArray = [];
+  const basicRecipesTemplate = {
+    healthySnack: 6,
+    spicyRamen: 5,
+    fancyBurger: 5,
+    tacoParty: 4,
+    niceCream: 3,
+    gardenSalad: 3,
+    hotPot: 3,
+    megaBurger: 3,
+    bigBurrito: 2,
+    twiceCream: 2,
+  };
+
+  for (const key in basicRecipesTemplate) {
+    const value = basicRecipesTemplate[key];
+    const matchingRecipe = basicRecipes.filter((recipe) => recipe.name === key);
+    basicRecipesArray.push(...Array(value).fill(matchingRecipe));
+  }
+
+  return basicRecipesArray;
+};

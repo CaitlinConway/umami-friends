@@ -9,9 +9,8 @@
     },
     "energy": 1,
     "description": "All other players draw +1 card.",
-    "actions": [
-      "Snack"
-    ]
+    "actions": ["Snack"],
+    "pileCount": 6
   },
   {
     "name": "Spicy Ramen",
@@ -24,9 +23,8 @@
     },
     "energy": 0,
     "description": "Name an Ingredient type. If the opponent has that type in their hand, they discard 1 card of that type from their hand of their choice. If they do not have that type, they show you their hand and discard one card of their choice.",
-    "actions": [
-      "Scorch"
-    ]
+    "actions": ["Scorch"],
+    "pileCount": 5
   },
   {
     "name": "Fancy Burger",
@@ -39,7 +37,8 @@
     },
     "energy": 0,
     "description": "",
-    "actions": []
+    "actions": [],
+    "pileCount": 5
   },
   {
     "name": "Taco Party",
@@ -51,9 +50,21 @@
     },
     "energy": 0,
     "description": "Take an Ingredient card from your opponent's board. Add it to your board.",
-    "actions": [
-      "Attract"
-    ]
+    "actions": ["Attract"],
+    "pileCount": 4
+  },
+  {
+    "name": "Nice Cream",
+    "pictureName": "niceCream",
+    "points": 4,
+    "status": "basicSweet",
+    "cost": {
+      "ingredientSweet": 4
+    },
+    "energy": 1,
+    "description": "Cannot be interacted with by an opponent.",
+    "actions": ["Frozen"],
+    "pileCount": 3
   },
   {
     "name": "Garden Salad",
@@ -65,9 +76,8 @@
     },
     "energy": 1,
     "description": "(passive) Max Refresh +1 . All other players draw +2 cards.",
-    "actions": [
-      "Refresh"
-    ]
+    "actions": ["Refresh"],
+    "pileCount": 3
   },
   {
     "name": "Hot Pot",
@@ -79,9 +89,8 @@
     },
     "energy": 1,
     "description": "Discard 1 Basic Recipe from your opponent's board.",
-    "actions": [
-      "Ignite"
-    ]
+    "actions": ["Ignite"],
+    "pileCount": 3
   },
   {
     "name": "Megaburger",
@@ -93,9 +102,8 @@
     },
     "energy": 1,
     "description": "(passive) Gain +1 Umami for every ingredient card on your board.",
-    "actions": [
-      "Kingdom"
-    ]
+    "actions": ["Kingdom"],
+    "pileCount": 3
   },
   {
     "name": "Big Burrito",
@@ -108,23 +116,8 @@
     },
     "energy": 1,
     "description": "Take 2 Ingredients from your opponent's board. Add them to your board.",
-    "actions": [
-      "Wrap"
-    ]
-  },
-  {
-    "name": "Nice Cream",
-    "pictureName": "niceCream",
-    "points": 4,
-    "status": "basicSweet",
-    "cost": {
-      "ingredientSweet": 4
-    },
-    "energy": 1,
-    "description": "Cannot be interacted with by an opponent.",
-    "actions": [
-      "Frozen"
-    ]
+    "actions": ["Wrap"],
+    "pileCount": 2
   },
   {
     "name": "Twice Cream",
@@ -136,8 +129,7 @@
     },
     "energy": 1,
     "description": "Cannot be interacted with by an opponent.",
-    "actions": [
-      "Frozen"
-    ]
+    "actions": ["Frozen"],
+    "pileCount": 2
   }
 ]
