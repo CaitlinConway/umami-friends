@@ -79,7 +79,6 @@
 .roomInput button:hover,
 .enterRoomButton:hover {
 	background-color: #0e7b9f;
-	color: white;
 	cursor: pointer;
 }
 
