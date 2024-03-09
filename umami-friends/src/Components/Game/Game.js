@@ -62,7 +62,7 @@ const Game = (props) => {
   const buyCard = () => {
     socket.emit(
       "gameAction",
-      { actionType: "buyCard", actionData: { selectedCard, selectedHand } },
+      { actionType: "buyCard", actionData: { selected, selectedHand } },
       roomCode,
       userName
     );
