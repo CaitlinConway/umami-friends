@@ -19,6 +19,7 @@ const Game = (props) => {
   const [selectedHand, setSelectedHand] = useState([]);
   const [selectedHandValues, setSelectedHandValues] =
     useState(initialHandValue);
+  //probably only need to keep track of cost if we let them buy more than one card at once
   const [selectedCost, setSelectedCost] = useState({});
   let user = gameState?.users?.find((user) => user.name === userName);
   const userIndex = gameState?.users?.findIndex(
