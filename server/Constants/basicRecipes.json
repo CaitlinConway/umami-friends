@@ -1,5 +1,5 @@
-[
-  {
+{
+  "healthySnack" :{
     "name": "Healthy Snack",
     "pictureName": "healthySnack",
     "points": 1,
@@ -12,7 +12,7 @@
     "actions": ["Snack"],
     "pileCount": 6
   },
-  {
+  "spicyRamen": {
     "name": "Spicy Ramen",
     "pictureName": "spicyRamen",
     "points": 1,
@@ -26,7 +26,7 @@
     "actions": ["Scorch"],
     "pileCount": 5
   },
-  {
+  "fancyBurger": {
     "name": "Fancy Burger",
     "pictureName": "fancyBurger",
     "points": 2,
@@ -40,7 +40,7 @@
     "actions": [],
     "pileCount": 5
   },
-  {
+  "tacoParty": {
     "name": "Taco Party",
     "pictureName": "tacoParty",
     "points": 3,
@@ -53,7 +53,7 @@
     "actions": ["Attract"],
     "pileCount": 4
   },
-  {
+  "niceCream": {
     "name": "Nice Cream",
     "pictureName": "niceCream",
     "points": 4,
@@ -66,7 +66,7 @@
     "actions": ["Frozen"],
     "pileCount": 3
   },
-  {
+  "gardenSalad": {
     "name": "Garden Salad",
     "pictureName": "gardenSalad",
     "points": 3,
@@ -79,7 +79,7 @@
     "actions": ["Refresh"],
     "pileCount": 3
   },
-  {
+  "hotPot": {
     "name": "Hot Pot",
     "pictureName": "hotPot",
     "points": 3,
@@ -92,7 +92,7 @@
     "actions": ["Ignite"],
     "pileCount": 3
   },
-  {
+  "megaBurger": {
     "name": "Megaburger",
     "pictureName": "megaburger",
     "points": 6,
@@ -105,7 +105,7 @@
     "actions": ["Kingdom"],
     "pileCount": 3
   },
-  {
+  "bigBurrito": {
     "name": "Big Burrito",
     "pictureName": "bigBurrito",
     "points": 6,
@@ -119,7 +119,7 @@
     "actions": ["Wrap"],
     "pileCount": 2
   },
-  {
+  "twiceCream": {
     "name": "Twice Cream",
     "pictureName": "twiceCream",
     "points": 10,
@@ -132,4 +132,4 @@
     "actions": ["Frozen"],
     "pileCount": 2
   }
-]
+}
