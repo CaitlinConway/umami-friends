@@ -69,7 +69,7 @@ const Game = (props) => {
   };
   const cardClick = (clickedCard, hand, discard) => {
     if (hand && !discard) {
-      if (selectedHand.includes(clickedCard)) {
+      if (selectedHand?.includes(clickedCard)) {
         // If selected, remove from selected cards
         setSelectedHand(
           selectedHand.filter((card) => card.name !== clickedCard.name)
@@ -79,7 +79,7 @@ const Game = (props) => {
         setSelectedHand([...selectedHand, clickedCard]);
       }
     } else if (discard) {
-      if (discardCards.includes(clickedCard)) {
+      if (discardCards?.includes(clickedCard)) {
         // If selected, remove from selected cards
         setDiscardCards(
           discardCards.filter((card) => card.name !== clickedCard.name)
@@ -90,7 +90,7 @@ const Game = (props) => {
       }
     }
     // Check if card is already selected
-    if (selected.name === clickedCard.name) {
+    if (selected?.name === clickedCard.name) {
       // If selected, remove from selected cards
       setSelected({});
     } else {

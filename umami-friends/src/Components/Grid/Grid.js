@@ -14,7 +14,7 @@ export const Grid = (props) => {
         const img = require(`../../Pictures/${recipe.pictureName}.png`);
         const pileCount = gameState?.basicRecipes[index]?.pileCount;
         const enabled = props.enableCard(recipe);
-        const selected = props.selectedCards.includes(recipe);
+        const selected = props.selectedCards.name === recipe.name;
         return (
           <div
             key={index}
@@ -53,7 +53,7 @@ export const Grid = (props) => {
       {rareRecipes.map((recipe, index) => {
         const img2 = require(`../../Pictures/${recipe.pictureName}.png`);
         const enabled = props.enableCard(recipe);
-        const selected = props.selectedCards.includes(recipe);
+        const selected = props.selectedCards.name === recipe.name;
 
         return (
           <div
