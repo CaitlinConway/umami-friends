@@ -15,7 +15,8 @@ import { initialHandValue } from "../../Constants/cards";
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
   const { gameState, setGameState, socket, roomCode } = useGameConditions();
-  const [selected, setSelected] = useState([]);
+  //selected = grid cards selected
+  const [selected, setSelected] = useState({});
   const [selectedHand, setSelectedHand] = useState([]);
   const [selectedHandValues, setSelectedHandValues] =
     useState(initialHandValue);
@@ -58,6 +59,14 @@ const Game = (props) => {
     );
     socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
+  const buyCard = () => {
+    socket.emit(
+      "gameAction",
+      { actionType: "buyCard", actionData: { selectedCard, selectedHand } },
+      roomCode,
+      userName
+    );
+  };
   const cardClick = (clickedCard, hand, discard) => {
     if (hand && !discard) {
       if (selectedHand.includes(clickedCard)) {
@@ -81,15 +90,19 @@ const Game = (props) => {
       }
     }
     // Check if card is already selected
-    if (selected.includes(clickedCard)) {
+    if (selected.name === clickedCard.name) {
       // If selected, remove from selected cards
-      setSelected(selected.filter((card) => card.name !== clickedCard.name));
+      setSelected({});
     } else {
       // If not selected, add to selected cards
-      setSelected([...selected, clickedCard]);
+      setSelected(clickedCard);
     }
   };
+  //TODO: change so that you select a card to buy first then have to select the ingredients required to buy
   const enableCard = (card) => {
+    //now cards can always be bought unless one already selected?
+    //have a buy button appear when the ingredients selected exactly equal cost
+    //if can buy then don't let them add more ingredients
     let enabled = true;
     let cost = card.cost;
     for (const key in cost) {
@@ -99,6 +112,8 @@ const Game = (props) => {
     }
     return enabled;
   };
+  //TODO add logic to only count up to the exact cost of card.
+  const enableIngredient = (card) => {};
   const buyEnergy = () => {
     //remove 2 candy from hand and add 1 energy
     //backend needs to handle this so they know about updated hand state
@@ -116,7 +131,7 @@ const Game = (props) => {
         sweets++;
       }
     }
-    if (sweets >= 2) {
+    if ((sweets = 2)) {
       setCanBuyEnergy(true);
     }
   }, [selectedHand]);
@@ -179,6 +194,7 @@ const Game = (props) => {
             noEnergy={noEnergy}
             needDiscard={needDiscard}
             discardCards={discardCards}
+            enableIngredient={enableIngredient}
           />
         </div>
         <div className="playerHandContainer">
@@ -189,6 +205,7 @@ const Game = (props) => {
             cardClick={cardClick}
             disabled={!currentPlayer}
             noEnergy={noEnergy}
+            enableIngredient={enableIngredient}
           />
         </div>
         <Grid
@@ -201,6 +218,7 @@ const Game = (props) => {
           disabled={!currentPlayer}
           enableCard={enableCard}
           noEnergy={noEnergy}
+          buyCard={buyCard}
         />
         {canBuyEnergy ? <button onClick={buyEnergy}>Buy Energy</button> : ""}
         {needDiscard && (

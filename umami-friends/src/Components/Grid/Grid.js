@@ -18,17 +18,18 @@ export const Grid = (props) => {
         return (
           <div
             key={index}
-            className={`grid-item ${selected && enabled && "selected"} ${
-              recipe && enabled && !selected && "enabled"
+            className={`grid-item ${selected && "selected"} ${
+              recipe && !selected && "enabled"
             }`}
             onClick={() =>
               props.disabled || noEnergy
                 ? ""
-                : recipe && enabled
+                : recipe
                 ? props.cardClick(recipe)
                 : ""
             }
           >
+            {enabled && <button onClick={props.buyCard}>Buy Card</button>}
             <img
               data-tooltip-id={`imageTooltip${index}`}
               className="recipeCard"
@@ -57,17 +58,19 @@ export const Grid = (props) => {
         return (
           <div
             key={index}
-            className={`grid-item ${selected && enabled && "selected"} ${
-              recipe && enabled && !selected && "enabled"
+            className={`grid-item ${selected && "selected"} ${
+              recipe && !selected && "enabled"
             }`}
             onClick={() =>
               props.disabled || noEnergy
                 ? ""
-                : recipe && enabled
+                : recipe
                 ? props.cardClick(recipe)
                 : ""
             }
           >
+            {enabled && <button onClick={props.buyCard}>Buy Card</button>}
+
             <img
               data-tooltip-id={`rareTooltip${index}`}
               className="recipeCard"
