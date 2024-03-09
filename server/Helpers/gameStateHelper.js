@@ -9,20 +9,22 @@ const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 const createInitialGameState = () => {
   return deepCopy(initialGame);
 };
+
 export const getGameState = (roomCode) => {
-  let gameState = createInitialGameState();
   if (activeGames[roomCode] === undefined) {
+    let gameState = createInitialGameState();
+
     gameState.roomCode = roomCode;
     activeGames[roomCode] = gameState;
-  } else {
-    gameState = activeGames[roomCode];
   }
-  return gameState;
+  
+  return activeGames[roomCode];
 };
 
 export const updateGameState = (roomCode, gameState) => {
   activeGames[roomCode] = gameState;
 };
+
 export const deleteGameState = (roomCode) => {
   if (activeGames[roomCode]) {
     delete activeGames[roomCode];
