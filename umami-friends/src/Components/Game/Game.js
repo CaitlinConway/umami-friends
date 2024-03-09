@@ -138,7 +138,7 @@ const Game = (props) => {
           <PlayerBoard user={opponent} cardClick={() => {}} />
         </div>
       </div>
-
+      {/* TODO: add message container */}
       {/* <div className="messageContainer">
         <Messages user={userName}></Messages>
       </div> */}
