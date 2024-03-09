@@ -19,7 +19,7 @@ export function cardActionHelper(action, gameState) {
     // case "removeFromZone":
       
     //   break;
-    case "moveObject":
+    case "moveCard":
       //add intended object to the intended area (hand, board, discard pile, etc)
       !action.data.zone.to.user && gameState[action.zone.to.zoneName].push(action.data.cards)
       action.data.zone.to.user && gameState[users][action.data.zone.to.user][action.zone.to.zoneName].push(action.data.cards)

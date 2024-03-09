@@ -9,8 +9,23 @@ export default {
     },
     "energy": 1,
     "description": "All other players draw +1 card.",
-    "getActions": [
-      "Snack"
+    "getActions": (actionData, currentPlayer) => [
+      {
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "user": currentPlayer,
+              "zone": ""
+            },
+            "from": {
+              "zone": ""
+            }
+          },
+          "cards": [actionData.selected]
+        }
+      }
+      
     ],
     "pileCount": 6
   },
@@ -56,7 +71,7 @@ export default {
     "description": "Take an Ingredient card from your opponent's board. Add it to your board.",
     "getActions": (actionData, currentPlayer) => [
       {
-        "type": "moveObject",
+        "type": "moveCard",
         "data": {
           "zone": {
             "to": {
