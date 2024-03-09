@@ -18,9 +18,7 @@ export const Grid = (props) => {
         return (
           <div
             key={index}
-            className={`grid-item ${selected && "selected"} ${
-              recipe && !selected && "enabled"
-            }`}
+            className={`grid-item ${selected && "enabled"} `}
             onClick={() =>
               props.disabled || noEnergy
                 ? ""
@@ -58,9 +56,7 @@ export const Grid = (props) => {
         return (
           <div
             key={index}
-            className={`grid-item ${selected && "selected"} ${
-              recipe && !selected && "enabled"
-            }`}
+            className={`grid-item ${selected && "enabled"} `}
             onClick={() =>
               props.disabled || noEnergy
                 ? ""
