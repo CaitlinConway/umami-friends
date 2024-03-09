@@ -9,7 +9,7 @@ const allCards = { ... basicRecipes }
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   const gameState = getGameState(roomCode);
   const userIndex = gameState.users.findIndex((user) => user.name === userName);
-  const userRole = gameState.users[userIndex].role;
+  const userRole = gameState.users[userIndex]?.role;
   const currentPlayer = gameState.users[gameState.playerTurn - 1];
   let ingredientsCopy = [...ingredients];
   switch (action.actionType) {

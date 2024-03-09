@@ -7,14 +7,24 @@ export function GameConditionsProvider(props) {
   let socket;
   const [roomCode, setRoomCode] = useState("");
   const [gameState, setGameState] = useState(initialGame);
+
   if (!socket) {
     socket = io("http://localhost:8080");
   }
+
   socket.on("updateGameState", (newState) => {
+    console.log("updating game state: ", newState);
     setGameState(newState);
   });
+
   const { Provider } = gameContext;
-  const providerValue = { gameState, roomCode, setRoomCode, socket };
+  const providerValue = { 
+    gameState, 
+    roomCode, 
+    setRoomCode, 
+    socket 
+  };
+
   return <Provider value={providerValue}>{props.children}</Provider>;
 }
 
