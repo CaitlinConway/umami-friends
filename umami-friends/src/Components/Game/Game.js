@@ -28,7 +28,7 @@ const Game = (props) => {
   const playerNumber = userIndex + 1;
   //boolean to check if user is also current player
   const currentPlayer = gameState?.playerTurn === playerNumber;
-  const role = user?.role;
+  const userRole = gameState?.users[userIndex]?.role;
   //TODO: update when expand to 4 players, will just work for two
   const opponent = gameState?.users?.find((user) => user.name != userName);
   console.log("gameState", gameState);
@@ -91,11 +91,11 @@ const Game = (props) => {
 
   return (
     <div className="gameBackground">
-      {role === "" && <PlayerChoice user={user} />}
+      {userRole === "" && <PlayerChoice user={user} />}
       <Header
         userName={userName}
         roomCode={gameState.roomCode}
-        role={role}
+        role={userRole}
         opponent={opponent}
         startGame={startGame}
         drawCard={drawCard}

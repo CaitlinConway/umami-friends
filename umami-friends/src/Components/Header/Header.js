@@ -1,11 +1,13 @@
 import React from "react";
 import "./Header.css";
 import useGameConditions from "../../Hooks/useGameConditions";
+import { playerRoles } from "../../Constants/roles";
 
 export const Header = (props) => {
-  const { gameState } = useGameConditions();
+  const { gameState, socket, roomCode } = useGameConditions();
   const opponentsReady =
     gameState?.users?.length === 2 || gameState?.users?.length === 4;
+
   return (
     <div className="header">
       <div className="header-middle">
@@ -66,6 +68,15 @@ export const Header = (props) => {
             End Turn
           </button>
         )}
+        {
+          props.currentPlayer && (
+            <button className="user-action-button"
+              onClick={() => playerRoles[props.role]?.userAction(socket, roomCode)}
+            > 
+              Take User Action
+            </button>
+          )
+        }
       </div>
     </div>
   );

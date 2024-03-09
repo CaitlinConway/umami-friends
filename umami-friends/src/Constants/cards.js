@@ -49,32 +49,6 @@ export const ingredients = [
     },
   },
 ];
-export const playerRoles = [
-  {
-    name: "Sasha",
-    actions: [],
-  },
-  {
-    name: "Coco",
-    actions: [],
-  },
-  {
-    name: "Damien",
-    actions: [],
-  },
-  {
-    name: "Fronk",
-    actions: [],
-  },
-  {
-    name: "Shinra",
-    actions: [],
-  },
-  {
-    name: "Ramona",
-    actions: [],
-  },
-];
 
 export const initialHandValue = {
   basicPlant: 0,
