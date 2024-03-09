@@ -7,6 +7,7 @@ import basicRecipeObjects from "../../Constants/basicRecipes.json";
 export const Grid = (props) => {
   const { gameState } = useGameConditions();
   const { basicRecipes, rareRecipes } = gameState;
+  const noEnergy = props?.noEnergy || false;
   return (
     <div className="grid-container">
       {basicRecipes.map((recipe, index) => {
@@ -21,7 +22,7 @@ export const Grid = (props) => {
               recipe && enabled && !selected && "enabled"
             }`}
             onClick={() =>
-              props.disabled
+              props.disabled || noEnergy
                 ? ""
                 : recipe && enabled
                 ? props.cardClick(recipe)
@@ -60,7 +61,7 @@ export const Grid = (props) => {
               recipe && enabled && !selected && "enabled"
             }`}
             onClick={() =>
-              props.disabled
+              props.disabled || noEnergy
                 ? ""
                 : recipe && enabled
                 ? props.cardClick(recipe)

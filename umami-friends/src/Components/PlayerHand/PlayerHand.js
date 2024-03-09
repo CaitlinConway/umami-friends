@@ -6,15 +6,25 @@ export const PlayerHand = (props) => {
   const { gameState } = useGameConditions();
   const user = gameState?.users.find((user) => user.name === userName);
   const playerHand = user?.hand;
+  const noEnergy = props?.noEnergy || false;
+  const needDiscard = props?.needDiscard || false;
   return (
     <div>
       {playerHand?.map((item, index) => (
         <div
           key={index}
           className={`player-card-body ${
-            props.selectedCards.includes(item) && "selected"
+            (props.selectedCards.includes(item) ||
+              props.discardCards.includes(item)) &&
+            "selected"
           }`}
-          onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
+          onClick={() =>
+            props.disabled ||
+            (noEnergy && !needDiscard) ||
+            item.status === "ingredientSweet"
+              ? ""
+              : props.cardClick(item, true, needDiscard)
+          }
         >
           <img
             className="playerRecipeCard"

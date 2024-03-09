@@ -19,8 +19,10 @@ const Game = (props) => {
   const [selectedHand, setSelectedHand] = useState([]);
   const [selectedHandValues, setSelectedHandValues] =
     useState(initialHandValue);
-  //probably only need to keep track of cost if we let them buy more than one card at once
-  const [selectedCost, setSelectedCost] = useState({});
+  const [noEnergy, setNoEnergy] = useState(false);
+  const [discardCards, setDiscardCards] = useState([]);
+  const [needDiscard, setNeedDiscard] = useState(false);
+  const [canBuyEnergy, setCanBuyEnergy] = useState(false);
   let user = gameState?.users?.find((user) => user.name === userName);
   const userIndex = gameState?.users?.findIndex(
     (user) => user.name === userName
@@ -31,6 +33,7 @@ const Game = (props) => {
   const role = user?.role;
   //TODO: update when expand to 4 players, will just work for two
   const opponent = gameState?.users?.find((user) => user.name != userName);
+  const maxRefresh = gameState?.users?.maxRefresh || 5;
   console.log("gameState", gameState);
   const startGame = () => {
     socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
@@ -40,11 +43,23 @@ const Game = (props) => {
     socket.emit("gameAction", { actionType: "drawCard" }, roomCode, userName);
   };
   const endTurn = () => {
-    socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
+    // socket.emit(
+    //   "gameAction",
+    //   { actionType: "discardCards", actionData: discardCards },
+    //   roomCode,
+    //   userName
+    // );
+    //instead of emiting discard cards, just send the array as part of the end turn, backend will handle
+    socket.emit(
+      "gameAction",
+      { actionType: "endTurn", actionData: { discardCards } },
+      roomCode,
+      userName
+    );
     socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
-  const cardClick = (clickedCard, hand) => {
-    if (hand) {
+  const cardClick = (clickedCard, hand, discard) => {
+    if (hand && !discard) {
       if (selectedHand.includes(clickedCard)) {
         // If selected, remove from selected cards
         setSelectedHand(
@@ -53,6 +68,16 @@ const Game = (props) => {
       } else {
         // If not selected, add to selected cards
         setSelectedHand([...selectedHand, clickedCard]);
+      }
+    } else if (discard) {
+      if (discardCards.includes(clickedCard)) {
+        // If selected, remove from selected cards
+        setDiscardCards(
+          discardCards.filter((card) => card.name !== clickedCard.name)
+        );
+      } else {
+        // If not selected, add to selected cards
+        setDiscardCards([...discardCards, clickedCard]);
       }
     }
     // Check if card is already selected
@@ -74,6 +99,27 @@ const Game = (props) => {
     }
     return enabled;
   };
+  const buyEnergy = () => {
+    //remove 2 candy from hand and add 1 energy
+    //backend needs to handle this so they know about updated hand state
+    socket.emit(
+      "gameAction",
+      { actionType: "buyEnergy", actionData: { selectedHand } },
+      roomCode,
+      userName
+    );
+  };
+  useEffect(() => {
+    let sweets = 0;
+    for (let i = 0; i < selectedHand.length; i++) {
+      if (selectedHand[i].status === "ingredientSweet") {
+        sweets++;
+      }
+    }
+    if (sweets >= 2) {
+      setCanBuyEnergy(true);
+    }
+  }, [selectedHand]);
   useEffect(() => {
     setSelectedHandValues(initialHandValue);
     if (selectedHand.length > 0) {
@@ -89,6 +135,22 @@ const Game = (props) => {
     }
   }, [selectedHand]);
 
+  useEffect(() => {
+    if (user?.energy === 0) {
+      //disable everything except spending 2 candy to buy another energy or ending turn
+      setNoEnergy(true);
+    } else {
+      setNoEnergy(false);
+    }
+  }, [user?.energy]);
+  useEffect(() => {
+    //TODO: need to add some handling to allow sweets to buy energy
+    if (maxRefresh < user?.hand?.length && noEnergy) {
+      setNeedDiscard(true);
+    } else {
+      setNeedDiscard(false);
+    }
+  }, [user?.hand, maxRefresh, noEnergy]);
   return (
     <div className="gameBackground">
       {role === "" && <PlayerChoice user={user} />}
@@ -99,8 +161,9 @@ const Game = (props) => {
         opponent={opponent}
         startGame={startGame}
         drawCard={drawCard}
-        endTurn={endTurn}
+        endTurn={needDiscard ? endTurn : () => {}}
         currentPlayer={currentPlayer}
+        noEnergy={noEnergy}
       />
       <div className="gameContainer">
         {/* <div className="cardStackContainer">
@@ -113,6 +176,9 @@ const Game = (props) => {
             selectedCards={selectedHand}
             cardClick={cardClick}
             disabled={!currentPlayer}
+            noEnergy={noEnergy}
+            needDiscard={needDiscard}
+            discardCards={discardCards}
           />
         </div>
         <div className="playerHandContainer">
@@ -122,6 +188,7 @@ const Game = (props) => {
             selectedCards={selectedHand}
             cardClick={cardClick}
             disabled={!currentPlayer}
+            noEnergy={noEnergy}
           />
         </div>
         <Grid
@@ -133,7 +200,19 @@ const Game = (props) => {
           cardClick={cardClick}
           disabled={!currentPlayer}
           enableCard={enableCard}
+          noEnergy={noEnergy}
         />
+        {canBuyEnergy ? <button onClick={buyEnergy}>Buy Energy</button> : ""}
+        {needDiscard && (
+          <div className="discardModal">
+            <div className="discardModalText">{`Please select cards in hand to discard down to max refresh -- ${maxRefresh} or use two sweet to buy an energy`}</div>
+            {user?.hand?.length - discardCards.length <= maxRefresh ? (
+              <button onClick={endTurn}>End Turn</button>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
         <div className="playerHandContainer">
           <div className="playerHandTitle">{opponent?.name}'s Board</div>
           <PlayerBoard user={opponent} cardClick={() => {}} />

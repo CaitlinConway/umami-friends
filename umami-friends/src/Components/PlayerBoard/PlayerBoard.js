@@ -7,6 +7,7 @@ export const PlayerBoard = (props) => {
   // const user = gameState?.users.find((user) => (user.name = userName));
   const user = props?.user;
   const playerBoard = user?.board;
+  const noEnergy = props?.noEnergy;
 
   return (
     <div>
@@ -29,7 +30,9 @@ export const PlayerBoard = (props) => {
           className={`player-card-body ${
             props?.selectedCards?.includes(item) && "selected"
           }`}
-          onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
+          onClick={() =>
+            props.disabled || noEnergy ? "" : props.cardClick(item, true)
+          }
         >
           <img
             className="playerRecipeCard"
