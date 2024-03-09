@@ -2,7 +2,7 @@
 // import { rareRecipes } from "../Constants/cards.js";
 import rareRecipes from "../Constants/rareRecipes.json" assert { type: "json" };
 import { shuffleCards } from "../Helpers/cardHelper.js";
-import basicRecipes from "../Constants/basicRecipes.json" assert { type: "json" };
+import basicRecipes from "./basicRecipes.js";
 export const initialGame = {
   roomCode: "",
   //either 2 or 4 users for valid game

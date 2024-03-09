@@ -1,6 +1,6 @@
 //just an example of what a user looks like
-export const users=  {
-    player1:{
+export const users = [
+    {
         hand: [],
         board: [],
         energy: 1,
@@ -8,8 +8,8 @@ export const users=  {
         umami: 0,
         prompt: {
             active: false,
-            text:'',
-            options:[]
+            text: '',
+            options: []
         },
-    }, 
-}
+    },
+]

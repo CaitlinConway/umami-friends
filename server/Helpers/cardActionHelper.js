@@ -1,11 +1,11 @@
 import { getGameState, updateGameState } from "./gameStateHelper.js";
 import { ingredients } from "../Constants/cards.js";
 import { shuffleCards } from "./cardHelper.js";
-export function cardActionHelper(socket, io, action, roomCode, userName) {
-  const gameState = getGameState(roomCode);
-  const userIndex = gameState.users.findIndex((user) => user.name === userName);
-  const userRole = gameState.users[userIndex].role;
-  const currentPlayer = gameState.users[gameState.playerTurn - 1];
+export function cardActionHelper(action, gameState) {
+  // const gameState = getGameState(roomCode);
+  // const userIndex = gameState.users.findIndex((user) => user.name === userName);
+  // const userRole = gameState.users[userIndex].role;
+  // const currentPlayer = gameState.users[gameState.playerTurn - 1];
   switch (action.actionType) {
     // case "drawCards":
     //   //do some logic here for action.amount for how many to draw
@@ -13,29 +13,29 @@ export function cardActionHelper(socket, io, action, roomCode, userName) {
     //   break;
 
 
-    case "addToZone":
+    // case "addToZone":
     
-      break;
-    case "removeFromZone":
+    //   break;
+    // case "removeFromZone":
       
-      break;
+    //   break;
     case "moveObject":
       //add intended object to the intended area (hand, board, discard pile, etc)
-      !action.userName && gameState[action.zone].push(action.target)
-      action.userName && gameState[users][action.userName][action.zone].push(action.target)
+      !action.data.zone.to.user && gameState[action.zone.to.zoneName].push(action.data.cards)
+      action.data.zone.to.user && gameState[users][action.data.zone.to.user][action.zone.to.zoneName].push(action.data.cards)
 
       //remove intended object from intended zone
       // !action.userName && gameState[action.zone].remove(action.target)
       // action.userName && gameState[users][action.userName][action.zone].remove(action.target)
       break;
     case "addEnergy":
-      gameState.users[action.userName].energy++
+      gameState.users[action.data.user].energy++
       break;
     case "removeEnergy":
-      gameState.users[action.userName].energy > 1 && gameState.users[action.player].energy--
+      gameState.users[action.data.user].energy > 1 && gameState.users[action.player].energy--
       break;
     case "prompt":
-      gameState.users[action.userName].prompt = action.prompt
+      gameState.users[action.data.user].prompt = action.prompt
       break;
     case "drawCard":
       //select top card from either ingredient deck or recipe deck
@@ -84,6 +84,6 @@ export function cardActionHelper(socket, io, action, roomCode, userName) {
     //   //discard all sweets on boards and hands
     //   break;
   }
-  updateGameState(roomCode, gameState);
-  io.sockets.in(roomCode).emit("updateGameState", gameState);
+  // updateGameState(roomCode, gameState);
+  // io.sockets.in(roomCode).emit("updateGameState", gameState);
 }

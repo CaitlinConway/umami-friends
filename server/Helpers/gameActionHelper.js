@@ -1,8 +1,11 @@
 import { getGameState, updateGameState } from "./gameStateHelper.js";
 import { ingredients } from "../Constants/cards.js";
-import recipes from "../Constants/basicRecipes.json"
+import basicRecipes from "../Constants/basicRecipes.js"
 import { shuffleCards } from "./cardHelper.js";
 import { cardActionHelper} from "./cardActionHelper.js"
+
+const allCards = { ... basicRecipes }
+
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   const gameState = getGameState(roomCode);
   const userIndex = gameState.users.findIndex((user) => user.name === userName);
@@ -44,7 +47,11 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
     case "drawCard":
       currentPlayer.hand.push(shuffleCards(ingredientsCopy, 1)[0]);
       break;
-    case "userAbility":
+    case "useCard":
+      const cardActions = recipes[action.data.card].getActions(action.data, currentPlayer);
+      cardActions.forEach((cardAction) => cardActionHelper(cardAction))
+      break;
+    case "buyCard":
       break;
   }
   updateGameState(roomCode, gameState);
