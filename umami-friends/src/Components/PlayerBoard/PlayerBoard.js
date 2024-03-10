@@ -11,36 +11,46 @@ export const PlayerBoard = (props) => {
 
   return (
     <div>
-      {playerBoard?.candy?.map((item, index) => (
-        <div
-          className={`player-card-body ${
-            props?.selectedCards?.includes(item) && "selected"
-          }`}
-          onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
-        >
-          <img
-            className="playerRecipeCard"
-            alt={`${item.name}`}
-            src={require(`../../Pictures/${item.pictureName}.png`)}
-          />
-        </div>
-      ))}
-      {playerBoard?.ingredients?.map((item, index) => (
-        <div
-          className={`player-card-body ${
-            props?.selectedCards?.includes(item) && "selected"
-          }`}
-          onClick={() =>
-            props.disabled || noEnergy ? "" : props.cardClick(item, true)
-          }
-        >
-          <img
-            className="playerRecipeCard"
-            alt={`${item.name}`}
-            src={require(`../../Pictures/${item.pictureName}.png`)}
-          />
-        </div>
-      ))}
+      {playerBoard?.candy?.map((item, index) => {
+        const enable = props?.enableIngredient(item);
+        return (
+          <div
+            className={`player-card-body ${
+              props?.selectedCards?.includes(item) && "selected"
+            }`}
+            onClick={() =>
+              props.disabled || !enable ? "" : props.cardClick(item, true)
+            }
+          >
+            <img
+              className="playerRecipeCard"
+              alt={`${item.name}`}
+              src={require(`../../Pictures/${item.pictureName}.png`)}
+            />
+          </div>
+        );
+      })}
+      {playerBoard?.ingredients?.map((item, index) => {
+        const enable = props?.enableIngredient(item);
+        return (
+          <div
+            className={`player-card-body ${
+              props?.selectedCards?.includes(item) && "selected"
+            } ${enable && "enabled"}`}
+            onClick={() =>
+              props.disabled || !enable || noEnergy
+                ? ""
+                : props.cardClick(item, true)
+            }
+          >
+            <img
+              className="playerRecipeCard"
+              alt={`${item.name}`}
+              src={require(`../../Pictures/${item.pictureName}.png`)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };

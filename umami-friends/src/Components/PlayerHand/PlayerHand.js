@@ -10,29 +10,33 @@ export const PlayerHand = (props) => {
   const needDiscard = props?.needDiscard || false;
   return (
     <div>
-      {playerHand?.map((item, index) => (
-        <div
-          key={index}
-          className={`player-card-body ${
-            (props.selectedCards.includes(item) ||
-              props.discardCards.includes(item)) &&
-            "selected"
-          }`}
-          onClick={() =>
-            props.disabled ||
-            (noEnergy && !needDiscard) ||
-            item.status === "ingredientSweet"
-              ? ""
-              : props.cardClick(item, true, needDiscard)
-          }
-        >
-          <img
-            className="playerRecipeCard"
-            alt={`${item.pictureName}`}
-            src={require(`../../Pictures/${item.pictureName}.png`)}
-          />
-        </div>
-      ))}
+      {playerHand?.map((item, index) => {
+        const enable = props?.enableIngredient(item);
+        return (
+          <div
+            key={index}
+            className={`player-card-body ${
+              (props.selectedCards.includes(item) ||
+                props.discardCards.includes(item)) &&
+              "selected"
+            }`}
+            onClick={() =>
+              props.disabled ||
+              (noEnergy && !needDiscard) ||
+              item.status === "ingredientSweet" ||
+              !enable
+                ? ""
+                : props.cardClick(item, true, needDiscard)
+            }
+          >
+            <img
+              className="playerRecipeCard"
+              alt={`${item.pictureName}`}
+              src={require(`../../Pictures/${item.pictureName}.png`)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };

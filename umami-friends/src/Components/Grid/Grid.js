@@ -13,8 +13,8 @@ export const Grid = (props) => {
       {basicRecipes.map((recipe, index) => {
         const img = require(`../../Pictures/${recipe.pictureName}.png`);
         const pileCount = gameState?.basicRecipes[index]?.pileCount;
-        const enabled = props.enableCard(recipe);
-        const selected = props.selectedCards.name === recipe.name;
+        const enableBuy = props.enableBuy(recipe);
+        const selected = props.selectedCard?.name === recipe?.name;
         return (
           <div
             key={index}
@@ -27,7 +27,7 @@ export const Grid = (props) => {
                 : ""
             }
           >
-            {enabled && <button onClick={props.buyCard}>Buy Card</button>}
+            {enableBuy && <button onClick={props.buyCard}>Buy Card</button>}
             <img
               data-tooltip-id={`imageTooltip${index}`}
               className="recipeCard"
@@ -50,8 +50,8 @@ export const Grid = (props) => {
       })}
       {rareRecipes.map((recipe, index) => {
         const img2 = require(`../../Pictures/${recipe.pictureName}.png`);
-        const enabled = props.enableCard(recipe);
-        const selected = props.selectedCards.name === recipe.name;
+        const enableBuy = props.enableBuy(recipe);
+        const selected = props.selectedCards?.name === recipe?.name;
 
         return (
           <div
@@ -65,7 +65,7 @@ export const Grid = (props) => {
                 : ""
             }
           >
-            {enabled && <button onClick={props.buyCard}>Buy Card</button>}
+            {enableBuy && <button onClick={props.buyCard}>Buy Card</button>}
 
             <img
               data-tooltip-id={`rareTooltip${index}`}

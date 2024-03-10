@@ -67,7 +67,8 @@ const Game = (props) => {
       userName
     );
   };
-  const cardClick = (clickedCard, hand, discard) => {
+  const cardClick = (clickedCard, hand = false, discard = false) => {
+    debugger;
     if (hand && !discard) {
       if (selectedHand?.includes(clickedCard)) {
         // If selected, remove from selected cards
@@ -90,16 +91,18 @@ const Game = (props) => {
       }
     }
     // Check if card is already selected
-    if (selected?.name === clickedCard.name) {
+    else if (selected?.name === clickedCard.name) {
       // If selected, remove from selected cards
       setSelected({});
+      //also reset the selected ingredients
+      setSelectedHand([]);
     } else {
       // If not selected, add to selected cards
       setSelected(clickedCard);
     }
   };
   //TODO: change so that you select a card to buy first then have to select the ingredients required to buy
-  const enableCard = (card) => {
+  const enableBuy = (card) => {
     //now cards can always be bought unless one already selected?
     //have a buy button appear when the ingredients selected exactly equal cost
     //if can buy then don't let them add more ingredients
@@ -113,7 +116,21 @@ const Game = (props) => {
     return enabled;
   };
   //TODO add logic to only count up to the exact cost of card.
-  const enableIngredient = (card) => {};
+  const enableIngredient = (card) => {
+    let enabled = false;
+    //get cost of the selected grid card
+    let cost = selected.cost;
+    //cost is an object with keys of the ingredient and values of the amount required
+    for (const key in cost) {
+      //if the cost is still higher than selected values and the card we want to enable has that value then enable it to select
+      if (cost[key] > selectedHandValues[key] && card.value[key] > 0) {
+        console.log("enabled");
+        return true;
+      }
+    }
+    console.log(enabled);
+    return false;
+  };
   const buyEnergy = () => {
     //remove 2 candy from hand and add 1 energy
     //backend needs to handle this so they know about updated hand state
@@ -210,13 +227,13 @@ const Game = (props) => {
         </div>
         <Grid
           gameState={gameState}
-          selectedCards={selected}
+          selectedCard={selected}
           //TODO: add logic if card is less than selected value and can be afforded
           //do something with the CSS and make clickable
           selectedCardValues={selectedHandValues}
           cardClick={cardClick}
           disabled={!currentPlayer}
-          enableCard={enableCard}
+          enableBuy={enableBuy}
           noEnergy={noEnergy}
           buyCard={buyCard}
         />
