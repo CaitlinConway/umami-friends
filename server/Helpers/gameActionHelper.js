@@ -1,10 +1,11 @@
 import { getGameState, updateGameState } from "./gameStateHelper.js";
 import { ingredients, playerRoles } from "../Constants/cards.js";
 import basicRecipes from "../Constants/basicRecipes.js"
+import roleCards from "../Constants/roleCards.js";
 import rareRecipes from "../Constants/rareRecipes.js"
 import { shuffleCards } from "./cardHelper.js";
 
-const allCards = { ...basicRecipes, ...rareRecipes }
+const allCards = { ... basicRecipes, ... rareRecipes, ... roleCards, }
 
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   console.log("WTF", ingredients, playerRoles);
