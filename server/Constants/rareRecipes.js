@@ -91,7 +91,7 @@ export default {
     "description": "View any player\u2019s hand. Take any 2 Ingredients from their hand or board. Discard 1, and add 1 to your board.",
     "actions": ["Stir-Fry"]
   },
-  {
+  bubblingCurry: {
     "name": "Bubbling Curry",
     "pictureName": "bubblingCurry",
     "points": 4,
@@ -106,7 +106,7 @@ export default {
     "description": "You must give your opponent 2 Recipes to activate this ability, otherwise this card does nothing. Discard an opponent's Basic or Advanced Recipe.",
     "actions": ["Offering"]
   },
-  {
+  volcanoPot: {
     "name": "Volcano Pot",
     "pictureName": "volcanoPot",
     "points": 0,
@@ -121,7 +121,7 @@ export default {
     "description": "Steal an opponent's Recipe and use its active ability immediately.",
     "actions": ["Immolate"]
   },
-  {
+  burgerBrothers: {
     "name": "Burger Brothers",
     "pictureName": "burgerBrothers",
     "points": 6,
@@ -135,7 +135,7 @@ export default {
     "description": "(passive) Gain +1 Umami for every Ingredient on your board.",
     "actions": ["Kingdom"]
   },
-  {
+  chickenSandwich: {
     "name": "Chicken Sandwich",
     "pictureName": "chickenSandwich",
     "points": 8,
@@ -150,7 +150,7 @@ export default {
     "description": "Your opponent discards down to 4 Ingredients total between their hand and board.",
     "actions": ["Fry"]
   },
-  {
+  theOmegaburger: {
     "name": "The OmegaBurger",
     "pictureName": "theOmegaburger",
     "points": 30,
@@ -165,7 +165,7 @@ export default {
     "description": "Upon pickup, win the game.",
     "actions": ["Supremacy"]
   },
-  {
+  tamaleTwins: {
     "name": "Tamale Twins",
     "pictureName": "tamaleTwins",
     "points": 6,
@@ -179,7 +179,7 @@ export default {
     "description": "Use the active ability of any Recipe on your board.",
     "actions": ["Double-Up"]
   },
-  {
+  tacoSalad: {
     "name": "Taco Salad",
     "pictureName": "tacoSalad",
     "points": 6,
@@ -194,7 +194,7 @@ export default {
     "description": "(passive) Max Refresh +2.",
     "actions": ["Tossed"]
   },
-  {
+  tortillaSoup: {
     "name": "Tortilla Soup",
     "pictureName": "tortillaSoup",
     "points": 6,
@@ -209,7 +209,7 @@ export default {
     "description": "Discard a card from your own hand, then swap hands with an opponent.",
     "actions": ["Submerge"]
   },
-  {
+  emperorTorta: {
     "name": "Emperor Torta",
     "pictureName": "emperorTorta",
     "points": 5,
@@ -224,7 +224,7 @@ export default {
     "description": "Add 2 Fancy Burgers to your Board. (passive) All Recipes are now worth +1 Umami (including Emperor Torta).",
     "actions": ["Subjects"]
   },
-  {
+  massiveBurrito: {
     "name": "Massive Burrito",
     "pictureName": "massiveBurrito",
     "points": 16,
@@ -240,7 +240,7 @@ export default {
     "description": "You may view and spend ingredient cards from both you and an opponent\u2019s hand and board this turn, but can no longer draw additional cards this turn. At the end of the turn, all players Refresh.",
     "actions": ["Envelop"]
   },
-  {
+  verySourCandy: {
     "name": "Very Sour Candy",
     "pictureName": "verySourCandy",
     "points": 3,
@@ -255,7 +255,7 @@ export default {
     "description": "View any players' hand. Take up to 2 Sweets from their hand and place them on your board.",
     "actions": ["Pucker"]
   },
-  {
+  hyperTreat: {
     "name": "Hyper Treat",
     "pictureName": "hyperTreat",
     "points": 8,
@@ -269,7 +269,7 @@ export default {
     "description": "All players discard their Sweets on the board and in their hand. Immediately shuffle the discard pile back into the deck.",
     "actions": ["Sugar Rush"]
   },
-  {
+  chocoberryCake: {
     "name": "Chocoberry Cake",
     "pictureName": "chocoberryCake",
     "points": 12,
@@ -284,7 +284,7 @@ export default {
     "description": "(passive) Gain +2 Umami for every additional Sweet on your board.",
     "actions": ["Petit Fours"]
   },
-  {
+  veggieNuggets: {
     "name": "Veggie Nuggets",
     "pictureName": "veggieNuggets",
     "points": 1,
@@ -298,7 +298,7 @@ export default {
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Spicy Nuggets or Saucy Nuggets. Place 1 in the Rare Recipe market in the place of Veggie Nuggets.",
     "actions": ["Friendship"]
   },
-  {
+  spicyNuggets: {
     "name": "Spicy Nuggets",
     "pictureName": "spicyNuggets",
     "points": 2,
@@ -312,7 +312,7 @@ export default {
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Veggie Nuggets or Saucy Nuggets. Place 1 in the Rare Recipe market in the place of Spicy Nuggets.",
     "actions": ["Friendship"]
   },
-  {
+  saucyNuggets: {
     "name": "Saucy Nuggets",
     "pictureName": "saucyNuggets",
     "points": 3,
@@ -326,7 +326,7 @@ export default {
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Veggie Nuggets or Spicy Nuggets. Place 1 in the Rare Recipe market in the place of Saucy Nuggets.",
     "actions": ["Friendship"]
   },
-  {
+  fruitSalad: {
     "name": "Fruit Salad",
     "pictureName": "fruitSalad",
     "points": 6,
@@ -342,7 +342,7 @@ export default {
     "description": "(passive) Healthy Snacks are now worth 4 Umami (instead of 1). All other players draw +2 cards.",
     "actions": ["Transmute"]
   },
-  {
+  spiceCream: {
     "name": "Spice Cream",
     "pictureName": "spiceCream",
     "points": 6,
@@ -358,7 +358,7 @@ export default {
     "description": "Steal any one of your opponents' Basic Recipes, including Sweet Types (ignore Frozen effect). Use its active ability immediately.",
     "actions": ["Melt"]
   },
-  {
+  fruitSando: {
     "name": "Fruit Sando",
     "pictureName": "fruitSando",
     "points": 4,
@@ -373,7 +373,7 @@ export default {
     "description": "(passive) The opponent may discard this card from your board on their turn for the cost of 3 Sweets.",
     "actions": ["Impressionable"]
   },
-  {
+  paletas: {
     "name": "Paletas",
     "pictureName": "paletas",
     "points": 6,
@@ -388,7 +388,7 @@ export default {
     "description": "Discard 3 Recipes from the Rare recipe market. Immediately refill the market.",
     "actions": ["Fresh"]
   },
-  {
+  soupSalad: {
     "name": "Soup & Salad",
     "pictureName": "soupSalad",
     "points": 6,
@@ -403,7 +403,7 @@ export default {
     "description": "Discard 1 Recipe from the Rare Recipe market. Immediately refill the market.",
     "actions": ["Substitute"]
   },
-  {
+  plainSandwich: {
     "name": "Plain Sandwich",
     "pictureName": "plainSandwich",
     "points": 3,
@@ -418,7 +418,7 @@ export default {
     "description": "Give this to an opponent. They must return 1 Basic or Advanced Rare Recipe of their choice to the Rare Recipe market. If they do not have a Rare Recipe, this ability does nothing.",
     "actions": ["Flavorless"]
   },
-  {
+  umi: {
     "name": "Umi",
     "pictureName": "umi",
     "points": 3,
@@ -434,7 +434,7 @@ export default {
     "description": "Retain all Recipes used to complete this. All players may place any amount of Ingredients from their hand onto their board.",
     "actions": ["Equilibrium"]
   },
-  {
+  okonomiyaki: {
     "name": "Okonomiyaki",
     "pictureName": "okonomiyaki",
     "points": 3,

@@ -2,6 +2,7 @@
 // import { rareRecipes } from "../Constants/cards.js";
 import rareRecipes from "../Constants/rareRecipes.json" assert { type: "json" };
 import { shuffleCards } from "../Helpers/cardHelper.js";
+import { ingredients } from "./cards.js";
 import basicRecipes from "./basicRecipes.js";
 export const initialGame = {
   roomCode: "",
@@ -9,7 +10,7 @@ export const initialGame = {
   //user object should have name and character
   users: [],
   //10 rare recipes
-  discardPile: [],
+  discardPile: shuffleCards(ingredients, ingredients.length),
   ingredientsDrawPile: [],
   recipesDrawPile: [],
   rareRecipes: shuffleCards(rareRecipes, 10),

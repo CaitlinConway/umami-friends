@@ -48,7 +48,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       currentPlayer.hand.push(shuffleCards(ingredientsCopy, 1)[0]);
       break;
     case "useCard":
-      const cardActions = recipes[action.data.card].getActions(action.data, currentPlayer);
+      const cardActions = allCards[action.data.card].getActions(action.data, currentPlayer, gameState);
       cardActions.forEach((cardAction) => cardActionHelper(cardAction))
       break;
     case "buyCard":
