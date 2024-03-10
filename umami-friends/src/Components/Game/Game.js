@@ -98,6 +98,7 @@ const Game = (props) => {
     } else {
       // If not selected, add to selected cards
       setSelected(clickedCard);
+      setSelectedHand([]);
     }
   };
   //TODO: change so that you select a card to buy first then have to select the ingredients required to buy
