@@ -7,21 +7,27 @@ const leftovers = (socket, roomCode) => console.log("Ramona is taking an action"
 
 export const playerRoles = {
   "Sasha": {
+    userActionIsPassive: true,
     userAction: (socket, roomCode) => dig(socket, roomCode)
   },
   "Coco": {
+    userActionIsPassive: true,
     userAction: (socket, roomCode) => wellRested(socket, roomCode)
   },
   "Damien": {
+    userActionIsPassive: false,
     userAction: (socket, roomCode) => hatch(socket, roomCode)
   },
   "Fronk": {
+    userActionIsPassive: false,
     userAction: (socket, roomCode) => doubleFronkBurger(socket, roomCode)
   },
   "Shinra": {
+    userActionIsPassive: false,
     userAction: (socket, roomCode) => inflame(socket, roomCode)
   },
   "Ramona": {
+    userActionIsPassive: false,
     userAction: (socket, roomCode) => leftovers(socket, roomCode)
   }
 }
