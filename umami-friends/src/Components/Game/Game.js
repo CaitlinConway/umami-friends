@@ -68,7 +68,6 @@ const Game = (props) => {
     );
   };
   const cardClick = (clickedCard, hand = false, discard = false) => {
-    debugger;
     if (hand && !discard) {
       if (selectedHand?.includes(clickedCard)) {
         // If selected, remove from selected cards
@@ -123,12 +122,10 @@ const Game = (props) => {
     //cost is an object with keys of the ingredient and values of the amount required
     for (const key in cost) {
       //if the cost is still higher than selected values and the card we want to enable has that value then enable it to select
-      if (cost[key] > selectedHandValues[key] && card.value[key] > 0) {
-        console.log("enabled");
+      if (cost[key] >= selectedHandValues[key] && card.value[key] > 0) {
         return true;
       }
     }
-    console.log(enabled);
     return false;
   };
   const buyEnergy = () => {

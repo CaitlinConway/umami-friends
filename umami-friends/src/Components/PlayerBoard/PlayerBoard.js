@@ -12,15 +12,13 @@ export const PlayerBoard = (props) => {
   return (
     <div>
       {playerBoard?.candy?.map((item, index) => {
-        const enable = props?.enableIngredient(item);
+        // const enable = props?.enableIngredient(item);
         return (
           <div
             className={`player-card-body ${
               props?.selectedCards?.includes(item) && "selected"
             }`}
-            onClick={() =>
-              props.disabled || !enable ? "" : props.cardClick(item, true)
-            }
+            onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
           >
             <img
               className="playerRecipeCard"
