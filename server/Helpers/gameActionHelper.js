@@ -29,6 +29,8 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     //TODO: update for 4p later
     case "endTurn":
+      //TODO: add logic for handling discard
+      currentPlayer.energy = 1;
       gameState.playerTurn === 1
         ? (gameState.playerTurn = 2)
         : (gameState.playerTurn = 1);
@@ -45,7 +47,8 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       currentPlayer.energy = 1;
       break;
     case "drawCard":
-      currentPlayer.hand.push(shuffleCards(ingredientsCopy, 1)[0]);
+      currentPlayer.hand.push(...shuffleCards(ingredientsCopy, 3));
+      currentPlayer.energy--;
       break;
     case "useCard":
       const cardActions = allCards[action.data.card].getActions(action.data, userIndex, gameState);

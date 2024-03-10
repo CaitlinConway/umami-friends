@@ -9,7 +9,7 @@
     },
     "energy": 1,
     "description": "All other players draw +1 card.",
-    "actions": ["Snack"],
+    "actions": ["drawcards1"],
     "pileCount": 6
   },
   {
