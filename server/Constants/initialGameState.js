@@ -8,7 +8,6 @@ export const initialGame = () => {
   const shuffledRareRecipes = shuffleCards(Object.values(rareRecipes), Object.keys(rareRecipes).length)
   return {
   roomCode: "",
-  discardPile: [],
   //either 2 or 4 users for valid game
   //user object should have name and character
   users: [],

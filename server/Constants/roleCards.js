@@ -14,17 +14,17 @@ export default {
     },
     energy: 1,
     description: "Draw the top 3 cards from the discard pile. Take 1 card. Place the candy spent to use this ability on top of the discard pile.",
-    getActions: (actionData, currentPlayer) => [
+    getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
         data: {
           zone: {
             to: {
-              user: currentPlayer,
+              user: userIndex,
               zoneName: "hand"
             },
             from : {
-              zoneName: "discard",
+              zoneName: "discardPile",
               indexFromEnd: actionData.indexFromEnd
             }
           },
@@ -40,7 +40,7 @@ export default {
               zoneName: "discard"
             },
             from: {
-              user: currentPlayer,
+              user: userIndex,
               zoneName: "hand"
             }
           },
@@ -64,17 +64,17 @@ export default {
     },
     energy: 1,
     description: "Steal a Basic|Common Recipe from an opponent and use its active ability immediately",
-    getActions: (actionData, currentPlayer) => [
+    getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
         data: {
           zone: {
             to: {
-              user: currentPlayer,
+              user: userIndex,
               zoneName: "board"
             },
             from: {
-              user: actionDate.chosenUser,
+              user: actionData.chosenUser,
               zoneName: "board"
             }
           }
@@ -101,17 +101,17 @@ export default {
     cost: {}, // no cost
     energy: 0, // passive
     description: "(Passive) When placing an ingredient as your only action on a turn, you may place a second ingredient as well.",
-    getActions: (actionData, currentPlayer) => [
+    getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
         data: {
           zone: {
             to: {
-              user: currentPlayer,
+              user: userIndex,
               zoneName: "board"
             },
             from: {
-              user: currentPlayer,
+              user: userIndex,
               zoneName: "hand"
             }
           }
@@ -133,7 +133,7 @@ export default {
     },
     energy: 1,
     description: "Discard a Rare Recipe from the store. Take Okonomiyaki from the Rare Deck and add it to the store.",
-    getActions: (actionData, currentPlayer) => [
+    getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
         data: {
@@ -160,7 +160,7 @@ export default {
             },
             from: {
               user: "",
-              zoneName: "drawPile"
+              zoneName: "recipesDrawPile"
             }
           }
         },
@@ -178,12 +178,12 @@ export default {
     },
     energy: 1,
     description: "Add 2 Fancy Burgers to your board.",
-    getActions: (actionData, currentPlayer) => [
+    getActions: (actionData, userIndex) => [
       {
         type: "moveCards",
         zone: {
           to: {
-            user: currentPlayer,
+            user: userIndex,
             zoneName: "boards"
           },
           from: {
@@ -203,17 +203,17 @@ export default {
     cost: {},
     energy: 0,
     description: "(Passive) After every second recipe (2, 4, 6...) that you build in a single turn, draw + 1 card.",
-    getActions: (actionData, currentPlayer) => [
+    getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
         zone:{
           to: {
-            user: currentPlayer,
+            user: userIndex,
             zoneName: "hand"
           }, 
           from: {
             user: "",
-            zoneName: "drawPile"
+            zoneName: "ingredientsDrawPile"
           }
         },
         cards: [...actionData.selected]
