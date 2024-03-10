@@ -1,4 +1,4 @@
-const getOpponent = (currentPlayer) => currentPlayer === 0 ? 1 : 0;
+const getOpponent = (userIndex) => userIndex === 0 ? 1 : 0;
 
 export default {
   "healthySnack": {
@@ -11,13 +11,13 @@ export default {
     },
     "energy": 1,
     "description": "All other players draw +1 card.",
-    "getActions": (_actionData, currentPlayer, gameState) => [
+    "getActions": (_actionData, userIndex, gameState) => [
       {
         "type": "moveCard",
         "data": {
           "zone": {
             "to": {
-              "user": getOpponent(currentPlayer),
+              "user": getOpponent(userIndex),
               "zoneName": "hand"
             },
             "from": {
@@ -41,7 +41,7 @@ export default {
     },
     "energy": 0,
     "description": "Name an Ingredient type. If the opponent has that type in their hand, they discard 1 card of that type from their hand of their choice. If they do not have that type, they show you their hand and discard one card of their choice.",
-    "getActions": (actionData, currentPlayer) => [
+    "getActions": (actionData, userIndex) => [
       {
         "type": "prompt",
         "data": {
@@ -49,7 +49,7 @@ export default {
           actionRequired: "discard",
           cardType: "Ingredient",
           cardName: actionData.selected[0],
-          user: getOpponent(currentPlayer),
+          user: getOpponent(userIndex),
         }
       }
     ],
@@ -79,17 +79,17 @@ export default {
     },
     "energy": 0,
     "description": "Take an Ingredient card from your opponent's board. Add it to your board.",
-    "getActions": (actionData, currentPlayer) => [
+    "getActions": (actionData, userIndex) => [
       {
         "type": "moveCard",
         "data": {
           "zone": {
             "to": {
-              "user": currentPlayer,
+              "user": userIndex,
               "zone": "board"
             },
             "from": {
-              "user": getOpponent(currentPlayer),
+              "user": getOpponent(userIndex),
               "zone": "board"
             }
           },
@@ -122,13 +122,13 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Max Refresh +1 . All other players draw +2 cards.",
-    "getActions": (_actionData, currentPlayer) => [
+    "getActions": (_actionData, userIndex) => [
       {
         "type": "moveCard",
         "data": {
           "zone": {
             "to": {
-              "user": getOpponent(currentPlayer),
+              "user": getOpponent(userIndex),
               "zoneName": "hand"
             },
             "from": {
@@ -151,7 +151,7 @@ export default {
     },
     "energy": 1,
     "description": "Discard 1 Basic Recipe from your opponent's board.",
-    "getActions": (actionData, currentPlayer) => [
+    "getActions": (actionData, userIndex) => [
       {
         "type": "moveCard",
         "data": {
@@ -160,7 +160,7 @@ export default {
               "zoneName": "basicRecipes"
             },
             "from": {
-              "user": getOpponent(currentPlayer),
+              "user": getOpponent(userIndex),
               "zoneName": "hand"
             }
           },
@@ -194,17 +194,17 @@ export default {
     },
     "energy": 1,
     "description": "Take 2 Ingredients from your opponent's board. Add them to your board.",
-    "getActions": (actionData, currentPlayer) => [
+    "getActions": (actionData, userIndex) => [
       {
         "type": "moveCard",
         "data": {
           "zone": {
             "to": {
-              "user": currentPlayer,
+              "user": userIndex,
               "zone": "board"
             },
             "from": {
-              "user": getOpponent(currentPlayer),
+              "user": getOpponent(userIndex),
               "zone": "board"
             }
           },

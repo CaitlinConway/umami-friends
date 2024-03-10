@@ -15,7 +15,7 @@ export default {
     },
     "energy": 1,
     "description": "Retain all Recipes used to complete this. Draw +1 card.",
-    "actions": ["Harmony"]
+    "getActions": () => [],
   },
   tofu: {
     "name": "Tofu",
@@ -29,7 +29,7 @@ export default {
     },
     "energy": 1,
     "description": "",
-    "actions": ["Morph"]
+    "getActions": () => [],
   },
   springRoll: {
     "name": "Spring Roll",
@@ -44,7 +44,7 @@ export default {
     },
     "energy": 1,
     "description": "Place 2 Ingredients from your hand onto your board. Refresh (but your turn does not end). All other players draw +2 cards.",
-    "actions": ["Fresh"]
+    "getActions": () => [],
   },
   lettuceWrap: {
     "name": "Lettuce Wrap",
@@ -59,7 +59,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) At the end of your turn, you may place +1 Ingredient from your hand onto your board. If you do, all other players draw +1 card.",
-    "actions": ["Restore"]
+    "getActions": () => [],
   },
   greatLeaf: {
     "name": "Great Leaf",
@@ -74,7 +74,7 @@ export default {
     },
     "energy": 1,
     "description": "Draw +5 cards. You may take unlimited Energy this turn, but can no longer draw additional cards this turn.",
-    "actions": ["Wish"]
+    "getActions": () => [],
   },
   padThai: {
     "name": "Pad Thai",
@@ -89,7 +89,7 @@ export default {
     },
     "energy": 1,
     "description": "View any player\u2019s hand. Take any 2 Ingredients from their hand or board. Discard 1, and add 1 to your board.",
-    "actions": ["Stir-Fry"]
+    "getActions": () => [],
   },
   bubblingCurry: {
     "name": "Bubbling Curry",
@@ -104,7 +104,7 @@ export default {
     },
     "energy": 0,
     "description": "You must give your opponent 2 Recipes to activate this ability, otherwise this card does nothing. Discard an opponent's Basic or Advanced Recipe.",
-    "actions": ["Offering"]
+    "getActions": () => [],
   },
   volcanoPot: {
     "name": "Volcano Pot",
@@ -119,7 +119,7 @@ export default {
     },
     "energy": 1,
     "description": "Steal an opponent's Recipe and use its active ability immediately.",
-    "actions": ["Immolate"]
+    "getActions": () => [],
   },
   burgerBrothers: {
     "name": "Burger Brothers",
@@ -133,7 +133,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Gain +1 Umami for every Ingredient on your board.",
-    "actions": ["Kingdom"]
+    "getActions": () => [],
   },
   chickenSandwich: {
     "name": "Chicken Sandwich",
@@ -148,7 +148,7 @@ export default {
     },
     "energy": 0,
     "description": "Your opponent discards down to 4 Ingredients total between their hand and board.",
-    "actions": ["Fry"]
+    "getActions": () => [],
   },
   theOmegaburger: {
     "name": "The OmegaBurger",
@@ -163,7 +163,7 @@ export default {
     },
     "energy": 0,
     "description": "Upon pickup, win the game.",
-    "actions": ["Supremacy"]
+    "getActions": () => [],
   },
   tamaleTwins: {
     "name": "Tamale Twins",
@@ -177,7 +177,7 @@ export default {
     },
     "energy": 1,
     "description": "Use the active ability of any Recipe on your board.",
-    "actions": ["Double-Up"]
+    "getActions": () => [],
   },
   tacoSalad: {
     "name": "Taco Salad",
@@ -192,7 +192,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Max Refresh +2.",
-    "actions": ["Tossed"]
+    "getActions": () => [],
   },
   tortillaSoup: {
     "name": "Tortilla Soup",
@@ -207,7 +207,7 @@ export default {
     },
     "energy": 1,
     "description": "Discard a card from your own hand, then swap hands with an opponent.",
-    "actions": ["Submerge"]
+    "getActions": () => [],
   },
   emperorTorta: {
     "name": "Emperor Torta",
@@ -222,7 +222,7 @@ export default {
     },
     "energy": 0,
     "description": "Add 2 Fancy Burgers to your Board. (passive) All Recipes are now worth +1 Umami (including Emperor Torta).",
-    "actions": ["Subjects"]
+    "getActions": () => [],
   },
   massiveBurrito: {
     "name": "Massive Burrito",
@@ -238,7 +238,7 @@ export default {
     },
     "energy": 1,
     "description": "You may view and spend ingredient cards from both you and an opponent\u2019s hand and board this turn, but can no longer draw additional cards this turn. At the end of the turn, all players Refresh.",
-    "actions": ["Envelop"]
+    "getActions": () => [],
   },
   verySourCandy: {
     "name": "Very Sour Candy",
@@ -253,7 +253,7 @@ export default {
     },
     "energy": 0,
     "description": "View any players' hand. Take up to 2 Sweets from their hand and place them on your board.",
-    "actions": ["Pucker"]
+    "getActions": () => [],
   },
   hyperTreat: {
     "name": "Hyper Treat",
@@ -267,7 +267,7 @@ export default {
     },
     "energy": 1,
     "description": "All players discard their Sweets on the board and in their hand. Immediately shuffle the discard pile back into the deck.",
-    "actions": ["Sugar Rush"]
+    "getActions": () => [],
   },
   chocoberryCake: {
     "name": "Chocoberry Cake",
@@ -282,7 +282,7 @@ export default {
     },
     "energy": 0,
     "description": "(passive) Gain +2 Umami for every additional Sweet on your board.",
-    "actions": ["Petit Fours"]
+    "getActions": () => [],
   },
   veggieNuggets: {
     "name": "Veggie Nuggets",
@@ -296,7 +296,7 @@ export default {
     },
     "energy": 1,
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Spicy Nuggets or Saucy Nuggets. Place 1 in the Rare Recipe market in the place of Veggie Nuggets.",
-    "actions": ["Friendship"]
+    "getActions": () => [],
   },
   spicyNuggets: {
     "name": "Spicy Nuggets",
@@ -310,7 +310,7 @@ export default {
     },
     "energy": 1,
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Veggie Nuggets or Saucy Nuggets. Place 1 in the Rare Recipe market in the place of Spicy Nuggets.",
-    "actions": ["Friendship"]
+    "getActions": () => [],
   },
   saucyNuggets: {
     "name": "Saucy Nuggets",
@@ -324,7 +324,7 @@ export default {
     },
     "energy": 0,
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Veggie Nuggets or Spicy Nuggets. Place 1 in the Rare Recipe market in the place of Saucy Nuggets.",
-    "actions": ["Friendship"]
+    "getActions": () => [],
   },
   fruitSalad: {
     "name": "Fruit Salad",
@@ -340,7 +340,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Healthy Snacks are now worth 4 Umami (instead of 1). All other players draw +2 cards.",
-    "actions": ["Transmute"]
+    "getActions": () => [],
   },
   spiceCream: {
     "name": "Spice Cream",
@@ -356,7 +356,7 @@ export default {
     },
     "energy": 1,
     "description": "Steal any one of your opponents' Basic Recipes, including Sweet Types (ignore Frozen effect). Use its active ability immediately.",
-    "actions": ["Melt"]
+    "getActions": () => [],
   },
   fruitSando: {
     "name": "Fruit Sando",
@@ -371,7 +371,7 @@ export default {
     },
     "energy": 0,
     "description": "(passive) The opponent may discard this card from your board on their turn for the cost of 3 Sweets.",
-    "actions": ["Impressionable"]
+    "getActions": () => [],
   },
   paletas: {
     "name": "Paletas",
@@ -386,7 +386,7 @@ export default {
     },
     "energy": 1,
     "description": "Discard 3 Recipes from the Rare recipe market. Immediately refill the market.",
-    "actions": ["Fresh"]
+    "getActions": () => [],
   },
   soupSalad: {
     "name": "Soup & Salad",
@@ -401,7 +401,7 @@ export default {
     },
     "energy": 0,
     "description": "Discard 1 Recipe from the Rare Recipe market. Immediately refill the market.",
-    "actions": ["Substitute"]
+    "getActions": () => [],
   },
   plainSandwich: {
     "name": "Plain Sandwich",
@@ -416,7 +416,7 @@ export default {
     },
     "energy": 0,
     "description": "Give this to an opponent. They must return 1 Basic or Advanced Rare Recipe of their choice to the Rare Recipe market. If they do not have a Rare Recipe, this ability does nothing.",
-    "actions": ["Flavorless"]
+    "getActions": () => [],
   },
   umi: {
     "name": "Umi",
@@ -432,7 +432,7 @@ export default {
     },
     "energy": 1,
     "description": "Retain all Recipes used to complete this. All players may place any amount of Ingredients from their hand onto their board.",
-    "actions": ["Equilibrium"]
+    "getActions": () => [],
   },
   okonomiyaki: {
     "name": "Okonomiyaki",
@@ -451,6 +451,6 @@ export default {
     },
     "energy": 1,
     "description": "Name an Ingredient type. If the opponent has that type in their hand, they give you 1 card of that type from their hand of their choice. If they do not have that type, they show you their hand and give you one card of their choice.",
-    "actions": ["Swipe"]
+    "getActions": () => [],
   }
 }
