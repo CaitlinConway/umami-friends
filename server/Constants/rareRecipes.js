@@ -1,5 +1,7 @@
-[
-  {
+const getOpponent = (currentPlayer) => currentPlayer === 0 ? 1 : 0;
+
+export default {
+  balancedMeal: {
     "name": "Balanced Meal",
     "pictureName": "balancedMeal",
     "points": 1,
@@ -15,7 +17,7 @@
     "description": "Retain all Recipes used to complete this. Draw +1 card.",
     "actions": ["Harmony"]
   },
-  {
+  tofu: {
     "name": "Tofu",
     "pictureName": "tofu",
     "points": 1,
@@ -29,7 +31,7 @@
     "description": "",
     "actions": ["Morph"]
   },
-  {
+  springRoll: {
     "name": "Spring Roll",
     "pictureName": "springRoll",
     "points": 2,
@@ -44,7 +46,7 @@
     "description": "Place 2 Ingredients from your hand onto your board. Refresh (but your turn does not end). All other players draw +2 cards.",
     "actions": ["Fresh"]
   },
-  {
+  lettuceWrap: {
     "name": "Lettuce Wrap",
     "pictureName": "lettuceWrap",
     "points": 4,
@@ -59,7 +61,7 @@
     "description": "(passive) At the end of your turn, you may place +1 Ingredient from your hand onto your board. If you do, all other players draw +1 card.",
     "actions": ["Restore"]
   },
-  {
+  greatLeaf: {
     "name": "Great Leaf",
     "pictureName": "greatLeaf",
     "points": 8,
@@ -74,7 +76,7 @@
     "description": "Draw +5 cards. You may take unlimited Energy this turn, but can no longer draw additional cards this turn.",
     "actions": ["Wish"]
   },
-  {
+  padThai: {
     "name": "Pad Thai",
     "pictureName": "padThai",
     "points": 2,
@@ -451,4 +453,4 @@
     "description": "Name an Ingredient type. If the opponent has that type in their hand, they give you 1 card of that type from their hand of their choice. If they do not have that type, they show you their hand and give you one card of their choice.",
     "actions": ["Swipe"]
   }
-]
+}

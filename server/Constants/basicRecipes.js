@@ -1,3 +1,5 @@
+const getOpponent = (currentPlayer) => currentPlayer === 0 ? 1 : 0;
+
 export default {
   "healthySnack": {
     "name": "Healthy Snack",
@@ -9,23 +11,22 @@ export default {
     },
     "energy": 1,
     "description": "All other players draw +1 card.",
-    "getActions": (actionData, currentPlayer) => [
+    "getActions": (_actionData, currentPlayer, gameState) => [
       {
         "type": "moveCard",
         "data": {
           "zone": {
             "to": {
-              "user": currentPlayer,
-              "zone": ""
+              "user": getOpponent(currentPlayer),
+              "zoneName": "hand"
             },
             "from": {
-              "zone": ""
+              "zoneName": "ingredientsDrawPile"
             }
           },
-          "cards": [actionData.selected]
+          "cards": [gameState.ingredientsDrawPile[0], gameState.ingredientsDrawPile[1], gameState.ingredientsDrawPile[2]]
         }
       }
-      
     ],
     "pileCount": 6
   },
@@ -40,8 +41,17 @@ export default {
     },
     "energy": 0,
     "description": "Name an Ingredient type. If the opponent has that type in their hand, they discard 1 card of that type from their hand of their choice. If they do not have that type, they show you their hand and discard one card of their choice.",
-    "getActions": [
-      "Scorch"
+    "getActions": (actionData, currentPlayer) => [
+      {
+        "type": "prompt",
+        "data": {
+          // TODO: update prompt data
+          actionRequired: "discard",
+          cardType: "Ingredient",
+          cardName: actionData.selected[0],
+          user: getOpponent(currentPlayer),
+        }
+      }
     ],
     "pileCount": 5
   },
@@ -56,7 +66,7 @@ export default {
     },
     "energy": 0,
     "description": "",
-    "getActions": [],
+    "getActions": () => [],
     "pileCount": 5
   },
   "tacoParty": {
@@ -76,14 +86,14 @@ export default {
           "zone": {
             "to": {
               "user": currentPlayer,
-              "zone": ""
+              "zone": "board"
             },
             "from": {
-              "user": currentPlayer === 0 ? 1 : 0,
-              "zone": ""
+              "user": getOpponent(currentPlayer),
+              "zone": "board"
             }
           },
-          "cards": [actionData.selected]
+          "cards": [...actionData.selected]
         }
       }
     ],
@@ -99,9 +109,7 @@ export default {
     },
     "energy": 1,
     "description": "Cannot be interacted with by an opponent.",
-    "getActions": [
-      "Frozen"
-    ],
+    "getActions": () => [],
     "pileCount": 3
   },
   "gardenSalad": {
@@ -114,8 +122,22 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Max Refresh +1 . All other players draw +2 cards.",
-    "getActions": [
-      "Refresh"
+    "getActions": (_actionData, currentPlayer) => [
+      {
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "user": getOpponent(currentPlayer),
+              "zoneName": "hand"
+            },
+            "from": {
+              "zoneName": "ingredientsDrawPile"
+            }
+          },
+          "cards": [ingredientsDrawPile[0], ingredientsDrawPile[1]]
+        }
+      }
     ],
     "pileCount": 3
   },
@@ -129,8 +151,22 @@ export default {
     },
     "energy": 1,
     "description": "Discard 1 Basic Recipe from your opponent's board.",
-    "getActions": [
-      "Ignite"
+    "getActions": (actionData, currentPlayer) => [
+      {
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "zoneName": "basicRecipes"
+            },
+            "from": {
+              "user": getOpponent(currentPlayer),
+              "zoneName": "hand"
+            }
+          },
+          "cards": [...actionData.selected]
+        }
+      }
     ],
     "pileCount": 3
   },
@@ -144,9 +180,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Gain +1 Umami for every ingredient card on your board.",
-    "getActions": [
-      "Kingdom"
-    ],
+    "getActions": () => [],
     "pileCount": 3
   },
   "bigBurrito": {
@@ -160,8 +194,23 @@ export default {
     },
     "energy": 1,
     "description": "Take 2 Ingredients from your opponent's board. Add them to your board.",
-    "getActions": [
-      "Wrap"
+    "getActions": (actionData, currentPlayer) => [
+      {
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "user": currentPlayer,
+              "zone": "board"
+            },
+            "from": {
+              "user": getOpponent(currentPlayer),
+              "zone": "board"
+            }
+          },
+          "cards": [...actionData.selected]
+        }
+      }
     ],
     "pileCount": 2
   },
@@ -175,9 +224,7 @@ export default {
     },
     "energy": 1,
     "description": "Cannot be interacted with by an opponent.",
-    "getActions": [
-      "Frozen"
-    ],
+    "getActions": () => [],
     "pileCount": 2
   }
 }

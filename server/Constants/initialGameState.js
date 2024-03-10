@@ -9,6 +9,9 @@ export const initialGame = {
   //user object should have name and character
   users: [],
   //10 rare recipes
+  discardPile: [],
+  ingredientsDrawPile: [],
+  recipesDrawPile: [],
   rareRecipes: shuffleCards(rareRecipes, 10),
   basicRecipes: basicRecipes,
   playerTurn: 0,
