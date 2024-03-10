@@ -1,6 +1,8 @@
-import React from "react";
-import useUserInfo from "../../Hooks/useUserInfo";
-import useGameConditions from "../../Hooks/useGameConditions";
+import React from 'react';
+import useUserInfo from '../../Hooks/useUserInfo';
+import useGameConditions from '../../Hooks/useGameConditions';
+import './PlayerHand.css';
+
 export const PlayerHand = (props) => {
   const { userName } = useUserInfo();
   const { gameState } = useGameConditions();

@@ -250,11 +250,11 @@ const Game = (props) => {
           <div className="playerHandTitle">{opponent?.name}'s Board</div>
           <PlayerBoard user={opponent} cardClick={() => {}} />
         </div>
+        {/* TODO: add message container */}
+        <div className="playerHandContainer">
+          <Messages user={userName}></Messages>
+        </div>
       </div>
-      {/* TODO: add message container */}
-      {/* <div className="messageContainer">
-        <Messages user={userName}></Messages>
-      </div> */}
     </div>
   );
 };
