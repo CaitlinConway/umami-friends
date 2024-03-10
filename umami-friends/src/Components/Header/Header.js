@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaRegCopy } from 'react-icons/fa';
+
 import './Header.css';
 import useGameConditions from '../../Hooks/useGameConditions';
 
@@ -8,7 +10,10 @@ export const Header = (props) => {
 	return (
 		<div className='header'>
 			<div className='flexItem'>
-				<p>Room Code: {props.roomCode}</p>
+				<div className='roomCodeContainer'>
+					<span>Room Code: {props.roomCode}</span>
+					<FaRegCopy className='copyIcon' onClick={() => navigator.clipboard.writeText(props.roomCode)} />
+				</div>
 				<div>
 					<button className='drawButton' onClick={props.drawCard}>
 						DRAW 3 CARDS

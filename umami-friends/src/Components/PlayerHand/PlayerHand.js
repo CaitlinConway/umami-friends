@@ -1,30 +1,30 @@
-import React from "react";
-import useUserInfo from "../../Hooks/useUserInfo";
-import useGameConditions from "../../Hooks/useGameConditions";
+import React from 'react';
+import useUserInfo from '../../Hooks/useUserInfo';
+import useGameConditions from '../../Hooks/useGameConditions';
+import './PlayerHand.css';
+
 export const PlayerHand = (props) => {
-  const { userName } = useUserInfo();
-  const { gameState } = useGameConditions();
-  const user = gameState?.users.find((user) => user.name === userName);
-  const playerHand = user?.hand;
-  return (
-    <div>
-      {playerHand?.map((item, index) => (
-        <div
-          key={index}
-          className={`player-card-body ${
-            props.selectedCards.includes(item) && "selected"
-          }`}
-          onClick={() => (props.disabled ? "" : props.cardClick(item, true))}
-        >
-          <img
-            className="playerRecipeCard"
-            alt={`${item.pictureName}`}
-            src={require(`../../Pictures/${item.pictureName}.png`)}
-          />
-        </div>
-      ))}
-    </div>
-  );
+	const { userName } = useUserInfo();
+	const { gameState } = useGameConditions();
+	const user = gameState?.users.find((user) => user.name === userName);
+	const playerHand = user?.hand;
+	return (
+		<div className='PlayerHand'>
+			{playerHand?.map((item, index) => (
+				<div
+					key={index}
+					className={`player-card-body ${props.selectedCards.includes(item) && 'selected'}`}
+					onClick={() => (props.disabled ? '' : props.cardClick(item, true))}
+				>
+					<img
+						className='playerRecipeCard'
+						alt={`${item.pictureName}`}
+						src={require(`../../Pictures/${item.pictureName}.png`)}
+					/>
+				</div>
+			))}
+		</div>
+	);
 };
 
 export default PlayerHand;
