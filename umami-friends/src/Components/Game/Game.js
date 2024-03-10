@@ -99,6 +99,97 @@ const Game = (props) => {
 			/>
 			<div className='gameContainer'>
 				{/* <div className="cardStackContainer">
+  const { userName, setUserName } = useUserInfo();
+  const { gameState, setGameState, socket, roomCode } = useGameConditions();
+  const [selected, setSelected] = useState([]);
+  const [selectedHand, setSelectedHand] = useState([]);
+  const [selectedHandValues, setSelectedHandValues] =
+    useState(initialHandValue);
+  //probably only need to keep track of cost if we let them buy more than one card at once
+  const [selectedCost, setSelectedCost] = useState({});
+  let user = gameState?.users?.find((user) => user.name === userName);
+  const userIndex = gameState?.users?.findIndex(
+    (user) => user.name === userName
+  );
+  const playerNumber = userIndex + 1;
+  //boolean to check if user is also current player
+  const currentPlayer = gameState?.playerTurn === playerNumber;
+  const userRole = gameState?.users[userIndex]?.role;
+  //TODO: update when expand to 4 players, will just work for two
+  const opponent = gameState?.users?.find((user) => user.name != userName);
+  console.log("gameState", gameState);
+  const startGame = () => {
+    socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
+  };
+  const drawCard = () => {
+    socket.emit("gameAction", { actionType: "drawCard" }, roomCode, userName);
+  };
+  const endTurn = () => {
+    socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
+  };
+  const cardClick = (clickedCard, hand) => {
+    if (hand) {
+      if (selectedHand.includes(clickedCard)) {
+        // If selected, remove from selected cards
+        setSelectedHand(
+          selectedHand.filter((card) => card.name !== clickedCard.name)
+        );
+      } else {
+        // If not selected, add to selected cards
+        setSelectedHand([...selectedHand, clickedCard]);
+      }
+    }
+    // Check if card is already selected
+    if (selected.includes(clickedCard)) {
+      // If selected, remove from selected cards
+      setSelected(selected.filter((card) => card.name !== clickedCard.name));
+    } else {
+      // If not selected, add to selected cards
+      setSelected([...selected, clickedCard]);
+    }
+  };
+  const enableCard = (card) => {
+    let enabled = true;
+    let cost = card.cost;
+    for (const key in cost) {
+      if (cost[key] > selectedHandValues[key]) {
+        enabled = false;
+      }
+    }
+    return enabled;
+  };
+  useEffect(() => {
+    setSelectedHandValues(initialHandValue);
+    if (selectedHand.length > 0) {
+      selectedHand.forEach((card) => {
+        let valueObject = card.value;
+        Object.keys(valueObject).forEach((key) => {
+          setSelectedHandValues((prevValues) => ({
+            ...prevValues,
+            [key]: (prevValues[key] || 0) + valueObject[key],
+          }));
+        });
+      });
+    }
+  }, [selectedHand]);
+
+  return (
+    <div className="gameBackground">
+      {userRole === "" && <PlayerChoice user={user} />}
+      <Header
+        userName={userName}
+        roomCode={gameState.roomCode}
+        role={userRole}
+        opponent={opponent}
+        startGame={startGame}
+        drawCard={drawCard}
+        endTurn={endTurn}
+        currentPlayer={currentPlayer}
+      />
+      <div className="gameContainer">
+        {/* <div className="cardStackContainer">
           <CardStack ingredient={true}></CardStack>
           <CardStack ingredient={false}></CardStack>
         </div> */}

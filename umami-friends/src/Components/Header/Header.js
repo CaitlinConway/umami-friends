@@ -1,12 +1,14 @@
 import React from 'react';
 import { FaRegCopy } from 'react-icons/fa';
 
-import './Header.css';
 import useGameConditions from '../../Hooks/useGameConditions';
+import { playerRoles } from '../../Constants/roles';
+import './Header.css';
 
 export const Header = (props) => {
-	const { gameState } = useGameConditions();
+	const { gameState, socket, roomCode } = useGameConditions();
 	const opponentsReady = gameState?.users?.length === 2 || gameState?.users?.length === 4;
+
 	return (
 		<div className='header'>
 			<div className='flexItem'>
@@ -18,7 +20,12 @@ export const Header = (props) => {
 					<button className='drawButton' onClick={props.drawCard}>
 						DRAW 3 CARDS
 					</button>
-					<button className='actionButton'>TAKE ROLE ACTION</button>
+					<button
+						className='actionButton'
+						onClick={() => playerRoles[props.role]?.userAction(socket, roomCode)}
+					>
+						TAKE ROLE ACTION
+					</button>
 				</div>
 			</div>
 			<div className='playerImageContainer flexItem'>
