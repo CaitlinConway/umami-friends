@@ -13,7 +13,7 @@ export const initialGame = () => {
   users: [],
   //10 rare recipes
   discardPile: [],
-  ingredientsDrawPile: shuffleCards(ingredients, ingredients.length),
+  ingredientsDrawPile: shuffleCards(JSON.parse(JSON.stringify(ingredients)), ingredients.length),
   recipesDrawPile: shuffledRareRecipes.splice(10),
   rareRecipes: shuffledRareRecipes.splice(0, 10),
   basicRecipes: Object.values(basicRecipes),
