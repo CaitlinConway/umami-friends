@@ -73,3 +73,13 @@
 .roomCodeContainer {
 	margin-bottom: 10px;
 }
+
+.roleIconTooltip {
+	max-width: 20%;
+	z-index: 100;
+	background: none !important;
+}
+.hoveredImage {
+	max-width: 100%;
+	max-height: 100%;
+}
