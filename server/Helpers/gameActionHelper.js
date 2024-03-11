@@ -1,14 +1,13 @@
 import { getGameState, updateGameState } from "./gameStateHelper.js";
 import { ingredients, playerRoles } from "../Constants/cards.js";
-import basicRecipes from "../Constants/basicRecipes.js"
+import basicRecipes from "../Constants/basicRecipes.js";
 import roleCards from "../Constants/roleCards.js";
-import rareRecipes from "../Constants/rareRecipes.js"
+import rareRecipes from "../Constants/rareRecipes.js";
 import { shuffleCards } from "./cardHelper.js";
 
-const allCards = { ... basicRecipes, ... rareRecipes, ... roleCards, }
+const allCards = { ...basicRecipes, ...rareRecipes, ...roleCards };
 
 export function gameActionHelper(socket, io, action, roomCode, userName) {
-  console.log("WTF", ingredients, playerRoles);
   const gameState = getGameState(roomCode);
   const userIndex = gameState.users.findIndex((user) => user.name === userName);
   const userRole = gameState.users[userIndex]?.role;
@@ -25,9 +24,6 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       });
       gameState.turnCount = 1;
       console.log("gameState", JSON.stringify(gameState));
-      console.log("INGREDIENTS", ingredientsCopy);
-      console.log("user1Hand", gameState.users[0].hand);
-      console.log("user2Hand", gameState.users[1].hand);
       // gameState.users[userIndex].hand = shuffleCards(ingredients, 4);
       break;
     //TODO: update for 4p later
@@ -54,55 +50,88 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       currentPlayer.energy--;
       break;
     case "useCard":
-      const cardActions = allCards[action.data.card].getActions(action.data, userIndex, gameState);
-      cardActions.forEach((cardAction) => gameActionHelper(socket, io, cardAction, roomCode, userName))
+      const cardActions = allCards[action.data.card].getActions(
+        action.data,
+        userIndex,
+        gameState
+      );
+      cardActions.forEach((cardAction) =>
+        gameActionHelper(socket, io, cardAction, roomCode, userName)
+      );
       break;
     case "buyCard":
       break;
     case "moveCard":
       // add card to the intended area (hand, board, discard pile, etc)
       if (![0, 1].includes(action.data.zone.to.user)) {
-        gameState[action.data.zone.to.zoneName].push(action.data.cards.map((each) => allCards[each]))
+        gameState[action.data.zone.to.zoneName].push(
+          action.data.cards.map((each) => allCards[each])
+        );
       } else {
         if (action.data.zone.to.zoneName === "board") {
-          const cardsDetails = action.data.cards.map((each) => allCards[each])
-          const candyCards = cardsDetails.filter(each => each?.value?.ingredientSweet)
-          const ingredientCards = cardsDetails.filter(each => !each?.value?.ingredientSweet)
+          const cardsDetails = action.data.cards.map((each) => allCards[each]);
+          const candyCards = cardsDetails.filter(
+            (each) => each?.value?.ingredientSweet
+          );
+          const ingredientCards = cardsDetails.filter(
+            (each) => !each?.value?.ingredientSweet
+          );
 
-          gameState[users][action.data.zone.to.user].board.candy.push(candyCards)
-          gameState[users][action.data.zone.to.user].board.ingredients.push(ingredientCards)
+          gameState[users][action.data.zone.to.user].board.candy.push(
+            candyCards
+          );
+          gameState[users][action.data.zone.to.user].board.ingredients.push(
+            ingredientCards
+          );
         } else {
-          gameState[users][action.data.zone.to.user][action.data.zone.to.zoneName].push(action.data.cards.map((each) => allCards[each]))
+          gameState[users][action.data.zone.to.user][
+            action.data.zone.to.zoneName
+          ].push(action.data.cards.map((each) => allCards[each]));
         }
       }
 
       // remove card from the intended area (hand, board, discard pile, etc)
-      let cardsToRemove = [...action.data.cards]
+      let cardsToRemove = [...action.data.cards];
       if ([0, 1].includes(action.data.zone.from.user)) {
-        gameState[action.data.zone.from.zoneName] = gameState[action.data.zone.from.zoneName].filter(each => {
+        gameState[action.data.zone.from.zoneName] = gameState[
+          action.data.zone.from.zoneName
+        ].filter((each) => {
           if (cardsToRemove.includes(each.pictureName)) {
-            cardsToRemove = cardsToRemove.filter(cardName => cardName === each.pictureName)
+            cardsToRemove = cardsToRemove.filter(
+              (cardName) => cardName === each.pictureName
+            );
             return false;
           }
           return true;
-        })
+        });
       } else {
-        gameState[users][action.data.zone.to.user][action.data.zone.to.zoneName] = gameState[users][action.data.zone.to.user][action.data.zone.to.zoneName].filter(each => {
+        gameState[users][action.data.zone.to.user][
+          action.data.zone.to.zoneName
+        ] = gameState[users][action.data.zone.to.user][
+          action.data.zone.to.zoneName
+        ].filter((each) => {
           if (cardsToRemove.includes(each.pictureName)) {
-            cardsToRemove = cardsToRemove.filter(cardName => !cardName === each.pictureName)
+            cardsToRemove = cardsToRemove.filter(
+              (cardName) => !cardName === each.pictureName
+            );
             return false;
           }
           return true;
-        })
+        });
       }
       break;
     case "addEnergy":
-      const playeradd = gameState.users.findIndex((user) => user.name === action.data.username);
-      gameState.users[playeradd].energy++
+      const playeradd = gameState.users.findIndex(
+        (user) => user.name === action.data.username
+      );
+      gameState.users[playeradd].energy++;
       break;
     case "removeEnergy":
-      const playerremove = gameState.users.findIndex((user) => user.name === action.data.username);
-      gameState.users[playerremove].energy > 1 && gameState.users[playerremove].energy--
+      const playerremove = gameState.users.findIndex(
+        (user) => user.name === action.data.username
+      );
+      gameState.users[playerremove].energy > 1 &&
+        gameState.users[playerremove].energy--;
       break;
     case "prompt":
       //TODO: add prompt

@@ -1,7 +1,7 @@
-import React from 'react';
-import useUserInfo from '../../Hooks/useUserInfo';
-import useGameConditions from '../../Hooks/useGameConditions';
-import './PlayerHand.css';
+import React from "react";
+import useUserInfo from "../../Hooks/useUserInfo";
+import useGameConditions from "../../Hooks/useGameConditions";
+import "./PlayerHand.css";
 
 export const PlayerHand = (props) => {
   const { userName } = useUserInfo();
@@ -13,7 +13,7 @@ export const PlayerHand = (props) => {
   return (
     <div>
       {playerHand?.map((item, index) => {
-        const enable = props?.enableIngredient(item);
+        const enable = props?.enableIngredient(item) || props.needDiscard;
         return (
           <div
             key={index}

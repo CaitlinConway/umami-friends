@@ -43,20 +43,16 @@ const Game = (props) => {
   const drawCard = () => {
     socket.emit("gameAction", { actionType: "drawCard" }, roomCode, userName);
   };
-  const endTurn = () => {
-    // socket.emit(
-    //   "gameAction",
-    //   { actionType: "discardCards", actionData: discardCards },
-    //   roomCode,
-    //   userName
-    // );
-    //instead of emiting discard cards, just send the array as part of the end turn, backend will handle
+  const discard = () => {
     socket.emit(
       "gameAction",
-      { actionType: "endTurn", actionData: { discardCards } },
+      { actionType: "discardCards", actionData: discardCards },
       roomCode,
       userName
     );
+  };
+  const endTurn = () => {
+    socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
     socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
   const buyCard = () => {
@@ -84,7 +80,8 @@ const Game = (props) => {
         setDiscardCards(
           discardCards.filter((card) => card.name !== clickedCard.name)
         );
-      } else {
+        //only let them select enough cards to get back down to max refresh
+      } else if (discardCards.length < user?.hand?.length - maxRefresh) {
         // If not selected, add to selected cards
         setDiscardCards([...discardCards, clickedCard]);
       }
@@ -192,7 +189,7 @@ const Game = (props) => {
         opponent={opponent}
         startGame={startGame}
         drawCard={drawCard}
-        endTurn={needDiscard ? endTurn : () => {}}
+        endTurn={!needDiscard ? endTurn : () => {}}
         currentPlayer={currentPlayer}
         noEnergy={noEnergy}
       />
@@ -240,18 +237,18 @@ const Game = (props) => {
         {needDiscard && (
           <div className="discardModal">
             <div className="discardModalText">{`Please select cards in hand to discard down to max refresh -- ${maxRefresh} or use two sweet to buy an energy`}</div>
-            {user?.hand?.length - discardCards.length <= maxRefresh ? (
-              <button onClick={endTurn}>End Turn</button>
-            ) : (
-              ""
-            )}
+            <button
+              onClick={discard}
+              disabled={discardCards.length !== user?.hand?.length - maxRefresh}
+            >
+              Discard
+            </button>
           </div>
         )}
         <div className="playerHandContainer">
           <div className="playerHandTitle">{opponent?.name}'s Board</div>
           <PlayerBoard user={opponent} cardClick={() => {}} />
         </div>
-        {/* TODO: add message container */}
         <div className="playerHandContainer">
           <Messages user={userName}></Messages>
         </div>
