@@ -108,6 +108,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       //TODO: add prompt
       break;
   }
+  // TODO: Recaculate and max refresh
   updateGameState(roomCode, gameState);
   io.sockets.in(roomCode).emit("updateGameState", gameState);
 }

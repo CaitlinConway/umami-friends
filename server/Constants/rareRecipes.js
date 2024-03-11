@@ -1,3 +1,5 @@
+import { cardActionHelper } from "../Helpers/cardActionHelper";
+
 const getOpponent = (currentPlayer) => currentPlayer === 0 ? 1 : 0;
 
 export default {
@@ -15,7 +17,16 @@ export default {
     },
     "energy": 1,
     "description": "Retain all Recipes used to complete this. Draw +1 card.",
-    "getActions": () => [],
+    "getActions": (mainData) => [
+      mainData.buy && cardActionHelper('retainRecipes', {
+        cards: {
+          "basicPlant": 1,
+          "basicSpicy": 1,
+          "basicBurger": 1
+        },
+      }, mainData),
+      cardActionHelper('drawCard', { cardNumber: 1, player: 'self' }, mainData)
+    ],
   },
   tofu: {
     "name": "Tofu",
@@ -44,7 +55,11 @@ export default {
     },
     "energy": 1,
     "description": "Place 2 Ingredients from your hand onto your board. Refresh (but your turn does not end). All other players draw +2 cards.",
-    "getActions": () => [],
+    "getActions": (mainData) => [
+      cardActionHelper('placeIngredient', { cardNumber: 2 }, mainData),
+      cardActionHelper('refresh', {}, mainData),
+      cardActionHelper('drawCard', { cardNumber: 2, player: 'others' }, mainData)
+    ],
   },
   lettuceWrap: {
     "name": "Lettuce Wrap",
@@ -74,7 +89,10 @@ export default {
     },
     "energy": 1,
     "description": "Draw +5 cards. You may take unlimited Energy this turn, but can no longer draw additional cards this turn.",
-    "getActions": () => [],
+    "getActions": (mainData) => [
+      cardActionHelper('drawCard', { cardNumber: 5, player: 'self' }, mainData),
+      //TODO: update other actions
+    ],
   },
   padThai: {
     "name": "Pad Thai",

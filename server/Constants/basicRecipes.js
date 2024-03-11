@@ -1,3 +1,5 @@
+import { cardActionHelper } from "../Helpers/cardActionHelper";
+
 const getOpponent = (userIndex) => userIndex === 0 ? 1 : 0;
 
 export default {
@@ -11,23 +13,7 @@ export default {
     },
     "energy": 1,
     "description": "All other players draw +1 card.",
-    "getActions": (_actionData, userIndex, gameState) => [
-      {
-        "type": "moveCard",
-        "data": {
-          "zone": {
-            "to": {
-              "user": getOpponent(userIndex),
-              "zoneName": "hand"
-            },
-            "from": {
-              "zoneName": "ingredientsDrawPile"
-            }
-          },
-          "cards": [gameState.ingredientsDrawPile[0], gameState.ingredientsDrawPile[1], gameState.ingredientsDrawPile[2]]
-        }
-      }
-    ],
+    "getActions": (mainData) => [cardActionHelper('drawCard', { cardNumber: 1, player: 'others' }, mainData)],
     "pileCount": 6
   },
   "spicyRamen": {
@@ -79,24 +65,7 @@ export default {
     },
     "energy": 0,
     "description": "Take an Ingredient card from your opponent's board. Add it to your board.",
-    "getActions": (actionData, userIndex) => [
-      {
-        "type": "moveCard",
-        "data": {
-          "zone": {
-            "to": {
-              "user": userIndex,
-              "zone": "board"
-            },
-            "from": {
-              "user": getOpponent(userIndex),
-              "zone": "board"
-            }
-          },
-          "cards": [...actionData.selected]
-        }
-      }
-    ],
+    "getActions": (mainData) => [cardActionHelper('stealBoard', { cardNumber: 1 }, mainData)],
     "pileCount": 4
   },
   "niceCream": {
@@ -122,23 +91,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Max Refresh +1 . All other players draw +2 cards.",
-    "getActions": (_actionData, userIndex) => [
-      {
-        "type": "moveCard",
-        "data": {
-          "zone": {
-            "to": {
-              "user": getOpponent(userIndex),
-              "zoneName": "hand"
-            },
-            "from": {
-              "zoneName": "ingredientsDrawPile"
-            }
-          },
-          "cards": [ingredientsDrawPile[0], ingredientsDrawPile[1]]
-        }
-      }
-    ],
+    "getActions": (mainData) => [cardActionHelper('drawCard', { cardNumber: 2, player: 'others' }, mainData)],
     "pileCount": 3
   },
   "hotPot": {
@@ -151,23 +104,7 @@ export default {
     },
     "energy": 1,
     "description": "Discard 1 Basic Recipe from your opponent's board.",
-    "getActions": (actionData, userIndex) => [
-      {
-        "type": "moveCard",
-        "data": {
-          "zone": {
-            "to": {
-              "zoneName": "basicRecipes"
-            },
-            "from": {
-              "user": getOpponent(userIndex),
-              "zoneName": "hand"
-            }
-          },
-          "cards": [...actionData.selected]
-        }
-      }
-    ],
+    "getActions": (mainData) => [cardActionHelper('discardBasicBoard', { cardNumber: 1, player: 'others' }, mainData)],
     "pileCount": 3
   },
   "megaBurger": {
@@ -194,24 +131,7 @@ export default {
     },
     "energy": 1,
     "description": "Take 2 Ingredients from your opponent's board. Add them to your board.",
-    "getActions": (actionData, userIndex) => [
-      {
-        "type": "moveCard",
-        "data": {
-          "zone": {
-            "to": {
-              "user": userIndex,
-              "zone": "board"
-            },
-            "from": {
-              "user": getOpponent(userIndex),
-              "zone": "board"
-            }
-          },
-          "cards": [...actionData.selected]
-        }
-      }
-    ],
+    "getActions": (mainData) => [cardActionHelper('stealBoard', { cardNumber: 2 }, mainData)],
     "pileCount": 2
   },
   "twiceCream": {

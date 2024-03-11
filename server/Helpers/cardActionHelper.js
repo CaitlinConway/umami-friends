@@ -1,57 +1,92 @@
-import { getGameState, updateGameState } from "./gameStateHelper.js";
-import { ingredients } from "../Constants/cards.js";
-import { shuffleCards } from "./cardHelper.js";
-export function cardActionHelper(action, gameState) {
+const getOpponent = (userIndex) => userIndex === 0 ? 1 : 0;
+
+export function cardActionHelper(type, { cardNumber, player }, mainData) {
+  const { actionData, userIndex, gameState } = mainData
   // const gameState = getGameState(roomCode);
   // const userIndex = gameState.users.findIndex((user) => user.name === userName);
   // const userRole = gameState.users[userIndex].role;
   // const currentPlayer = gameState.users[gameState.playerTurn - 1];
-  switch (action.actionType) {
-    // case "drawCards":
-    //   //do some logic here for action.amount for how many to draw
-    //   //also need logic if other players draw
-    //   break;
-
-
-    // case "addToZone":
-    
-    //   break;
-    // case "removeFromZone":
-      
-    //   break;
-    case "moveCard":
-      //add intended object to the intended area (hand, board, discard pile, etc)
-      !action.data.zone.to.user && gameState[action.zone.to.zoneName].push(action.data.cards)
-      action.data.zone.to.user && gameState[users][action.data.zone.to.user][action.zone.to.zoneName].push(action.data.cards)
-
-      //remove intended object from intended zone
-      // !action.userName && gameState[action.zone].remove(action.target)
-      // action.userName && gameState[users][action.userName][action.zone].remove(action.target)
-      break;
-    case "addEnergy":
-      gameState.users[action.data.user].energy++
-      break;
-    case "removeEnergy":
-      gameState.users[action.data.user].energy > 1 && gameState.users[action.player].energy--
-      break;
-    case "prompt":
-      gameState.users[action.data.user].prompt = action.prompt
-      break;
+  switch (type) {
     case "drawCard":
-      //select top card from either ingredient deck or recipe deck
-      //target = name of top card of deck
-      //gameActionHelper({actionType: 'addToZone', zone:'hand or board?' })
-      //gameActionHelper({actionType: 'removeFromZone', zone:'ingredient deck or recipe deck?' })
+      return ({
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "user": player === 'others' ? getOpponent(userIndex) : userIndex,
+              "zoneName": "hand"
+            },
+            "from": {
+              "zoneName": "ingredientsDrawPile"
+            }
+          },
+          "cards": [...Array(cardNumber).keys()].map(index => gameState.ingredientsDrawPile[index])
+        }
+      });
+    case "stealBoard":
+      if (cardNumber !== actionData?.selected?.length) {
+        throw Error('Card number is incorrect.')
+      }
+      return ({
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "user": userIndex,
+              "zone": "board"
+            },
+            "from": {
+              "user": getOpponent(userIndex),
+              "zone": "board"
+            }
+          },
+          "cards": [...actionData.selected]
+        }
+      })
+    case "discardBasicBoard":
+      if (cardNumber !== actionData?.selected?.length) {
+        throw Error('Card number is incorrect.')
+      }
+      return ({
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "zoneName": "basicRecipes"
+            },
+            "from": {
+              "user": player === 'others' ? getOpponent(userIndex) : userIndex,
+              "zoneName": "hand"
+            }
+          },
+          "cards": [...actionData.selected]
+        }
+      })
+    case "retainRecipes":
+    case "refresh":
+      const numberOfCard = gameState.users[userIndex].maxRefresh - gameState.users[userIndex].hand.length
+      return cardActionHelper('drawCard', { cardNumber: numberOfCard, player: 'self' }, mainData)
+    case "placeIngredient":
+      if (cardNumber !== actionData?.selected?.length) {
+        throw Error('Card number is incorrect.')
+      }
+      return ({
+        "type": "moveCard",
+        "data": {
+          "zone": {
+            "to": {
+              "user": userIndex,
+              "zoneName": "board"
+            },
+            "from": {
+              "user": userIndex,
+              "zoneName": "hand"
+            }
+          },
+          "cards": [...actionData.selected]
+        }
+      })
       break;
-      
-    // case "retainRecipes":
-    //   break;
-    // case "refresh":
-    //   //needs action.amount
-    //   break;
-    // case "placeIngredient":
-    //   //add logic for action.amount
-    //   break;
     // case "wish":
     //   //unlimited energy but can't draw
     //   break;
