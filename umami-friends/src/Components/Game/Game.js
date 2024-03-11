@@ -46,7 +46,16 @@ const Game = (props) => {
   const discard = () => {
     socket.emit(
       "gameAction",
-      { actionType: "discardCards", actionData: discardCards },
+      {
+        actionType: "moveCard",
+        data: {
+          cards: discardCards,
+          zone: {
+            from: { user: userIndex, zoneName: "hand" },
+            to: { zoneName: "discardPile", user: "" },
+          },
+        },
+      },
       roomCode,
       userName
     );

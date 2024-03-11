@@ -77,14 +77,14 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
             (each) => !each?.value?.ingredientSweet
           );
 
-          gameState[users][action.data.zone.to.user].board.candy.push(
+          gameState["users"][action.data.zone.to.user].board.candy.push(
             candyCards
           );
-          gameState[users][action.data.zone.to.user].board.ingredients.push(
+          gameState["users"][action.data.zone.to.user].board.ingredients.push(
             ingredientCards
           );
         } else {
-          gameState[users][action.data.zone.to.user][
+          gameState["users"][action.data.zone.to.user][
             action.data.zone.to.zoneName
           ].push(action.data.cards.map((each) => allCards[each]));
         }
@@ -92,7 +92,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
 
       // remove card from the intended area (hand, board, discard pile, etc)
       let cardsToRemove = [...action.data.cards];
-      if ([0, 1].includes(action.data.zone.from.user)) {
+      if (![0, 1].includes(action.data.zone.from.user)) {
         gameState[action.data.zone.from.zoneName] = gameState[
           action.data.zone.from.zoneName
         ].filter((each) => {
@@ -105,10 +105,10 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
           return true;
         });
       } else {
-        gameState[users][action.data.zone.to.user][
-          action.data.zone.to.zoneName
-        ] = gameState[users][action.data.zone.to.user][
-          action.data.zone.to.zoneName
+        gameState["users"][action.data.zone.from.user][
+          action.data.zone.from.zoneName
+        ] = gameState["users"][action.data.zone.from.user][
+          action.data.zone.from.zoneName
         ].filter((each) => {
           if (cardsToRemove.includes(each.pictureName)) {
             cardsToRemove = cardsToRemove.filter(
