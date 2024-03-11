@@ -58,9 +58,9 @@
 	font-size: 14px;
 }
 
-.drawButton:hover,
-.actionButton:hover,
-.startEndButton:hover {
+.drawButton:not([disabled]):hover,
+.actionButton:not([disabled]):hover,
+.startEndButton:not([disabled]):hover {
 	background-color: #d55753;
 	cursor: pointer;
 }
