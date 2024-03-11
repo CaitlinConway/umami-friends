@@ -2,7 +2,6 @@ import React from "react";
 import { default as useGameConditions } from "../../Hooks/useGameConditions";
 import "./Grid.css";
 import { Tooltip } from "react-tooltip";
-import basicRecipeObjects from "../../Constants/basicRecipes.json";
 
 export const Grid = (props) => {
   const { gameState } = useGameConditions();

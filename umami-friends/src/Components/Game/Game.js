@@ -117,7 +117,6 @@ const Game = (props) => {
   };
   //TODO add logic to only count up to the exact cost of card.
   const enableIngredient = (card) => {
-    let enabled = false;
     //get cost of the selected grid card
     let cost = selected.cost;
     //cost is an object with keys of the ingredient and values of the amount required
@@ -142,12 +141,14 @@ const Game = (props) => {
   useEffect(() => {
     let sweets = 0;
     for (let i = 0; i < selectedHand.length; i++) {
-      if (selectedHand[i].status === "ingredientSweet") {
+      if (selectedHand[i].value.ingredientSweet >= 1) {
         sweets++;
       }
     }
-    if ((sweets = 2)) {
+    if (sweets === 2) {
       setCanBuyEnergy(true);
+    } else {
+      setCanBuyEnergy(false);
     }
   }, [selectedHand]);
   useEffect(() => {
@@ -215,12 +216,12 @@ const Game = (props) => {
         <div className="playerHandContainer">
           <div className="playerHandTitle">{userName}'s Board</div>
           <PlayerBoard
-            user={user}
             selectedCards={selectedHand}
             cardClick={cardClick}
             disabled={!currentPlayer}
             noEnergy={noEnergy}
             enableIngredient={enableIngredient}
+            enableCandy={Object.keys(selected).length === 0}
           />
         </div>
         <Grid
