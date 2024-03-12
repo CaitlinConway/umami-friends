@@ -74,7 +74,7 @@ const Game = (props) => {
         data: {
           cards: selected.pictureName,
           zone: {
-            from: { user: "", zoneName: "basicRecipes" },
+            from: { user: "", zoneName: "board" },
             to: { zoneName: "hand", user: userIndex },
           },
         },
@@ -200,10 +200,8 @@ const Game = (props) => {
   }, [selectedHand]);
   useEffect(() => {
     if (enableBuy(selected) && currentPlayer && !noEnergy && selected.cost) {
-      debugger;
       setBuyCardEnabled(true);
     } else {
-      debugger;
       setBuyCardEnabled(false);
     }
   }, [selectedHandValues, selected]);
