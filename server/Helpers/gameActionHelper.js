@@ -110,13 +110,13 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
         ] = gameState["users"][action.data.zone.from.user][
           action.data.zone.from.zoneName
         ].filter((each) => {
-          if (cardsToRemove.includes(each.pictureName)) {
-            cardsToRemove = cardsToRemove.filter(
-              (cardName) => !cardName === each.pictureName
-            );
-            return false;
+          if (!cardsToRemove.includes(each.pictureName)) {
+            return true;
           }
-          return true;
+          cardsToRemove = cardsToRemove.filter(
+            (cardName) => cardName !== each.pictureName
+          );
+          return false;
         });
       }
       break;
