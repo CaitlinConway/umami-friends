@@ -1,5 +1,6 @@
 import React from "react";
 import { FaRegCopy } from "react-icons/fa";
+import { Tooltip } from "react-tooltip";
 
 import useGameConditions from "../../Hooks/useGameConditions";
 import { playerRoles } from "../../Constants/roles";
@@ -55,11 +56,28 @@ export const Header = (props) => {
       </div>
       <div className="playerImageContainer flexItem">
         {props.role && (
-          <img
-            className="roleIconImage"
-            src={require(`../../Pictures/${props.role}.png`)}
-            alt="Player Role Icon"
-          />
+          <div>
+            <img
+              className="roleIconImage"
+              data-tooltip-id={`${props.role}Icon`}
+              src={require(`../../Pictures/${props.role}.png`)}
+              alt={`${props.role} Icon`}
+            />
+            <Tooltip
+              className="roleIconTooltip"
+              id={`${props.role}Icon`}
+              place="bottom"
+              data-tooltip-position-strategy="fixed"
+              border={"none"}
+              opacity={1}
+            >
+              <img
+                className="hoveredImage"
+                alt={`${props.role} Card`}
+                src={require(`../../Pictures/${props.role}Card.png`)}
+              />
+            </Tooltip>
+          </div>
         )}
       </div>
       <div className="playerNameContainer flexItem">
@@ -88,11 +106,28 @@ export const Header = (props) => {
       </div>
       <div className="opponentImageContainer flexItem">
         {opponentsReady && props?.opponent?.role && (
-          <img
-            className="roleIconImage"
-            src={require(`../../Pictures/${props?.opponent?.role}.png`)}
-            alt="Opponent Role Icon"
-          />
+          <div>
+            <img
+              className="roleIconImage"
+              data-tooltip-id={`${props?.opponent?.role}Icon`}
+              src={require(`../../Pictures/${props?.opponent?.role}.png`)}
+              alt="Opponent Role Icon"
+            />
+            <Tooltip
+              className="roleIconTooltip"
+              id={`${props?.opponent?.role}Icon`}
+              place="bottom"
+              data-tooltip-position-strategy="fixed"
+              border={"none"}
+              opacity={1}
+            >
+              <img
+                className="hoveredImage"
+                alt={`${props.role} Card`}
+                src={require(`../../Pictures/${props?.opponent?.role}Card.png`)}
+              />
+            </Tooltip>
+          </div>
         )}
       </div>
       <div className="startEndButtonContainer flexItem">
