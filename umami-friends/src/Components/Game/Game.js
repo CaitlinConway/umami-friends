@@ -24,6 +24,7 @@ const Game = (props) => {
   const [discardCards, setDiscardCards] = useState([]);
   const [needDiscard, setNeedDiscard] = useState(false);
   const [canBuyEnergy, setCanBuyEnergy] = useState(false);
+  const [buyCardEnabled, setBuyCardEnabled] = useState(false);
   let user = gameState?.users?.find((user) => user.name === userName);
   const userIndex = gameState?.users?.findIndex(
     (user) => user.name === userName
@@ -68,7 +69,16 @@ const Game = (props) => {
   const buyCard = () => {
     socket.emit(
       "gameAction",
-      { actionType: "buyCard", actionData: { selected, selectedHand } },
+      {
+        actionType: "moveCard",
+        data: {
+          cards: selected.pictureName,
+          zone: {
+            from: { user: "", zoneName: "basicRecipes" },
+            to: { zoneName: "hand", user: userIndex },
+          },
+        },
+      },
       roomCode,
       userName
     );
@@ -77,9 +87,17 @@ const Game = (props) => {
     if (hand && !discard) {
       if (selectedHand?.includes(clickedCard)) {
         // If selected, remove from selected cards
-        setSelectedHand(
-          selectedHand.filter((card) => card.name !== clickedCard.name)
-        );
+        let removedFirstOccurrence = false;
+
+        const updatedHand = selectedHand.filter((card) => {
+          if (!removedFirstOccurrence && card.name === clickedCard.name) {
+            removedFirstOccurrence = true;
+            return false; // Exclude the first occurrence
+          }
+          return true; // Include all other occurrences
+        });
+
+        setSelectedHand(updatedHand);
       } else {
         // If not selected, add to selected cards
         setSelectedHand([...selectedHand, clickedCard]);
@@ -87,9 +105,17 @@ const Game = (props) => {
     } else if (discard) {
       if (discardCards?.includes(clickedCard)) {
         // If selected, remove from selected cards
-        setDiscardCards(
-          discardCards.filter((card) => card.name !== clickedCard.name)
-        );
+        let removedFirstOccurrence = false;
+
+        const updatedDiscard = discardCards.filter((card) => {
+          if (!removedFirstOccurrence && card.name === clickedCard.name) {
+            removedFirstOccurrence = true;
+            return false; // Exclude the first occurrence
+          }
+          return true; // Include all other occurrences
+        });
+
+        setDiscardCards(updatedDiscard);
         //only let them select enough cards to get back down to max refresh
       } else if (discardCards.length < user?.hand?.length - maxRefresh) {
         // If not selected, add to selected cards
@@ -172,6 +198,15 @@ const Game = (props) => {
       });
     }
   }, [selectedHand]);
+  useEffect(() => {
+    if (enableBuy(selected) && currentPlayer && !noEnergy && selected.cost) {
+      debugger;
+      setBuyCardEnabled(true);
+    } else {
+      debugger;
+      setBuyCardEnabled(false);
+    }
+  }, [selectedHandValues, selected]);
 
   useEffect(() => {
     if (user?.energy === 0) {
@@ -206,6 +241,8 @@ const Game = (props) => {
           discardCards.length <= user?.hand?.length - maxRefresh && needDiscard
         }
         discard={discard}
+        buyCardEnabled={buyCardEnabled}
+        buyCard={buyCard}
       />
       <div className="gameContainer">
         {/* <div className="cardStackContainer">

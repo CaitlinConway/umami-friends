@@ -44,6 +44,13 @@ export const Header = (props) => {
           >
             Discard
           </button>
+          <button
+            className="actionButton"
+            disabled={!props.buyCardEnabled}
+            onClick={props.buyCard}
+          >
+            Buy Card
+          </button>
         </div>
       </div>
       <div className="playerImageContainer flexItem">
