@@ -34,7 +34,7 @@ const Game = (props) => {
   const currentPlayer = gameState?.playerTurn === playerNumber;
   const userRole = gameState?.users[userIndex]?.role;
   //TODO: update when expand to 4 players, will just work for two
-  const opponent = gameState?.users?.find((user) => user.name != userName);
+  const opponent = gameState?.users?.find((user) => user.name !== userName);
   const maxRefresh = gameState?.users?.maxRefresh || 5;
   console.log("gameState", gameState);
   const startGame = () => {
