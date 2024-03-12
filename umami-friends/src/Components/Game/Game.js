@@ -59,6 +59,7 @@ const Game = (props) => {
       roomCode,
       userName
     );
+    setDiscardCards([]);
   };
   const endTurn = () => {
     socket.emit("gameAction", { actionType: "endTurn" }, roomCode, userName);
@@ -201,6 +202,10 @@ const Game = (props) => {
         endTurn={!needDiscard ? endTurn : () => {}}
         currentPlayer={currentPlayer}
         noEnergy={noEnergy}
+        discardEnabled={
+          discardCards.length <= user?.hand?.length - maxRefresh && needDiscard
+        }
+        discard={discard}
       />
       <div className="gameContainer">
         {/* <div className="cardStackContainer">
@@ -243,17 +248,6 @@ const Game = (props) => {
           buyCard={buyCard}
         />
         {canBuyEnergy ? <button onClick={buyEnergy}>Buy Energy</button> : ""}
-        {needDiscard && (
-          <div className="discardModal">
-            <div className="discardModalText">{`Please select cards in hand to discard down to max refresh -- ${maxRefresh} or use two sweet to buy an energy`}</div>
-            <button
-              onClick={discard}
-              disabled={discardCards.length !== user?.hand?.length - maxRefresh}
-            >
-              Discard
-            </button>
-          </div>
-        )}
         <div className="playerHandContainer">
           <div className="playerHandTitle">{opponent?.name}'s Board</div>
           <PlayerBoard user={opponent} cardClick={() => {}} />
