@@ -49,7 +49,7 @@ const Game = (props) => {
       {
         actionType: "moveCard",
         data: {
-          cards: discardCards,
+          cards: discardCards.map((card) => card.pictureName),
           zone: {
             from: { user: userIndex, zoneName: "hand" },
             to: { zoneName: "discardPile", user: "" },
