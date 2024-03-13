@@ -13,7 +13,7 @@ export default {
     },
     "energy": 1,
     "description": "All other players draw +1 card.",
-    "getActions": (mainData) => [cardActionHelper('drawCard', { cardNumber: 1, player: 'others' }, mainData)],
+    "getActions": () => [{ actionType: 'drawCards', data: { numberOfCards: 1, player: 'others' } },],
     "pileCount": 6
   },
   "spicyRamen": {
@@ -27,14 +27,14 @@ export default {
     },
     "energy": 0,
     "description": "Name an Ingredient type. If the opponent has that type in their hand, they discard 1 card of that type from their hand of their choice. If they do not have that type, they show you their hand and discard one card of their choice.",
-    "getActions": (actionData, userIndex) => [
+    "getActions": (action, userIndex) => [
       {
-        "type": "prompt",
+        "actionType": "prompt",
         "data": {
           // TODO: update prompt data
           actionRequired: "discard",
           cardType: "Ingredient",
-          cardName: actionData.selected[0],
+          cardName: action.data.selected[0],
           user: getOpponent(userIndex),
         }
       }
@@ -65,7 +65,7 @@ export default {
     },
     "energy": 0,
     "description": "Take an Ingredient card from your opponent's board. Add it to your board.",
-    "getActions": (mainData) => [cardActionHelper('stealBoard', { cardNumber: 1 }, mainData)],
+    "getActions": (action) => [{ actionType: 'stealCard', data: { numberOfCards: 1, selected: action.data.selected, from: 'board' } }],
     "pileCount": 4
   },
   "niceCream": {
@@ -91,7 +91,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Max Refresh +1 . All other players draw +2 cards.",
-    "getActions": (mainData) => [cardActionHelper('drawCard', { cardNumber: 2, player: 'others' }, mainData)],
+    "getActions": () => [{ actionType: 'drawCards', data: { numberOfCards: 2, player: 'others' } }],
     "pileCount": 3
   },
   "hotPot": {
@@ -104,7 +104,7 @@ export default {
     },
     "energy": 1,
     "description": "Discard 1 Basic Recipe from your opponent's board.",
-    "getActions": (mainData) => [cardActionHelper('discardBasicBoard', { cardNumber: 1, player: 'others' }, mainData)],
+    "getActions": (action) => [{ actionType: 'discardBasicBoard', data: { numberOfCards: 1, player: 'others', selected: action.data.selected } },],
     "pileCount": 3
   },
   "megaBurger": {
@@ -131,7 +131,7 @@ export default {
     },
     "energy": 1,
     "description": "Take 2 Ingredients from your opponent's board. Add them to your board.",
-    "getActions": (mainData) => [cardActionHelper('stealBoard', { cardNumber: 2 }, mainData)],
+    "getActions": (action) => [{ actionType: 'stealCard', data: { numberOfCards: 2, selected: action.data.selected, from: 'board' } },],
     "pileCount": 2
   },
   "twiceCream": {

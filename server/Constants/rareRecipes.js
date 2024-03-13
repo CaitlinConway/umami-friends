@@ -17,15 +17,18 @@ export default {
     },
     "energy": 1,
     "description": "Retain all Recipes used to complete this. Draw +1 card.",
-    "getActions": (mainData) => [
-      mainData.buy && cardActionHelper('retainRecipes', {
-        cards: {
-          "basicPlant": 1,
-          "basicSpicy": 1,
-          "basicBurger": 1
-        },
-      }, mainData),
-      cardActionHelper('drawCard', { cardNumber: 1, player: 'self' }, mainData)
+    "getActions": (action) => [
+      ...action.actionType === 'buyCard' &&
+      [{
+        actionType: 'retainRecipes', data: {
+          cards: {
+            "basicPlant": 1,
+            "basicSpicy": 1,
+            "basicBurger": 1
+          },
+        }
+      }],
+      { actionType: 'drawCards', data: { numberOfCards: 1, player: 'self' } },
     ],
   },
   tofu: {
@@ -55,10 +58,10 @@ export default {
     },
     "energy": 1,
     "description": "Place 2 Ingredients from your hand onto your board. Refresh (but your turn does not end). All other players draw +2 cards.",
-    "getActions": (mainData) => [
-      cardActionHelper('placeIngredient', { cardNumber: 2 }, mainData),
-      cardActionHelper('refresh', {}, mainData),
-      cardActionHelper('drawCard', { cardNumber: 2, player: 'others' }, mainData)
+    "getActions": (action) => [
+      { actionType: 'placeIngredient', data: { numberOfCards: 2, selected: action.data.selected } },
+      { actionType: 'refresh' },
+      { actionType: 'drawCards', data: { numberOfCards: 2, player: 'others' } },
     ],
   },
   lettuceWrap: {
@@ -74,7 +77,13 @@ export default {
     },
     "energy": 1,
     "description": "(passive) At the end of your turn, you may place +1 Ingredient from your hand onto your board. If you do, all other players draw +1 card.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      ...action.actionType === 'useCard' &&
+      [
+        { actionType: 'placeIngredient', data: { numberOfCards: 1, selected: action.data.selected } },
+        { actionType: 'drawCards', data: { numberOfCards: 1, player: 'others' } },
+      ]
+    ],
   },
   greatLeaf: {
     "name": "Great Leaf",
@@ -89,8 +98,8 @@ export default {
     },
     "energy": 1,
     "description": "Draw +5 cards. You may take unlimited Energy this turn, but can no longer draw additional cards this turn.",
-    "getActions": (mainData) => [
-      cardActionHelper('drawCard', { cardNumber: 5, player: 'self' }, mainData),
+    "getActions": () => [
+      { actionType: 'drawCards', data: { numberOfCards: 5, player: 'self' } },
       //TODO: update other actions
     ],
   },
@@ -107,7 +116,10 @@ export default {
     },
     "energy": 1,
     "description": "View any player\u2019s hand. Take any 2 Ingredients from their hand or board. Discard 1, and add 1 to your board.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      { actionType: 'stealCard', data: { numberOfCards: 1, selected: action.data.add, from: action.data.addFrom } },
+      { actionType: 'discardCard', data: { numberOfCards: 1, selected: action.data.discard, from: action.data.discardFrom, player: 'others' } },
+    ],
   },
   bubblingCurry: {
     "name": "Bubbling Curry",
@@ -122,7 +134,12 @@ export default {
     },
     "energy": 0,
     "description": "You must give your opponent 2 Recipes to activate this ability, otherwise this card does nothing. Discard an opponent's Basic or Advanced Recipe.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      ...action.data.give && [
+        { actionType: 'giveCard', data: { numberOfCards: 2, selected: action.data.give, from: 'board' } },
+        { actionType: 'discardCard', data: { numberOfCards: 1, selected: action.data.discard, from: action.data.discardFrom, player: 'others' } },
+      ],
+    ],
   },
   volcanoPot: {
     "name": "Volcano Pot",
@@ -137,7 +154,10 @@ export default {
     },
     "energy": 1,
     "description": "Steal an opponent's Recipe and use its active ability immediately.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      { actionType: 'stealCard', data: { numberOfCards: 1, selected: action.data.selected, from: 'board' } },
+      { actionType: 'useCard', data: { card: action.data.selected } },
+    ],
   },
   burgerBrothers: {
     "name": "Burger Brothers",
@@ -166,7 +186,9 @@ export default {
     },
     "energy": 0,
     "description": "Your opponent discards down to 4 Ingredients total between their hand and board.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      // Add prompt
+    ],
   },
   theOmegaburger: {
     "name": "The OmegaBurger",
@@ -181,7 +203,9 @@ export default {
     },
     "energy": 0,
     "description": "Upon pickup, win the game.",
-    "getActions": () => [],
+    "getActions": () => [
+      // Add win game action
+    ],
   },
   tamaleTwins: {
     "name": "Tamale Twins",
@@ -195,7 +219,9 @@ export default {
     },
     "energy": 1,
     "description": "Use the active ability of any Recipe on your board.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      { actionType: 'useCard', data: { card: action.data.selected } },
+    ],
   },
   tacoSalad: {
     "name": "Taco Salad",
@@ -225,7 +251,10 @@ export default {
     },
     "energy": 1,
     "description": "Discard a card from your own hand, then swap hands with an opponent.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      { actionType: 'discardCard', data: { numberOfCards: 1, selected: action.data.selected, from: 'hand', player: 'self' } },
+      { actionType: 'swapHands' }
+    ],
   },
   emperorTorta: {
     "name": "Emperor Torta",
@@ -240,7 +269,15 @@ export default {
     },
     "energy": 0,
     "description": "Add 2 Fancy Burgers to your Board. (passive) All Recipes are now worth +1 Umami (including Emperor Torta).",
-    "getActions": () => [],
+    "getActions": (_action, userIndex, gameState) => {
+      // TODO: Check what if there is no fancy burgers?
+      const numberOfBurgers = gameState.basicRecipes.filter(each => each.pictureName === 'fancyBurger').length
+      const numberOfCards = numberOfBurgers - 2;
+      return [
+        ...numberOfCards > 0 &&
+        [{ actionType: 'moveCard', data: { numberOfCards, selected: 'fancyBurger', from: { zone: 'basicRecipes' }, to: { user: userIndex, zone: 'board' } } }],
+      ]
+    },
   },
   massiveBurrito: {
     "name": "Massive Burrito",
@@ -256,7 +293,9 @@ export default {
     },
     "energy": 1,
     "description": "You may view and spend ingredient cards from both you and an opponent\u2019s hand and board this turn, but can no longer draw additional cards this turn. At the end of the turn, all players Refresh.",
-    "getActions": () => [],
+    "getActions": () => [
+      //TODO: Discuss and update
+    ],
   },
   verySourCandy: {
     "name": "Very Sour Candy",
@@ -271,7 +310,9 @@ export default {
     },
     "energy": 0,
     "description": "View any players' hand. Take up to 2 Sweets from their hand and place them on your board.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      { actionType: 'stealCard', data: { numberOfCards: action.data.selected.length, selected: action.data.selected, from: 'hand' } }
+    ],
   },
   hyperTreat: {
     "name": "Hyper Treat",
@@ -314,7 +355,23 @@ export default {
     },
     "energy": 1,
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Spicy Nuggets or Saucy Nuggets. Place 1 in the Rare Recipe market in the place of Veggie Nuggets.",
-    "getActions": () => [],
+    "getActions": (action, userIndex, gameState) => {
+      let cardName;
+      for (x of gameState.recipesDrawPile) {
+        if (x.pictureName === "spicyNuggets" || x.pictureName === "saucyNuggets") {
+          cardName = x.pictureName
+          break;
+        }
+      }
+      cardName = cardName || gameState.recipesDrawPile[0].pictureName
+      return [
+        ...action.actionType === 'buyCard' &&
+        [
+          { actionType: 'retainRecipes', data: { cards: { "ingredientPlant": 5 }, } },
+          { actionType: 'moveCard', data: { from: { zone: 'recipesDrawPile' }, to: { zone: 'rareRecipes' }, selected: [cardName] } }
+        ],
+      ];
+    }
   },
   spicyNuggets: {
     "name": "Spicy Nuggets",
@@ -328,7 +385,23 @@ export default {
     },
     "energy": 1,
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Veggie Nuggets or Saucy Nuggets. Place 1 in the Rare Recipe market in the place of Spicy Nuggets.",
-    "getActions": () => [],
+    "getActions": (action, userIndex, gameState) => {
+      let cardName;
+      for (x of gameState.recipesDrawPile) {
+        if (x.pictureName === "veggieNuggets" || x.pictureName === "saucyNuggets") {
+          cardName = x.pictureName
+          break;
+        }
+      }
+      cardName = cardName || gameState.recipesDrawPile[0].pictureName
+      return [
+        ...action.actionType === 'buyCard' &&
+        [
+          { actionType: 'retainRecipes', data: { cards: { "ingredientSpicy": 4 }, } },
+          { actionType: 'moveCard', data: { from: { zone: 'recipesDrawPile' }, to: { zone: 'rareRecipes' }, selected: [cardName] } }
+        ],
+      ];
+    }
   },
   saucyNuggets: {
     "name": "Saucy Nuggets",
@@ -342,7 +415,23 @@ export default {
     },
     "energy": 0,
     "description": "Retain Ingredients used to make this Recipe. Show your opponent your hand. Search the Rare Deck for Veggie Nuggets or Spicy Nuggets. Place 1 in the Rare Recipe market in the place of Saucy Nuggets.",
-    "getActions": () => [],
+    "getActions": (action, userIndex, gameState) => {
+      let cardName;
+      for (x of gameState.recipesDrawPile) {
+        if (x.pictureName === "veggieNuggets" || x.pictureName === "spicyNuggets") {
+          cardName = x.pictureName
+          break;
+        }
+      }
+      cardName = cardName || gameState.recipesDrawPile[0].pictureName
+      return [
+        ...action.actionType === 'buyCard' &&
+        [
+          { actionType: 'retainRecipes', data: { cards: { "ingredientSauce": 5 }, } },
+          { actionType: 'moveCard', data: { from: { zone: 'recipesDrawPile' }, to: { zone: 'rareRecipes' }, selected: [cardName] } }
+        ],
+      ];
+    }
   },
   fruitSalad: {
     "name": "Fruit Salad",
@@ -358,7 +447,7 @@ export default {
     },
     "energy": 1,
     "description": "(passive) Healthy Snacks are now worth 4 Umami (instead of 1). All other players draw +2 cards.",
-    "getActions": () => [],
+    "getActions": () => [{ actionType: 'drawCards', data: { numberOfCards: 2, player: 'others' } },],
   },
   spiceCream: {
     "name": "Spice Cream",
@@ -374,7 +463,10 @@ export default {
     },
     "energy": 1,
     "description": "Steal any one of your opponents' Basic Recipes, including Sweet Types (ignore Frozen effect). Use its active ability immediately.",
-    "getActions": () => [],
+    "getActions": () => [
+      { actionType: 'stealCard', data: { numberOfCards: 1, selected: action.data.selected, from: 'board' } },
+      { actionType: 'useCard', data: { card: action.data.selected } },
+    ],
   },
   fruitSando: {
     "name": "Fruit Sando",
@@ -404,7 +496,9 @@ export default {
     },
     "energy": 1,
     "description": "Discard 3 Recipes from the Rare recipe market. Immediately refill the market.",
-    "getActions": () => [],
+    "getActions": (action) => [
+      { actionType: 'discardAndRefillRare', data: { selected: action.data.selected, numberOfCards: 3 } }
+    ],
   },
   soupSalad: {
     "name": "Soup & Salad",
@@ -419,7 +513,9 @@ export default {
     },
     "energy": 0,
     "description": "Discard 1 Recipe from the Rare Recipe market. Immediately refill the market.",
-    "getActions": () => [],
+    "getActions": () => [
+      { actionType: 'discardAndRefillRare', data: { selected: action.data.selected, numberOfCards: 1 } }
+    ],
   },
   plainSandwich: {
     "name": "Plain Sandwich",
@@ -434,7 +530,9 @@ export default {
     },
     "energy": 0,
     "description": "Give this to an opponent. They must return 1 Basic or Advanced Rare Recipe of their choice to the Rare Recipe market. If they do not have a Rare Recipe, this ability does nothing.",
-    "getActions": () => [],
+    "getActions": () => [{
+      // Update prompt
+    }],
   },
   umi: {
     "name": "Umi",
@@ -450,7 +548,9 @@ export default {
     },
     "energy": 1,
     "description": "Retain all Recipes used to complete this. All players may place any amount of Ingredients from their hand onto their board.",
-    "getActions": () => [],
+    "getActions": () => [
+      // Update prompt
+    ],
   },
   okonomiyaki: {
     "name": "Okonomiyaki",
@@ -469,6 +569,17 @@ export default {
     },
     "energy": 1,
     "description": "Name an Ingredient type. If the opponent has that type in their hand, they give you 1 card of that type from their hand of their choice. If they do not have that type, they show you their hand and give you one card of their choice.",
-    "getActions": () => [],
+    "getActions": () => [
+      {
+        "actionType": "prompt",
+        "data": {
+          // TODO: update prompt data
+          actionRequired: "give",
+          cardType: "Ingredient",
+          cardName: action.data.selected[0],
+          user: getOpponent(userIndex),
+        }
+      }
+    ],
   }
 }
