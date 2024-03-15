@@ -14,6 +14,7 @@ export function roomHelper(socket, io, roomCode, userName) {
     board: { candy: [], ingredients: [] },
     energy: 1,
     points: 0,
+    maxRefresh: 5,
   };
   console.log(`${userName} joining ${roomCode}`);
   socket.join(roomCode);

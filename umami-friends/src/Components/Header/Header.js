@@ -23,6 +23,7 @@ export const Header = (props) => {
 					</button>
 					<button
 						className='actionButton'
+						disabled={playerRoles[props.role]?.userActionIsPassive}
 						onClick={() => playerRoles[props.role]?.userAction(socket, roomCode)}
 					>
 						TAKE ROLE ACTION
