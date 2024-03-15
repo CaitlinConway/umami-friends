@@ -1,0 +1,16 @@
+.message-container {
+	display: flex;
+	flex-direction: column-reverse;
+	overflow: scroll;
+}
+
+.messageInput {
+	margin-bottom: 5px;
+}
+
+.userMessage {
+	color: #4590ce;
+}
+.opponentMessage {
+	color: #ef4536;
+}

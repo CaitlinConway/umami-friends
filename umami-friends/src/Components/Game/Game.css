@@ -15,6 +15,7 @@
 	margin: 10px 20px 10px 10px;
 	background-color: #ffdfbb;
 	min-width: 7%;
+	overflow: scroll;
 }
 
 /* Player Hand Title */
@@ -72,4 +73,42 @@
 /* Selected Cards */
 .enabled {
 	border: 10px solid #27c65f !important; /* Border around enabled cards */
+}
+
+.buttonsAndMessages {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+.messageContainer {
+	flex-grow: 1;
+}
+.buttonGroup {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	gap: 10px;
+	align-items: stretch;
+	overflow: visible;
+}
+
+.drawButton,
+.actionButton,
+.buyEnergyButton,
+.ingredientButton,
+.startEndButton {
+	background-color: #ff6864;
+	color: white;
+	padding: 8px 16px;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+}
+.drawButton:not([disabled]):hover,
+.actionButton:not([disabled]):hover,
+.buyEnergyButton:not([disabled]):hover,
+.ingredientButton:not([disabled]):hover,
+.startEndButton:not([disabled]):hover {
+	background-color: #d55753;
+	cursor: pointer;
 }

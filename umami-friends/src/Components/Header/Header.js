@@ -3,7 +3,6 @@ import { FaRegCopy } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
 
 import useGameConditions from '../../Hooks/useGameConditions';
-import { playerRoles } from '../../Constants/roles';
 import './Header.css';
 
 export const Header = (props) => {
@@ -16,18 +15,6 @@ export const Header = (props) => {
 				<div className='roomCodeContainer'>
 					<span>Room Code: {props.roomCode}</span>
 					<FaRegCopy className='copyIcon' onClick={() => navigator.clipboard.writeText(props.roomCode)} />
-				</div>
-				<div>
-					<button className='drawButton' onClick={props.drawCard}>
-						DRAW 3 CARDS
-					</button>
-					<button
-						className='actionButton'
-						disabled={playerRoles[props.role]?.userActionIsPassive}
-						onClick={() => playerRoles[props.role]?.userAction(socket, roomCode)}
-					>
-						TAKE ROLE ACTION
-					</button>
 				</div>
 			</div>
 			<div className='playerImageContainer flexItem'>
