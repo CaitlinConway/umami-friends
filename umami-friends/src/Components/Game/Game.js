@@ -72,9 +72,9 @@ const Game = (props) => {
       {
         actionType: "moveCard",
         data: {
-          cards: selected.pictureName,
+          cards: [...selected.pictureName],
           zone: {
-            from: { user: "", zoneName: "board" },
+            from: { user: "", zoneName: "basicRecipes" },
             to: { zoneName: "hand", user: userIndex },
           },
         },
