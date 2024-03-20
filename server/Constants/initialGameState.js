@@ -5,26 +5,26 @@ import { shuffleCards } from "../Helpers/cardHelper.js";
 import { ingredients } from "./cards.js";
 import basicRecipes from "./basicRecipes.js";
 export const initialGame = () => {
-    const shuffledRareRecipes = shuffleCards(
-        Object.values(rareRecipes),
-        Object.keys(rareRecipes).length
-    );
-    return {
-        roomCode: "",
-        //either 2 or 4 users for valid game
-        //user object should have name and character
-        users: [],
-        //10 rare recipes
-        discardPile: [],
-        ingredientsDrawPile: shuffleCards(
-            JSON.parse(JSON.stringify(ingredients)),
-            ingredients.length
-        ),
-        recipesDrawPile: shuffledRareRecipes.splice(10),
-        rareRecipes: shuffledRareRecipes.splice(0, 10),
-        basicRecipes: Object.values(basicRecipes),
-        playerTurn: 0,
-        turnCount: 0,
-        win: false,
-    };
+  const shuffledRareRecipes = shuffleCards(
+    Object.values(rareRecipes),
+    Object.keys(rareRecipes).length
+  );
+  return {
+    roomCode: "",
+    //either 2 or 4 users for valid game
+    //user object should have name and character
+    users: [],
+    //10 rare recipes
+    discardPile: [],
+    ingredientsDrawPile: shuffleCards(
+      JSON.parse(JSON.stringify(ingredients)),
+      ingredients.length
+    ),
+    recipesDrawPile: shuffledRareRecipes.splice(10),
+    rareRecipes: shuffledRareRecipes.splice(0, 10),
+    basicRecipes: Object.values(basicRecipes),
+    playerTurn: 0,
+    turnCount: 0,
+    win: false,
+  };
 };

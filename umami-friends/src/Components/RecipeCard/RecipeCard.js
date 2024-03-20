@@ -18,15 +18,15 @@ import "./RecipeCard.css";
 //   },
 
 export const RecipeCard = props => {
-    return (
-        <div className="card">
-            <div className="card-body">
-                <img
-                    className="recipeCard"
-                    alt={`${props.name}`}
-                    src={require(`../Pictures/${props.pictureName}.png`)}
-                />
-            </div>
-        </div>
-    );
+  return (
+    <div className="card">
+      <div className="card-body">
+        <img
+          className="recipeCard"
+          alt={`${props.name}`}
+          src={require(`../Pictures/${props.pictureName}.png`)}
+        />
+      </div>
+    </div>
+  );
 };
