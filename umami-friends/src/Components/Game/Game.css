@@ -1,95 +1,95 @@
 /* Game Container */
 .gameContainer {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	overflow: hidden;
-	max-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  max-height: 100vh;
 }
 
 /* Player Hand Container */
 .playerHandContainer {
-	border: 2px solid #ccc; /* Border around player hand */
-	border-radius: 8px; /* Rounded corners */
-	padding: 10px; /* Padding for inner content */
-	margin: 10px 20px 10px 10px;
-	background-color: #ffdfbb;
-	min-width: 7%;
-	overflow: scroll;
+  border: 2px solid #ccc; /* Border around player hand */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Padding for inner content */
+  margin: 10px 20px 10px 10px;
+  background-color: #ffdfbb;
+  min-width: 7%;
+  overflow: scroll;
 }
 
 /* Player Hand Title */
 .playerHandTitle {
-	font-size: 18px; /* Adjust font size as needed */
-	font-weight: bold; /* Make the title bold */
-	margin-bottom: 10px; /* Add space between title and hand */
+  font-size: 18px; /* Adjust font size as needed */
+  font-weight: bold; /* Make the title bold */
+  margin-bottom: 10px; /* Add space between title and hand */
 }
 
 /* Player Hand */
 .playerHand {
-	display: flex;
-	flex-direction: row;
-	overflow-x: auto; /* Enable horizontal scrolling if hand overflows */
-	gap: 10px; /* Adjust spacing between cards */
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto; /* Enable horizontal scrolling if hand overflows */
+  gap: 10px; /* Adjust spacing between cards */
 }
 
 .player-card-body {
-	width: 100px; /* Adjust card width as needed */
+  width: 100px; /* Adjust card width as needed */
 }
 
 /* Card Image */
 .playerRecipeCard {
-	width: 100%; /* Ensure image takes full width of its container */
-	height: auto; /* Maintain aspect ratio */
-	border-radius: 8px; /* Add rounded corners to cards */
+  width: 100%; /* Ensure image takes full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Add rounded corners to cards */
 }
 
 /* Header */
 .header {
-	height: 50px; /* Fixed header height */
+  height: 50px; /* Fixed header height */
 }
 
 /* Game Background */
 .gameBackground {
-	background-image: url('../../Pictures/background.jpg');
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	display: flex;
-	flex-direction: column;
-	max-height: 100vh;
+  background-image: url('../../Pictures/background.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
 }
 
 /* Messages Container */
 .messageContainer {
-	/* Define styles for messages container if needed */
+  /* Define styles for messages container if needed */
 }
 
 /* Selected Cards */
 .selected {
-	border: 10px solid #8f0404 !important; /* Border around selected cards */
+  border: 10px solid #8f0404 !important; /* Border around selected cards */
 }
 
 /* Selected Cards */
 .enabled {
-	border: 10px solid #27c65f !important; /* Border around enabled cards */
+  border: 10px solid #27c65f !important; /* Border around enabled cards */
 }
 
 .buttonsAndMessages {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 .messageContainer {
-	flex-grow: 1;
+  flex-grow: 1;
 }
 .buttonGroup {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	gap: 10px;
-	align-items: stretch;
-	overflow: visible;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: stretch;
+  overflow: visible;
 }
 
 .drawButton,
@@ -97,18 +97,18 @@
 .buyEnergyButton,
 .ingredientButton,
 .startEndButton {
-	background-color: #ff6864;
-	color: white;
-	padding: 8px 16px;
-	border: none;
-	border-radius: 4px;
-	font-size: 14px;
+  background-color: #ff6864;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
 }
 .drawButton:not([disabled]):hover,
 .actionButton:not([disabled]):hover,
 .buyEnergyButton:not([disabled]):hover,
 .ingredientButton:not([disabled]):hover,
 .startEndButton:not([disabled]):hover {
-	background-color: #d55753;
-	cursor: pointer;
+  background-color: #d55753;
+  cursor: pointer;
 }

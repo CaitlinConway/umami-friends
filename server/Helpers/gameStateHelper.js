@@ -1,4 +1,4 @@
-import { initialGame } from "../Constants/initialGameState.js";
+import { initialGame } from '../Constants/initialGameState.js';
 
 let activeGames = {};
 
@@ -17,7 +17,7 @@ export const getGameState = (roomCode) => {
     gameState.roomCode = roomCode;
     activeGames[roomCode] = gameState;
   }
-  
+
   return activeGames[roomCode];
 };
 

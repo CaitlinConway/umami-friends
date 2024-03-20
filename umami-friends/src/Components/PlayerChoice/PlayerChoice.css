@@ -1,58 +1,58 @@
 /* Modal Styling */
 .playerChoiceModal {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 60%;
-	background-color: #ff6864;
-	z-index: 1000;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	padding: 10px;
-	border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60%;
+  background-color: #ff6864;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  border-radius: 4px;
 }
 
 .playerChoiceContainer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .playerChoiceCard {
-	width: 100px; /* Adjust the width as needed */
-	height: 150px; /* Adjust the height as needed */
-	margin: 10px; /* Adjust the margin as needed */
-	border-radius: 2px;
+  width: 100px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  margin: 10px; /* Adjust the margin as needed */
+  border-radius: 2px;
 }
 
 .playerChoiceCard img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .characterChoiceText {
-	background-color: white;
-	color: black;
-	width: 40%;
-	font-size: large;
-	border-radius: 40%;
-	font-weight: bold;
-	justify-content: center;
-	align-content: center;
-	justify-items: center;
-	display: flex; /* Align text to middle */
-	align-items: center; /* Align text to middle */
-	padding: 5px;
+  background-color: white;
+  color: black;
+  width: 40%;
+  font-size: large;
+  border-radius: 40%;
+  font-weight: bold;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  display: flex; /* Align text to middle */
+  align-items: center; /* Align text to middle */
+  padding: 5px;
 }
 
 .tooltip-playerChoice {
-	max-width: 40%;
-	z-index: 100;
-	background: none !important;
+  max-width: 40%;
+  z-index: 100;
+  background: none !important;
 }

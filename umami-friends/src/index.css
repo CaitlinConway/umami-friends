@@ -8,12 +8,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
   background-image: url('Pictures/background.jpg');
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	display: flex;
-	flex-direction: column;
-	max-height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
 }
 
 code {

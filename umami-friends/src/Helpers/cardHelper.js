@@ -16,10 +16,10 @@ export const shuffleRareRecipes = (recipes) => {
 };
 
 export const selectCards = (card) => {
-  card.className = "selectedCards";
+  card.className = 'selectedCards';
 };
 export const deselectCards = (card) => {
-  card.className = "";
+  card.className = '';
 };
 
 export const fillBasicRecipes = (basicRecipes) => {
