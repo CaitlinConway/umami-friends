@@ -8,20 +8,20 @@ const app = express();
 const server = createServer(app);
 
 const io = new Server(server, {
-    cors: {
-        origin: "*",
-        methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
-        credentials: true,
-    },
+  cors: {
+    origin: "*",
+    methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+    credentials: true,
+  },
 });
 
 io.on("connection", socket => {
-    console.log("connected");
-    loadCommands(socket, io);
+  console.log("connected");
+  loadCommands(socket, io);
 });
 
 const PORT = process.env.PORT || 8080;
 
 server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

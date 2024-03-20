@@ -19,15 +19,15 @@ import "./IngredientCard.css";
 // }
 
 export const IngredientCard = props => {
-    return (
-        <div className="card">
-            <div className="card-body">
-                <img
-                    className="ingredientCard"
-                    alt={`${props.name}`}
-                    src={require(`../Pictures/${props.pictureName}.png`)}
-                />
-            </div>
-        </div>
-    );
+  return (
+    <div className="card">
+      <div className="card-body">
+        <img
+          className="ingredientCard"
+          alt={`${props.name}`}
+          src={require(`../Pictures/${props.pictureName}.png`)}
+        />
+      </div>
+    </div>
+  );
 };
