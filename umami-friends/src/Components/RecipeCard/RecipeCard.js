@@ -1,5 +1,5 @@
-import React from 'react'
-import './RecipeCard.css'
+import React from "react";
+import "./RecipeCard.css";
 // Sample Card with props
 // Future improvement could make dynamic so ez change rules instead of static whole card pics
 
@@ -28,5 +28,5 @@ export const RecipeCard = props => {
                 />
             </div>
         </div>
-    )
-}
+    );
+};

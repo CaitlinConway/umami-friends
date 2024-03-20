@@ -1,11 +1,12 @@
-const dig = (socket, roomCode) => console.log('Sasha is taking an action')
+const dig = (socket, roomCode) => console.log("Sasha is taking an action");
 const doubleFronkBurger = (socket, roomCode) =>
-    console.log('Fronk is taking an action')
-const wellRested = (socket, roomCode) => console.log('Coco is taking an action')
-const hatch = (socket, roomCode) => console.log('Damien is taking an action')
-const inflame = (socket, roomCode) => console.log('Shinra is taking an action')
+    console.log("Fronk is taking an action");
+const wellRested = (socket, roomCode) =>
+    console.log("Coco is taking an action");
+const hatch = (socket, roomCode) => console.log("Damien is taking an action");
+const inflame = (socket, roomCode) => console.log("Shinra is taking an action");
 const leftovers = (socket, roomCode) =>
-    console.log('Ramona is taking an action')
+    console.log("Ramona is taking an action");
 
 export const playerRoles = {
     Sasha: {
@@ -32,4 +33,4 @@ export const playerRoles = {
         userActionIsPassive: false,
         userAction: (socket, roomCode) => leftovers(socket, roomCode),
     },
-}
+};

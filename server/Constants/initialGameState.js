@@ -1,10 +1,10 @@
 // import { shuffleRareRecipes } from "../Helpers/cardHelper.js";
 // import { rareRecipes } from "../Constants/cards.js";
-import rareRecipes from '../Constants/rareRecipes.json' assert { type: 'json' }
-import { shuffleCards } from '../Helpers/cardHelper.js'
-import basicRecipes from '../Constants/basicRecipes.json' assert { type: 'json' }
+import rareRecipes from "../Constants/rareRecipes.json" assert { type: "json" };
+import { shuffleCards } from "../Helpers/cardHelper.js";
+import basicRecipes from "../Constants/basicRecipes.json" assert { type: "json" };
 export const initialGame = {
-    roomCode: '',
+    roomCode: "",
     //either 2 or 4 users for valid game
     //user object should have name and character
     users: [],
@@ -30,4 +30,4 @@ export const initialGame = {
     // player2Energy: 1,
     // player1Points: 0,
     // player2Points: 0,
-}
+};

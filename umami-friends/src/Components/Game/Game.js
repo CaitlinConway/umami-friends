@@ -1,64 +1,64 @@
-import React, { useState, useEffect } from 'react'
-import io from 'socket.io-client'
-import useUserInfo from '../../Hooks/useUserInfo'
-import { Grid } from '../Grid/Grid'
-import { Header } from '../Header/Header'
-import { Messages } from '../Messages/Messages'
-import { PlayerChoice } from '../PlayerChoice/PlayerChoice'
-import { CardStack } from '../CardStack/CardStack'
-import { default as useGameConditions } from '../../Hooks/useGameConditions'
-import './Game.css'
-import PlayerHand from '../PlayerHand/PlayerHand'
-import PlayerBoard from '../PlayerBoard/PlayerBoard'
-import { initialHandValue } from '../../Constants/cards'
-import { playerRoles } from '../../Constants/roles'
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
+import useUserInfo from "../../Hooks/useUserInfo";
+import { Grid } from "../Grid/Grid";
+import { Header } from "../Header/Header";
+import { Messages } from "../Messages/Messages";
+import { PlayerChoice } from "../PlayerChoice/PlayerChoice";
+import { CardStack } from "../CardStack/CardStack";
+import { default as useGameConditions } from "../../Hooks/useGameConditions";
+import "./Game.css";
+import PlayerHand from "../PlayerHand/PlayerHand";
+import PlayerBoard from "../PlayerBoard/PlayerBoard";
+import { initialHandValue } from "../../Constants/cards";
+import { playerRoles } from "../../Constants/roles";
 
 const Game = props => {
-    const { userName, setUserName } = useUserInfo()
-    const { gameState, setGameState, socket, roomCode } = useGameConditions()
+    const { userName, setUserName } = useUserInfo();
+    const { gameState, setGameState, socket, roomCode } = useGameConditions();
     //selected = grid cards selected
-    const [selected, setSelected] = useState({})
-    const [selectedHand, setSelectedHand] = useState([])
+    const [selected, setSelected] = useState({});
+    const [selectedHand, setSelectedHand] = useState([]);
     const [selectedHandValues, setSelectedHandValues] =
-        useState(initialHandValue)
-    const [noEnergy, setNoEnergy] = useState(false)
-    const [discardCards, setDiscardCards] = useState([])
-    const [needDiscard, setNeedDiscard] = useState(false)
-    const [canBuyEnergy, setCanBuyEnergy] = useState(false)
-    let user = gameState?.users?.find(user => user.name === userName)
+        useState(initialHandValue);
+    const [noEnergy, setNoEnergy] = useState(false);
+    const [discardCards, setDiscardCards] = useState([]);
+    const [needDiscard, setNeedDiscard] = useState(false);
+    const [canBuyEnergy, setCanBuyEnergy] = useState(false);
+    let user = gameState?.users?.find(user => user.name === userName);
     const userIndex = gameState?.users?.findIndex(
         user => user.name === userName
-    )
-    const playerNumber = userIndex + 1
+    );
+    const playerNumber = userIndex + 1;
     //boolean to check if user is also current player
-    const currentPlayer = gameState?.playerTurn === playerNumber
-    const userRole = gameState?.users[userIndex]?.role
+    const currentPlayer = gameState?.playerTurn === playerNumber;
+    const userRole = gameState?.users[userIndex]?.role;
     //TODO: update when expand to 4 players, will just work for two
-    const opponent = gameState?.users?.find(user => user.name != userName)
-    const maxRefresh = gameState?.users?.maxRefresh || 5
-    console.log('gameState', gameState)
+    const opponent = gameState?.users?.find(user => user.name != userName);
+    const maxRefresh = gameState?.users?.maxRefresh || 5;
+    console.log("gameState", gameState);
     const startGame = () => {
         socket.emit(
-            'gameAction',
-            { actionType: 'startGame' },
+            "gameAction",
+            { actionType: "startGame" },
             roomCode,
             userName
-        )
+        );
         socket.emit(
-            'gameAction',
-            { actionType: 'startTurn' },
+            "gameAction",
+            { actionType: "startTurn" },
             roomCode,
             userName
-        )
-    }
+        );
+    };
     const drawCard = () => {
         socket.emit(
-            'gameAction',
-            { actionType: 'drawCard' },
+            "gameAction",
+            { actionType: "drawCard" },
             roomCode,
             userName
-        )
-    }
+        );
+    };
     const endTurn = () => {
         // socket.emit(
         //   "gameAction",
@@ -68,144 +68,144 @@ const Game = props => {
         // );
         //instead of emiting discard cards, just send the array as part of the end turn, backend will handle
         socket.emit(
-            'gameAction',
-            { actionType: 'endTurn', actionData: { discardCards } },
+            "gameAction",
+            { actionType: "endTurn", actionData: { discardCards } },
             roomCode,
             userName
-        )
+        );
         socket.emit(
-            'gameAction',
-            { actionType: 'startTurn' },
+            "gameAction",
+            { actionType: "startTurn" },
             roomCode,
             userName
-        )
-    }
+        );
+    };
     const buyCard = () => {
         socket.emit(
-            'gameAction',
-            { actionType: 'buyCard', actionData: { selected, selectedHand } },
+            "gameAction",
+            { actionType: "buyCard", actionData: { selected, selectedHand } },
             roomCode,
             userName
-        )
-    }
+        );
+    };
     const cardClick = (clickedCard, hand = false, discard = false) => {
         if (hand && !discard) {
             if (selectedHand?.includes(clickedCard)) {
                 // If selected, remove from selected cards
                 setSelectedHand(
                     selectedHand.filter(card => card.name !== clickedCard.name)
-                )
+                );
             } else {
                 // If not selected, add to selected cards
-                setSelectedHand([...selectedHand, clickedCard])
+                setSelectedHand([...selectedHand, clickedCard]);
             }
         } else if (discard) {
             if (discardCards?.includes(clickedCard)) {
                 // If selected, remove from selected cards
                 setDiscardCards(
                     discardCards.filter(card => card.name !== clickedCard.name)
-                )
+                );
             } else {
                 // If not selected, add to selected cards
-                setDiscardCards([...discardCards, clickedCard])
+                setDiscardCards([...discardCards, clickedCard]);
             }
         }
         // Check if card is already selected
         else if (selected?.name === clickedCard.name) {
             // If selected, remove from selected cards
-            setSelected({})
+            setSelected({});
             //also reset the selected ingredients
-            setSelectedHand([])
+            setSelectedHand([]);
         } else {
             // If not selected, add to selected cards
-            setSelected(clickedCard)
-            setSelectedHand([])
+            setSelected(clickedCard);
+            setSelectedHand([]);
         }
-    }
+    };
     //TODO: change so that you select a card to buy first then have to select the ingredients required to buy
     const enableBuy = card => {
         //now cards can always be bought unless one already selected?
         //have a buy button appear when the ingredients selected exactly equal cost
         //if can buy then don't let them add more ingredients
-        let enabled = true
-        let cost = card.cost
+        let enabled = true;
+        let cost = card.cost;
         for (const key in cost) {
             if (cost[key] > selectedHandValues[key]) {
-                enabled = false
+                enabled = false;
             }
         }
-        return enabled
-    }
+        return enabled;
+    };
     //TODO add logic to only count up to the exact cost of card.
     const enableIngredient = card => {
         //get cost of the selected grid card
-        let cost = selected.cost
+        let cost = selected.cost;
         //cost is an object with keys of the ingredient and values of the amount required
         for (const key in cost) {
             //if the cost is still higher than selected values and the card we want to enable has that value then enable it to select
             if (cost[key] >= selectedHandValues[key] && card.value[key] > 0) {
-                return true
+                return true;
             }
         }
-        return false
-    }
+        return false;
+    };
     const buyEnergy = () => {
         //remove 2 candy from hand and add 1 energy
         //backend needs to handle this so they know about updated hand state
         socket.emit(
-            'gameAction',
-            { actionType: 'buyEnergy', actionData: { selectedHand } },
+            "gameAction",
+            { actionType: "buyEnergy", actionData: { selectedHand } },
             roomCode,
             userName
-        )
-    }
+        );
+    };
     useEffect(() => {
-        let sweets = 0
+        let sweets = 0;
         for (let i = 0; i < selectedHand.length; i++) {
             if (selectedHand[i].value.ingredientSweet >= 1) {
-                sweets++
+                sweets++;
             }
         }
         if (sweets === 2) {
-            setCanBuyEnergy(true)
+            setCanBuyEnergy(true);
         } else {
-            setCanBuyEnergy(false)
+            setCanBuyEnergy(false);
         }
-    }, [selectedHand])
+    }, [selectedHand]);
     useEffect(() => {
-        setSelectedHandValues(initialHandValue)
+        setSelectedHandValues(initialHandValue);
         if (selectedHand.length > 0) {
             selectedHand.forEach(card => {
-                let valueObject = card.value
+                let valueObject = card.value;
                 Object.keys(valueObject).forEach(key => {
                     setSelectedHandValues(prevValues => ({
                         ...prevValues,
                         [key]: (prevValues[key] || 0) + valueObject[key],
-                    }))
-                })
-            })
+                    }));
+                });
+            });
         }
-    }, [selectedHand])
+    }, [selectedHand]);
 
     useEffect(() => {
         if (user?.energy === 0) {
             //disable everything except spending 2 candy to buy another energy or ending turn
-            setNoEnergy(true)
+            setNoEnergy(true);
         } else {
-            setNoEnergy(false)
+            setNoEnergy(false);
         }
-    }, [user?.energy])
+    }, [user?.energy]);
     useEffect(() => {
         //TODO: need to add some handling to allow sweets to buy energy
         if (maxRefresh < user?.hand?.length && noEnergy) {
-            setNeedDiscard(true)
+            setNeedDiscard(true);
         } else {
-            setNeedDiscard(false)
+            setNeedDiscard(false);
         }
-    }, [user?.hand, maxRefresh, noEnergy])
+    }, [user?.hand, maxRefresh, noEnergy]);
     return (
         <div className="gameBackground">
-            {userRole === '' && <PlayerChoice user={user} />}
+            {userRole === "" && <PlayerChoice user={user} />}
             <Header
                 userName={userName}
                 roomCode={gameState.roomCode}
@@ -263,7 +263,7 @@ const Game = props => {
                         maxRefresh ? (
                             <button onClick={endTurn}>End Turn</button>
                         ) : (
-                            ''
+                            ""
                         )}
                     </div>
                 )}
@@ -315,7 +315,7 @@ const Game = props => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Game
+export default Game;
