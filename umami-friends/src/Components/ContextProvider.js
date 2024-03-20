@@ -1,6 +1,6 @@
-import React from 'react';
-import { GameConditionsProvider } from '../Hooks/useGameConditions';
-import { UserInfoProvider } from '../Hooks/useUserInfo';
+import React from "react";
+import { GameConditionsProvider } from "../Hooks/useGameConditions";
+import { UserInfoProvider } from "../Hooks/useUserInfo";
 
 export function ContextProvider(props) {
   return (

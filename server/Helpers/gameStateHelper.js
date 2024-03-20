@@ -1,4 +1,4 @@
-import { initialGame } from '../Constants/initialGameState.js';
+import { initialGame } from "../Constants/initialGameState.js";
 
 let activeGames = {};
 

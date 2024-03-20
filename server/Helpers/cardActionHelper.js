@@ -1,57 +1,57 @@
-import { getGameState, updateGameState } from './gameStateHelper.js';
-import { ingredients } from '../Constants/cards.js';
-import { shuffleCards } from './cardHelper.js';
+import { getGameState, updateGameState } from "./gameStateHelper.js";
+import { ingredients } from "../Constants/cards.js";
+import { shuffleCards } from "./cardHelper.js";
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   const gameState = getGameState(roomCode);
   const userIndex = gameState.users.findIndex((user) => user.name === userName);
   const userRole = gameState.users[userIndex].role;
   const currentPlayer = gameState.users[gameState.playerTurn - 1];
   switch (action.actionType) {
-    case 'drawCards':
+    case "drawCards":
       //do some logic here for action.amount for how many to draw
       //also need logic if other players draw
       break;
 
-    case 'retainRecipes':
+    case "retainRecipes":
       break;
-    case 'refresh':
+    case "refresh":
       //needs action.amount
       break;
-    case 'placeIngredient':
+    case "placeIngredient":
       //add logic for action.amount
       break;
-    case 'wish':
+    case "wish":
       //unlimited energy but can't draw
       break;
-    case 'stealIngredient':
+    case "stealIngredient":
       //steal 2, discard 1, add one to hand
       break;
-    case 'discardCard':
+    case "discardCard":
       break;
-    case 'offering':
+    case "offering":
       //give opponent 2, discard basic or advanced recipe
       break;
-    case 'stealRecipe':
+    case "stealRecipe":
       //steal and use immediately
       break;
-    case 'fry':
+    case "fry":
       //oponent discards 4 ingredients
       break;
 
-    case 'supremacy':
+    case "supremacy":
       //win game
       break;
-    case 'useAbility':
+    case "useAbility":
       break;
-    case 'swapHands':
+    case "swapHands":
       break;
-    case 'gainUmami':
+    case "gainUmami":
       //action.amount
       break;
-    case 'sugarRush':
+    case "sugarRush":
       //discard all sweets on boards and hands
       break;
   }
   updateGameState(roomCode, gameState);
-  io.sockets.in(roomCode).emit('updateGameState', gameState);
+  io.sockets.in(roomCode).emit("updateGameState", gameState);
 }

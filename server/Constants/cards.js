@@ -2,40 +2,40 @@
 //maybe an action list in each recipe object that can pass to a helper function
 export const rareRecipes = [
   {
-    name: 'Spring Roll',
-    pictureName: 'springRoll',
+    name: "Spring Roll",
+    pictureName: "springRoll",
     points: 2,
-    status: 'basicPlant',
+    status: "basicPlant",
     cost: {
       redTriangle: 1,
       greenCircle: 3,
     },
     energy: 1,
     description:
-      'Place 2 ingredients from your hand onto your board. Refresh. All other players draw +1 card',
-    actions: ['energy1', 'placeIngredients2', 'otherPlayersDraw'],
+      "Place 2 ingredients from your hand onto your board. Refresh. All other players draw +1 card",
+    actions: ["energy1", "placeIngredients2", "otherPlayersDraw"],
   },
 ];
 
 export const basicRecipes = [
   {
-    name: 'Healthy Snack',
-    pictureName: 'healthySnack',
+    name: "Healthy Snack",
+    pictureName: "healthySnack",
     points: 1,
-    status: 'basicPlant',
+    status: "basicPlant",
     cost: {
       greenCircle: 2,
     },
     energy: 1,
-    description: 'All other players draw +1 card',
-    actions: ['otherPlayersDraw'],
+    description: "All other players draw +1 card",
+    actions: ["otherPlayersDraw"],
   },
 ];
 
 export const ingredients = [
   {
-    name: 'Bean Burger',
-    pictureName: 'beanBurger',
+    name: "Bean Burger",
+    pictureName: "beanBurger",
     value: {
       ingredientBurger: 1,
       ingredientPlant: 1,
@@ -49,8 +49,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Pepper',
-    pictureName: 'pepper',
+    name: "Pepper",
+    pictureName: "pepper",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 1,
@@ -64,8 +64,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Pesto',
-    pictureName: 'pesto',
+    name: "Pesto",
+    pictureName: "pesto",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 1,
@@ -79,8 +79,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Zoodles',
-    pictureName: 'zoodles',
+    name: "Zoodles",
+    pictureName: "zoodles",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 1,
@@ -94,8 +94,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Nopales Taco',
-    pictureName: 'nopalesTaco',
+    name: "Nopales Taco",
+    pictureName: "nopalesTaco",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 1,
@@ -109,8 +109,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Spaghetti',
-    pictureName: 'spaghetti',
+    name: "Spaghetti",
+    pictureName: "spaghetti",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -124,8 +124,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Ketchup',
-    pictureName: 'ketchup',
+    name: "Ketchup",
+    pictureName: "ketchup",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -139,8 +139,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Tsuyu',
-    pictureName: 'tsuyu',
+    name: "Tsuyu",
+    pictureName: "tsuyu",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -154,8 +154,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Hot Sauce',
-    pictureName: 'hotSauce',
+    name: "Hot Sauce",
+    pictureName: "hotSauce",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -169,8 +169,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Ghost Taco',
-    pictureName: 'ghostTaco',
+    name: "Ghost Taco",
+    pictureName: "ghostTaco",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -184,8 +184,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Guacamole',
-    pictureName: 'guacamole',
+    name: "Guacamole",
+    pictureName: "guacamole",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -199,8 +199,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Carrot',
-    pictureName: 'carrot',
+    name: "Carrot",
+    pictureName: "carrot",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 1,
@@ -214,8 +214,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Burger',
-    pictureName: 'burger',
+    name: "Burger",
+    pictureName: "burger",
     value: {
       ingredientBurger: 1,
       ingredientPlant: 0,
@@ -229,8 +229,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Taco',
-    pictureName: 'taco',
+    name: "Taco",
+    pictureName: "taco",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -244,8 +244,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Ice Cream',
-    pictureName: 'iceCream',
+    name: "Ice Cream",
+    pictureName: "iceCream",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -259,8 +259,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Mochi Donut',
-    pictureName: 'mochiDonut',
+    name: "Mochi Donut",
+    pictureName: "mochiDonut",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -274,8 +274,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Fruit Snacks',
-    pictureName: 'fruitSnacks',
+    name: "Fruit Snacks",
+    pictureName: "fruitSnacks",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -289,8 +289,8 @@ export const ingredients = [
     },
   },
   {
-    name: 'Egg',
-    pictureName: 'egg',
+    name: "Egg",
+    pictureName: "egg",
     value: {
       ingredientBurger: 0,
       ingredientPlant: 0,
@@ -306,27 +306,27 @@ export const ingredients = [
 ];
 export const playerRoles = [
   {
-    name: 'Sasha',
+    name: "Sasha",
     actions: [],
   },
   {
-    name: 'Coco',
+    name: "Coco",
     actions: [],
   },
   {
-    name: 'Damien',
+    name: "Damien",
     actions: [],
   },
   {
-    name: 'Fronk',
+    name: "Fronk",
     actions: [],
   },
   {
-    name: 'Shinra',
+    name: "Shinra",
     actions: [],
   },
   {
-    name: 'Ramona',
+    name: "Ramona",
     actions: [],
   },
 ];

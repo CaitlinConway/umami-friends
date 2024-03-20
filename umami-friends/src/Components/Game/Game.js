@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-import useUserInfo from '../../Hooks/useUserInfo';
-import { Grid } from '../Grid/Grid';
-import { Header } from '../Header/Header';
-import { Messages } from '../Messages/Messages';
-import { PlayerChoice } from '../PlayerChoice/PlayerChoice';
-import { CardStack } from '../CardStack/CardStack';
-import { default as useGameConditions } from '../../Hooks/useGameConditions';
-import './Game.css';
-import PlayerHand from '../PlayerHand/PlayerHand';
-import PlayerBoard from '../PlayerBoard/PlayerBoard';
-import { initialHandValue } from '../../Constants/cards';
-import { playerRoles } from '../../Constants/roles';
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
+import useUserInfo from "../../Hooks/useUserInfo";
+import { Grid } from "../Grid/Grid";
+import { Header } from "../Header/Header";
+import { Messages } from "../Messages/Messages";
+import { PlayerChoice } from "../PlayerChoice/PlayerChoice";
+import { CardStack } from "../CardStack/CardStack";
+import { default as useGameConditions } from "../../Hooks/useGameConditions";
+import "./Game.css";
+import PlayerHand from "../PlayerHand/PlayerHand";
+import PlayerBoard from "../PlayerBoard/PlayerBoard";
+import { initialHandValue } from "../../Constants/cards";
+import { playerRoles } from "../../Constants/roles";
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
@@ -36,13 +36,13 @@ const Game = (props) => {
   //TODO: update when expand to 4 players, will just work for two
   const opponent = gameState?.users?.find((user) => user.name != userName);
   const maxRefresh = gameState?.users?.maxRefresh || 5;
-  console.log('gameState', gameState);
+  console.log("gameState", gameState);
   const startGame = () => {
-    socket.emit('gameAction', { actionType: 'startGame' }, roomCode, userName);
-    socket.emit('gameAction', { actionType: 'startTurn' }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "startGame" }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
   const drawCard = () => {
-    socket.emit('gameAction', { actionType: 'drawCard' }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "drawCard" }, roomCode, userName);
   };
   const endTurn = () => {
     // socket.emit(
@@ -53,17 +53,17 @@ const Game = (props) => {
     // );
     //instead of emiting discard cards, just send the array as part of the end turn, backend will handle
     socket.emit(
-      'gameAction',
-      { actionType: 'endTurn', actionData: { discardCards } },
+      "gameAction",
+      { actionType: "endTurn", actionData: { discardCards } },
       roomCode,
       userName
     );
-    socket.emit('gameAction', { actionType: 'startTurn' }, roomCode, userName);
+    socket.emit("gameAction", { actionType: "startTurn" }, roomCode, userName);
   };
   const buyCard = () => {
     socket.emit(
-      'gameAction',
-      { actionType: 'buyCard', actionData: { selected, selectedHand } },
+      "gameAction",
+      { actionType: "buyCard", actionData: { selected, selectedHand } },
       roomCode,
       userName
     );
@@ -133,8 +133,8 @@ const Game = (props) => {
     //remove 2 candy from hand and add 1 energy
     //backend needs to handle this so they know about updated hand state
     socket.emit(
-      'gameAction',
-      { actionType: 'buyEnergy', actionData: { selectedHand } },
+      "gameAction",
+      { actionType: "buyEnergy", actionData: { selectedHand } },
       roomCode,
       userName
     );
@@ -185,7 +185,7 @@ const Game = (props) => {
   }, [user?.hand, maxRefresh, noEnergy]);
   return (
     <div className="gameBackground">
-      {userRole === '' && <PlayerChoice user={user} />}
+      {userRole === "" && <PlayerChoice user={user} />}
       <Header
         userName={userName}
         roomCode={gameState.roomCode}
@@ -242,7 +242,7 @@ const Game = (props) => {
             {user?.hand?.length - discardCards.length <= maxRefresh ? (
               <button onClick={endTurn}>End Turn</button>
             ) : (
-              ''
+              ""
             )}
           </div>
         )}

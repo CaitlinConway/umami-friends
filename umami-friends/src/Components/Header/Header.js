@@ -1,9 +1,9 @@
-import React from 'react';
-import { FaRegCopy } from 'react-icons/fa';
-import { Tooltip } from 'react-tooltip';
+import React from "react";
+import { FaRegCopy } from "react-icons/fa";
+import { Tooltip } from "react-tooltip";
 
-import useGameConditions from '../../Hooks/useGameConditions';
-import './Header.css';
+import useGameConditions from "../../Hooks/useGameConditions";
+import "./Header.css";
 
 export const Header = (props) => {
   const { gameState, socket, roomCode } = useGameConditions();
@@ -35,7 +35,7 @@ export const Header = (props) => {
               id={`${props.role}Icon`}
               place="bottom"
               data-tooltip-position-strategy="fixed"
-              border={'none'}
+              border={"none"}
               opacity={1}
             >
               <img
@@ -57,7 +57,7 @@ export const Header = (props) => {
       <div className="logoContainer flexItem">
         <img
           className="gameLogo"
-          src={require('../../Pictures/UmamiFriendsFavicon.png')}
+          src={require("../../Pictures/UmamiFriendsFavicon.png")}
           alt="umamiFriendsLogo"
         />
       </div>
@@ -85,7 +85,7 @@ export const Header = (props) => {
               id={`${props?.opponent?.role}Icon`}
               place="bottom"
               data-tooltip-position-strategy="fixed"
-              border={'none'}
+              border={"none"}
               opacity={1}
             >
               <img

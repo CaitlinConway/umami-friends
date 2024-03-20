@@ -1,7 +1,7 @@
-import React from 'react';
-import useUserInfo from '../../Hooks/useUserInfo';
-import useGameConditions from '../../Hooks/useGameConditions';
-import './PlayerHand.css';
+import React from "react";
+import useUserInfo from "../../Hooks/useUserInfo";
+import useGameConditions from "../../Hooks/useGameConditions";
+import "./PlayerHand.css";
 
 export const PlayerHand = (props) => {
   const { userName } = useUserInfo();
@@ -20,14 +20,14 @@ export const PlayerHand = (props) => {
             className={`player-card-body ${
               (props.selectedCards.includes(item) ||
                 props.discardCards.includes(item)) &&
-              'selected'
+              "selected"
             }`}
             onClick={() =>
               props.disabled ||
               (noEnergy && !needDiscard) ||
-              item.status === 'ingredientSweet' ||
+              item.status === "ingredientSweet" ||
               !enable
-                ? ''
+                ? ""
                 : props.cardClick(item, true, needDiscard)
             }
           >

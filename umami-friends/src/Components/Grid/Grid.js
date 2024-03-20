@@ -1,7 +1,7 @@
-import React from 'react';
-import { default as useGameConditions } from '../../Hooks/useGameConditions';
-import './Grid.css';
-import { Tooltip } from 'react-tooltip';
+import React from "react";
+import { default as useGameConditions } from "../../Hooks/useGameConditions";
+import "./Grid.css";
+import { Tooltip } from "react-tooltip";
 
 export const Grid = (props) => {
   const { gameState } = useGameConditions();
@@ -17,13 +17,13 @@ export const Grid = (props) => {
         return (
           <div
             key={index}
-            className={`grid-item ${selected && 'enabled'} `}
+            className={`grid-item ${selected && "enabled"} `}
             onClick={() =>
               props.disabled || noEnergy
-                ? ''
+                ? ""
                 : recipe
                   ? props.cardClick(recipe)
-                  : ''
+                  : ""
             }
           >
             {enableBuy && <button onClick={props.buyCard}>Buy Card</button>}
@@ -38,7 +38,7 @@ export const Grid = (props) => {
               id={`imageTooltip${index}`}
               place="bottom"
               data-tooltip-position-strategy="fixed"
-              border={'none'}
+              border={"none"}
               opacity={1}
             >
               <img className="hoveredImage" alt={`${recipe}`} src={img} />
@@ -55,13 +55,13 @@ export const Grid = (props) => {
         return (
           <div
             key={index}
-            className={`grid-item ${selected && 'enabled'} `}
+            className={`grid-item ${selected && "enabled"} `}
             onClick={() =>
               props.disabled || noEnergy
-                ? ''
+                ? ""
                 : recipe
                   ? props.cardClick(recipe)
-                  : ''
+                  : ""
             }
           >
             {enableBuy && <button onClick={props.buyCard}>Buy Card</button>}
@@ -77,7 +77,7 @@ export const Grid = (props) => {
               id={`rareTooltip${index}`}
               place="bottom"
               data-tooltip-position-strategy="fixed"
-              border={'none'}
+              border={"none"}
               opacity={1}
             >
               <img className="hoveredImage" alt={`${recipe}`} src={img2} />

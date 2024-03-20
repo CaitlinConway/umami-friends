@@ -1,9 +1,9 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext } from "react";
 
 const userInfoContext = createContext();
 export function UserInfoProvider(props) {
   //user info
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
 
   const { Provider } = userInfoContext;
   const providerValue = { userName, setUserName };

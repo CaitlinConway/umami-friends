@@ -1,18 +1,18 @@
-import React from 'react';
-import { playerRoles } from '../../Constants/roles';
-import { Tooltip } from 'react-tooltip';
-import './PlayerChoice.css';
-import { Socket } from 'socket.io-client';
-import useGameConditions from '../../Hooks/useGameConditions';
-import useUserInfo from '../../Hooks/useUserInfo';
+import React from "react";
+import { playerRoles } from "../../Constants/roles";
+import { Tooltip } from "react-tooltip";
+import "./PlayerChoice.css";
+import { Socket } from "socket.io-client";
+import useGameConditions from "../../Hooks/useGameConditions";
+import useUserInfo from "../../Hooks/useUserInfo";
 
 export const PlayerChoice = (props) => {
   const { userName } = useUserInfo();
   const { socket, roomCode } = useGameConditions();
   const chooseCharacter = (roleName) => {
     socket?.emit(
-      'gameAction',
-      { actionType: 'setRole', role: roleName },
+      "gameAction",
+      { actionType: "setRole", role: roleName },
       roomCode,
       userName
     );
@@ -40,7 +40,7 @@ export const PlayerChoice = (props) => {
                 id={`playerTooltip${index}`}
                 place="bottom"
                 data-tooltip-position-strategy="fixed"
-                border={'none'}
+                border={"none"}
                 opacity={1}
               >
                 <img className="hoveredImage" alt={`${roleName}`} src={img} />

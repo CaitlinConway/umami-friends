@@ -1,6 +1,6 @@
-import React from 'react';
-import useUserInfo from '../../Hooks/useUserInfo';
-import useGameConditions from '../../Hooks/useGameConditions';
+import React from "react";
+import useUserInfo from "../../Hooks/useUserInfo";
+import useGameConditions from "../../Hooks/useGameConditions";
 export const PlayerBoard = (props) => {
   const { userName } = useUserInfo();
   const { gameState } = useGameConditions();
@@ -15,10 +15,10 @@ export const PlayerBoard = (props) => {
         return (
           <div
             className={`player-card-body ${
-              props?.selectedCards?.includes(item) && 'selected'
+              props?.selectedCards?.includes(item) && "selected"
             }`}
             onClick={() =>
-              props.disabled || !enable ? '' : props.cardClick(item, true)
+              props.disabled || !enable ? "" : props.cardClick(item, true)
             }
           >
             <img
@@ -34,11 +34,11 @@ export const PlayerBoard = (props) => {
         return (
           <div
             className={`player-card-body ${
-              props?.selectedCards?.includes(item) && 'selected'
-            } ${enable && 'enabled'}`}
+              props?.selectedCards?.includes(item) && "selected"
+            } ${enable && "enabled"}`}
             onClick={() =>
               props.disabled || !enable || noEnergy
-                ? ''
+                ? ""
                 : props.cardClick(item, true)
             }
           >
