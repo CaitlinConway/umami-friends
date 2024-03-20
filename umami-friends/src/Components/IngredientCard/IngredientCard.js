@@ -18,7 +18,7 @@ import "./IngredientCard.css";
 //     sweet: 0
 // }
 
-export const IngredientCard = props => {
+export const IngredientCard = (props) => {
   return (
     <div className="card">
       <div className="card-body">

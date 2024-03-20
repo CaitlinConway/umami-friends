@@ -1,6 +1,6 @@
 import { cardActionHelper } from "../Helpers/cardActionHelper.js";
 
-const getOpponent = userIndex => (userIndex === 0 ? 1 : 0);
+const getOpponent = (userIndex) => (userIndex === 0 ? 1 : 0);
 
 export default {
   healthySnack: {
@@ -13,7 +13,7 @@ export default {
     },
     energy: 1,
     description: "All other players draw +1 card.",
-    getActions: mainData => [
+    getActions: (mainData) => [
       cardActionHelper(
         "drawCard",
         { cardNumber: 1, player: "others" },
@@ -73,7 +73,7 @@ export default {
     energy: 0,
     description:
       "Take an Ingredient card from your opponent's board. Add it to your board.",
-    getActions: mainData => [
+    getActions: (mainData) => [
       cardActionHelper("stealBoard", { cardNumber: 1 }, mainData),
     ],
     pileCount: 4,
@@ -101,7 +101,7 @@ export default {
     },
     energy: 1,
     description: "(passive) Max Refresh +1 . All other players draw +2 cards.",
-    getActions: mainData => [
+    getActions: (mainData) => [
       cardActionHelper(
         "drawCard",
         { cardNumber: 2, player: "others" },
@@ -120,7 +120,7 @@ export default {
     },
     energy: 1,
     description: "Discard 1 Basic Recipe from your opponent's board.",
-    getActions: mainData => [
+    getActions: (mainData) => [
       cardActionHelper(
         "discardBasicBoard",
         { cardNumber: 1, player: "others" },
@@ -155,7 +155,7 @@ export default {
     energy: 1,
     description:
       "Take 2 Ingredients from your opponent's board. Add them to your board.",
-    getActions: mainData => [
+    getActions: (mainData) => [
       cardActionHelper("stealBoard", { cardNumber: 2 }, mainData),
     ],
     pileCount: 2,

@@ -3,7 +3,7 @@ import { default as useGameConditions } from "../../Hooks/useGameConditions";
 import "./Grid.css";
 import { Tooltip } from "react-tooltip";
 
-export const Grid = props => {
+export const Grid = (props) => {
   const { gameState } = useGameConditions();
   const { basicRecipes, rareRecipes } = gameState;
   const noEnergy = props?.noEnergy || false;

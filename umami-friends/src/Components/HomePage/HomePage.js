@@ -97,8 +97,8 @@ function HomePage() {
                 size="50"
                 placeholder="Enter your user name"
                 value={userInput}
-                onChange={e => setUserInput(e.target.value)}
-                onKeyDown={e => (e.key == "Enter" ? sendUser() : null)}
+                onChange={(e) => setUserInput(e.target.value)}
+                onKeyDown={(e) => (e.key == "Enter" ? sendUser() : null)}
               />
               <button onClick={sendUser}>Set User Name</button>
             </div>
@@ -112,8 +112,10 @@ function HomePage() {
                 type="text"
                 value={roomInput.toUpperCase()}
                 maxLength={5}
-                onChange={e => setRoomInput(e.target.value)}
-                onKeyDown={e => (e.key == "Enter" ? enterExistingRoom() : null)}
+                onChange={(e) => setRoomInput(e.target.value)}
+                onKeyDown={(e) =>
+                  e.key == "Enter" ? enterExistingRoom() : null
+                }
               />
               <button
                 disabled={roomInput.length !== 5}

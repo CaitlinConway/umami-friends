@@ -9,20 +9,20 @@ export const shuffleCards = (recipes, number) => {
   return recipes.slice(0, number);
 };
 //TODO: Replace with real function above
-export const shuffleRareRecipes = recipes => {
+export const shuffleRareRecipes = (recipes) => {
   const firstRecipe = recipes[0];
   const copiedRecipes = Array(10).fill(firstRecipe);
   return copiedRecipes;
 };
 
-export const selectCards = card => {
+export const selectCards = (card) => {
   card.className = "selectedCards";
 };
-export const deselectCards = card => {
+export const deselectCards = (card) => {
   card.className = "";
 };
 
-export const fillBasicRecipes = basicRecipes => {
+export const fillBasicRecipes = (basicRecipes) => {
   let basicRecipesArray = [];
   const basicRecipesTemplate = {
     healthySnack: 6,
@@ -39,7 +39,7 @@ export const fillBasicRecipes = basicRecipes => {
 
   for (const key in basicRecipesTemplate) {
     const value = basicRecipesTemplate[key];
-    const matchingRecipe = basicRecipes.filter(recipe => recipe.name === key);
+    const matchingRecipe = basicRecipes.filter((recipe) => recipe.name === key);
     basicRecipesArray.push(...Array(value).fill(matchingRecipe));
   }
 

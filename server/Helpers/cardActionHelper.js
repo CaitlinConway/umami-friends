@@ -1,4 +1,4 @@
-const getOpponent = userIndex => (userIndex === 0 ? 1 : 0);
+const getOpponent = (userIndex) => (userIndex === 0 ? 1 : 0);
 
 export function cardActionHelper(type, { cardNumber, player }, mainData) {
   const { actionData, userIndex, gameState } = mainData;
@@ -21,7 +21,7 @@ export function cardActionHelper(type, { cardNumber, player }, mainData) {
             },
           },
           cards: [...Array(cardNumber).keys()].map(
-            index => gameState.ingredientsDrawPile[index]
+            (index) => gameState.ingredientsDrawPile[index]
           ),
         },
       };

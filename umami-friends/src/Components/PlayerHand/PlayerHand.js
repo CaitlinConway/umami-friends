@@ -3,10 +3,10 @@ import useUserInfo from "../../Hooks/useUserInfo";
 import useGameConditions from "../../Hooks/useGameConditions";
 import "./PlayerHand.css";
 
-export const PlayerHand = props => {
+export const PlayerHand = (props) => {
   const { userName } = useUserInfo();
   const { gameState } = useGameConditions();
-  const user = gameState?.users.find(user => user.name === userName);
+  const user = gameState?.users.find((user) => user.name === userName);
   const playerHand = user?.hand;
   const noEnergy = props?.noEnergy || false;
   const needDiscard = props?.needDiscard || false;

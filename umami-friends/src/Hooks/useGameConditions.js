@@ -12,7 +12,7 @@ export function GameConditionsProvider(props) {
     socket = io("http://localhost:8080");
   }
 
-  socket.on("updateGameState", newState => {
+  socket.on("updateGameState", (newState) => {
     console.log("updating game state: ", newState);
     setGameState(newState);
   });

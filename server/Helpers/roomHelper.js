@@ -24,7 +24,7 @@ export function roomHelper(socket, io, roomCode, userName) {
   io.sockets.in(roomCode).emit("updateGameState", gameState);
 
   socket.on("disconnect", () => {
-    gameState.users = gameState.users.filter(user => user.name !== userName);
+    gameState.users = gameState.users.filter((user) => user.name !== userName);
     if (gameState.users.length === 0) {
       deleteGameState(roomCode);
     }

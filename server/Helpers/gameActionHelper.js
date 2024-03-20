@@ -9,7 +9,7 @@ const allCards = { ...basicRecipes, ...rareRecipes, ...roleCards };
 
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   const gameState = getGameState(roomCode);
-  const userIndex = gameState.users.findIndex(user => user.name === userName);
+  const userIndex = gameState.users.findIndex((user) => user.name === userName);
   const userRole = gameState.users[userIndex]?.role;
   const currentPlayer = gameState.users[gameState.playerTurn - 1];
   let ingredientsCopy = [...ingredients];
@@ -19,7 +19,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startGame":
       gameState.playerTurn = 1;
-      gameState.users.forEach(user => {
+      gameState.users.forEach((user) => {
         user.hand = shuffleCards(ingredientsCopy, 5);
       });
       gameState.turnCount = 1;
@@ -37,10 +37,10 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startTurn":
       const sweetIngredients = currentPlayer.hand.filter(
-        ingredient => ingredient.value.ingredientSweet >= 1
+        (ingredient) => ingredient.value.ingredientSweet >= 1
       );
       currentPlayer.hand = currentPlayer.hand.filter(
-        ingredient => ingredient.value.ingredientSweet < 1
+        (ingredient) => ingredient.value.ingredientSweet < 1
       );
       sweetIngredients && currentPlayer.board.candy.push(...sweetIngredients);
       currentPlayer.energy = 1;
@@ -55,7 +55,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
         userIndex,
         gameState
       );
-      cardActions.forEach(cardAction =>
+      cardActions.forEach((cardAction) =>
         gameActionHelper(socket, io, cardAction, roomCode, userName)
       );
       break;
@@ -65,16 +65,16 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       // add card to the intended area (hand, board, discard pile, etc)
       if (![0, 1].includes(action.data.zone.to.user)) {
         gameState[action.data.zone.to.zoneName].push(
-          action.data.cards.map(each => allCards[each])
+          action.data.cards.map((each) => allCards[each])
         );
       } else {
         if (action.data.zone.to.zoneName === "board") {
-          const cardsDetails = action.data.cards.map(each => allCards[each]);
+          const cardsDetails = action.data.cards.map((each) => allCards[each]);
           const candyCards = cardsDetails.filter(
-            each => each?.value?.ingredientSweet
+            (each) => each?.value?.ingredientSweet
           );
           const ingredientCards = cardsDetails.filter(
-            each => !each?.value?.ingredientSweet
+            (each) => !each?.value?.ingredientSweet
           );
 
           gameState["users"][action.data.zone.to.user].board.candy.push(
@@ -86,7 +86,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
         } else {
           gameState["users"][action.data.zone.to.user][
             action.data.zone.to.zoneName
-          ].push(action.data.cards.map(each => allCards[each]));
+          ].push(action.data.cards.map((each) => allCards[each]));
         }
       }
 
@@ -95,10 +95,10 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       if (![0, 1].includes(action.data.zone.from.user)) {
         gameState[action.data.zone.from.zoneName] = gameState[
           action.data.zone.from.zoneName
-        ].filter(each => {
+        ].filter((each) => {
           if (cardsToRemove.includes(each.pictureName)) {
             cardsToRemove = cardsToRemove.filter(
-              cardName => cardName === each.pictureName
+              (cardName) => cardName === each.pictureName
             );
             return false;
           }
@@ -109,12 +109,12 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
           action.data.zone.from.zoneName
         ] = gameState["users"][action.data.zone.from.user][
           action.data.zone.from.zoneName
-        ].filter(each => {
+        ].filter((each) => {
           if (!cardsToRemove.includes(each.pictureName)) {
             return true;
           }
           cardsToRemove = cardsToRemove.filter(
-            cardName => cardName !== each.pictureName
+            (cardName) => cardName !== each.pictureName
           );
           return false;
         });
@@ -122,13 +122,13 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "addEnergy":
       const playeradd = gameState.users.findIndex(
-        user => user.name === action.data.username
+        (user) => user.name === action.data.username
       );
       gameState.users[playeradd].energy++;
       break;
     case "removeEnergy":
       const playerremove = gameState.users.findIndex(
-        user => user.name === action.data.username
+        (user) => user.name === action.data.username
       );
       gameState.users[playerremove].energy > 1 &&
         gameState.users[playerremove].energy--;

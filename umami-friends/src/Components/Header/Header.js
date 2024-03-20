@@ -6,7 +6,7 @@ import useGameConditions from "../../Hooks/useGameConditions";
 import { playerRoles } from "../../Constants/roles";
 import "./Header.css";
 
-export const Header = props => {
+export const Header = (props) => {
   const { gameState, socket, roomCode } = useGameConditions();
   const opponentsReady =
     gameState?.users?.length === 2 || gameState?.users?.length === 4;
