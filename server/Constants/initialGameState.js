@@ -1,16 +1,16 @@
 // import { shuffleRareRecipes } from "../Helpers/cardHelper.js";
 // import { rareRecipes } from "../Constants/cards.js";
-import rareRecipes from '../Constants/rareRecipes.js'
-import { shuffleCards } from '../Helpers/cardHelper.js'
-import { ingredients } from './cards.js'
-import basicRecipes from './basicRecipes.js'
+import rareRecipes from "../Constants/rareRecipes.js";
+import { shuffleCards } from "../Helpers/cardHelper.js";
+import { ingredients } from "./cards.js";
+import basicRecipes from "./basicRecipes.js";
 export const initialGame = () => {
     const shuffledRareRecipes = shuffleCards(
         Object.values(rareRecipes),
         Object.keys(rareRecipes).length
-    )
+    );
     return {
-        roomCode: '',
+        roomCode: "",
         //either 2 or 4 users for valid game
         //user object should have name and character
         users: [],
@@ -26,5 +26,5 @@ export const initialGame = () => {
         playerTurn: 0,
         turnCount: 0,
         win: false,
-    }
-}
+    };
+};

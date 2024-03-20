@@ -1,10 +1,10 @@
-import React from 'react'
-import './CardStack.css'
+import React from "react";
+import "./CardStack.css";
 export const CardStack = props => {
     const getIngredient = () => {
         //add logic for picking up ingredient
         //update game state with a card draw
-    }
+    };
     //props.ingredient to tell if clickable
     //TODO: find card back images and input
     return (
@@ -19,5 +19,5 @@ export const CardStack = props => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

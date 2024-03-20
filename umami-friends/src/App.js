@@ -1,10 +1,10 @@
-import logo from './logo.svg'
-import './App.css'
-import { Route } from 'react-router'
-import { BrowserRouter, Routes } from 'react-router-dom'
-import { ContextProvider } from './Components/ContextProvider'
-import HomePage from './Components/HomePage/HomePage'
-import Game from './Components/Game/Game'
+import logo from "./logo.svg";
+import "./App.css";
+import { Route } from "react-router";
+import { BrowserRouter, Routes } from "react-router-dom";
+import { ContextProvider } from "./Components/ContextProvider";
+import HomePage from "./Components/HomePage/HomePage";
+import Game from "./Components/Game/Game";
 
 function App() {
     return (
@@ -16,7 +16,7 @@ function App() {
                 </Routes>
             </BrowserRouter>
         </ContextProvider>
-    )
+    );
 }
 
-export default App
+export default App;

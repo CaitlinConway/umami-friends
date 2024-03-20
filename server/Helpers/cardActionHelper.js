@@ -1,106 +1,106 @@
-const getOpponent = userIndex => (userIndex === 0 ? 1 : 0)
+const getOpponent = userIndex => (userIndex === 0 ? 1 : 0);
 
 export function cardActionHelper(type, { cardNumber, player }, mainData) {
-    const { actionData, userIndex, gameState } = mainData
+    const { actionData, userIndex, gameState } = mainData;
     // const gameState = getGameState(roomCode);
     // const userIndex = gameState.users.findIndex((user) => user.name === userName);
     // const userRole = gameState.users[userIndex].role;
     // const currentPlayer = gameState.users[gameState.playerTurn - 1];
     switch (type) {
-        case 'drawCard':
+        case "drawCard":
             return {
-                type: 'moveCard',
+                type: "moveCard",
                 data: {
                     zone: {
                         to: {
                             user:
-                                player === 'others'
+                                player === "others"
                                     ? getOpponent(userIndex)
                                     : userIndex,
-                            zoneName: 'hand',
+                            zoneName: "hand",
                         },
                         from: {
-                            zoneName: 'ingredientsDrawPile',
+                            zoneName: "ingredientsDrawPile",
                         },
                     },
                     cards: [...Array(cardNumber).keys()].map(
                         index => gameState.ingredientsDrawPile[index]
                     ),
                 },
-            }
-        case 'stealBoard':
+            };
+        case "stealBoard":
             if (cardNumber !== actionData?.selected?.length) {
-                throw Error('Card number is incorrect.')
+                throw Error("Card number is incorrect.");
             }
             return {
-                type: 'moveCard',
+                type: "moveCard",
                 data: {
                     zone: {
                         to: {
                             user: userIndex,
-                            zone: 'board',
+                            zone: "board",
                         },
                         from: {
                             user: getOpponent(userIndex),
-                            zone: 'board',
+                            zone: "board",
                         },
                     },
                     cards: [...actionData.selected],
                 },
-            }
-        case 'discardBasicBoard':
+            };
+        case "discardBasicBoard":
             if (cardNumber !== actionData?.selected?.length) {
-                throw Error('Card number is incorrect.')
+                throw Error("Card number is incorrect.");
             }
             return {
-                type: 'moveCard',
+                type: "moveCard",
                 data: {
                     zone: {
                         to: {
-                            zoneName: 'basicRecipes',
+                            zoneName: "basicRecipes",
                         },
                         from: {
                             user:
-                                player === 'others'
+                                player === "others"
                                     ? getOpponent(userIndex)
                                     : userIndex,
-                            zoneName: 'hand',
+                            zoneName: "hand",
                         },
                     },
                     cards: [...actionData.selected],
                 },
-            }
-        case 'retainRecipes':
-        case 'refresh':
+            };
+        case "retainRecipes":
+        case "refresh":
             const numberOfCard =
                 gameState.users[userIndex].maxRefresh -
-                gameState.users[userIndex].hand.length
+                gameState.users[userIndex].hand.length;
             return cardActionHelper(
-                'drawCard',
-                { cardNumber: numberOfCard, player: 'self' },
+                "drawCard",
+                { cardNumber: numberOfCard, player: "self" },
                 mainData
-            )
-        case 'placeIngredient':
+            );
+        case "placeIngredient":
             if (cardNumber !== actionData?.selected?.length) {
-                throw Error('Card number is incorrect.')
+                throw Error("Card number is incorrect.");
             }
             return {
-                type: 'moveCard',
+                type: "moveCard",
                 data: {
                     zone: {
                         to: {
                             user: userIndex,
-                            zoneName: 'board',
+                            zoneName: "board",
                         },
                         from: {
                             user: userIndex,
-                            zoneName: 'hand',
+                            zoneName: "hand",
                         },
                     },
                     cards: [...actionData.selected],
                 },
-            }
-            break
+            };
+            break;
         // case "wish":
         //   //unlimited energy but can't draw
         //   break;

@@ -8,8 +8,8 @@ export const users = [
         umami: 0,
         prompt: {
             active: false,
-            text: '',
+            text: "",
             options: [],
         },
     },
-]
+];
