@@ -3,7 +3,7 @@ import { default as useGameConditions } from "../../Hooks/useGameConditions";
 import useUserInfo from "../../Hooks/useUserInfo";
 import "./Messages.css";
 
-export const Messages = props => {
+export const Messages = (props) => {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
   const { gameState, setGameState, roomCode, socket } = useGameConditions();
@@ -11,7 +11,7 @@ export const Messages = props => {
   const sendMessage = () => {
     console.log(`Sending message: ${messageInput}`);
     socket.emit("message", messageInput, roomCode, userName);
-    setMessages(prevMessages => [
+    setMessages((prevMessages) => [
       ...prevMessages,
       { user: userName, text: messageInput },
     ]);
@@ -19,7 +19,7 @@ export const Messages = props => {
   };
   socket?.on("message", (message, userName) => {
     console.log("messageRecieved");
-    setMessages(prevMessages => [
+    setMessages((prevMessages) => [
       ...prevMessages,
       { user: userName, text: message },
     ]);
@@ -42,8 +42,8 @@ export const Messages = props => {
         <input
           type="text"
           value={messageInput}
-          onChange={e => setMessageInput(e.target.value)}
-          onKeyDown={e => (e.key == "Enter" ? sendMessage() : null)}
+          onChange={(e) => setMessageInput(e.target.value)}
+          onKeyDown={(e) => (e.key == "Enter" ? sendMessage() : null)}
         />
         <button onClick={sendMessage}>Send</button>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./CardStack.css";
-export const CardStack = props => {
+export const CardStack = (props) => {
   const getIngredient = () => {
     //add logic for picking up ingredient
     //update game state with a card draw

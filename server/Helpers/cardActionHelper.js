@@ -3,7 +3,7 @@ import { ingredients } from "../Constants/cards.js";
 import { shuffleCards } from "./cardHelper.js";
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   const gameState = getGameState(roomCode);
-  const userIndex = gameState.users.findIndex(user => user.name === userName);
+  const userIndex = gameState.users.findIndex((user) => user.name === userName);
   const userRole = gameState.users[userIndex].role;
   const currentPlayer = gameState.users[gameState.playerTurn - 1];
   switch (action.actionType) {

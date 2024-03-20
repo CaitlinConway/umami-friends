@@ -3,7 +3,7 @@ import { ingredients } from "../Constants/cards.js";
 import { shuffleCards } from "./cardHelper.js";
 export function gameActionHelper(socket, io, action, roomCode, userName) {
   const gameState = getGameState(roomCode);
-  const userIndex = gameState.users.findIndex(user => user.name === userName);
+  const userIndex = gameState.users.findIndex((user) => user.name === userName);
   const userRole = gameState.users[userIndex]?.role;
   const currentPlayer = gameState.users[gameState.playerTurn - 1];
   let ingredientsCopy = [...ingredients];
@@ -13,7 +13,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startGame":
       gameState.playerTurn = 1;
-      gameState.users.forEach(user => {
+      gameState.users.forEach((user) => {
         user.hand = shuffleCards(ingredientsCopy, 5);
       });
       gameState.turnCount = 1;
@@ -33,10 +33,10 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startTurn":
       const sweetIngredients = currentPlayer.hand.filter(
-        ingredient => ingredient.value.ingredientSweet >= 1
+        (ingredient) => ingredient.value.ingredientSweet >= 1
       );
       currentPlayer.hand = currentPlayer.hand.filter(
-        ingredient => ingredient.value.ingredientSweet < 1
+        (ingredient) => ingredient.value.ingredientSweet < 1
       );
       sweetIngredients && currentPlayer.board.candy.push(...sweetIngredients);
       currentPlayer.energy = 1;

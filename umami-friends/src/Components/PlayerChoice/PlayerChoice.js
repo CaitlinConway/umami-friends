@@ -6,10 +6,10 @@ import { Socket } from "socket.io-client";
 import useGameConditions from "../../Hooks/useGameConditions";
 import useUserInfo from "../../Hooks/useUserInfo";
 
-export const PlayerChoice = props => {
+export const PlayerChoice = (props) => {
   const { userName } = useUserInfo();
   const { socket, roomCode } = useGameConditions();
-  const chooseCharacter = roleName => {
+  const chooseCharacter = (roleName) => {
     socket?.emit(
       "gameAction",
       { actionType: "setRole", role: roleName },
@@ -26,7 +26,7 @@ export const PlayerChoice = props => {
           const img = require(`../../Pictures/${roleName}Card.png`);
           return (
             <div
-              onClick={e => chooseCharacter(roleName)}
+              onClick={(e) => chooseCharacter(roleName)}
               key={roleName}
               className="playerChoiceCard"
             >

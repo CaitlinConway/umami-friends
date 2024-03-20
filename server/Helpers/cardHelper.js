@@ -11,7 +11,7 @@ export const shuffleCards = (recipes, number) => {
 };
 
 //TODO: Replace with real function above
-export const shuffleRareRecipes = recipes => {
+export const shuffleRareRecipes = (recipes) => {
   const firstRecipe = recipes[0];
   const copiedRecipes = Array(10).fill(firstRecipe);
   return copiedRecipes;

@@ -13,7 +13,7 @@ import PlayerBoard from "../PlayerBoard/PlayerBoard";
 import { initialHandValue } from "../../Constants/cards";
 import { playerRoles } from "../../Constants/roles";
 
-const Game = props => {
+const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
   const { gameState, setGameState, socket, roomCode } = useGameConditions();
   //selected = grid cards selected
@@ -25,14 +25,16 @@ const Game = props => {
   const [discardCards, setDiscardCards] = useState([]);
   const [needDiscard, setNeedDiscard] = useState(false);
   const [canBuyEnergy, setCanBuyEnergy] = useState(false);
-  let user = gameState?.users?.find(user => user.name === userName);
-  const userIndex = gameState?.users?.findIndex(user => user.name === userName);
+  let user = gameState?.users?.find((user) => user.name === userName);
+  const userIndex = gameState?.users?.findIndex(
+    (user) => user.name === userName
+  );
   const playerNumber = userIndex + 1;
   //boolean to check if user is also current player
   const currentPlayer = gameState?.playerTurn === playerNumber;
   const userRole = gameState?.users[userIndex]?.role;
   //TODO: update when expand to 4 players, will just work for two
-  const opponent = gameState?.users?.find(user => user.name != userName);
+  const opponent = gameState?.users?.find((user) => user.name != userName);
   const maxRefresh = gameState?.users?.maxRefresh || 5;
   console.log("gameState", gameState);
   const startGame = () => {
@@ -71,7 +73,7 @@ const Game = props => {
       if (selectedHand?.includes(clickedCard)) {
         // If selected, remove from selected cards
         setSelectedHand(
-          selectedHand.filter(card => card.name !== clickedCard.name)
+          selectedHand.filter((card) => card.name !== clickedCard.name)
         );
       } else {
         // If not selected, add to selected cards
@@ -81,7 +83,7 @@ const Game = props => {
       if (discardCards?.includes(clickedCard)) {
         // If selected, remove from selected cards
         setDiscardCards(
-          discardCards.filter(card => card.name !== clickedCard.name)
+          discardCards.filter((card) => card.name !== clickedCard.name)
         );
       } else {
         // If not selected, add to selected cards
@@ -101,7 +103,7 @@ const Game = props => {
     }
   };
   //TODO: change so that you select a card to buy first then have to select the ingredients required to buy
-  const enableBuy = card => {
+  const enableBuy = (card) => {
     //now cards can always be bought unless one already selected?
     //have a buy button appear when the ingredients selected exactly equal cost
     //if can buy then don't let them add more ingredients
@@ -115,7 +117,7 @@ const Game = props => {
     return enabled;
   };
   //TODO add logic to only count up to the exact cost of card.
-  const enableIngredient = card => {
+  const enableIngredient = (card) => {
     //get cost of the selected grid card
     let cost = selected.cost;
     //cost is an object with keys of the ingredient and values of the amount required
@@ -153,10 +155,10 @@ const Game = props => {
   useEffect(() => {
     setSelectedHandValues(initialHandValue);
     if (selectedHand.length > 0) {
-      selectedHand.forEach(card => {
+      selectedHand.forEach((card) => {
         let valueObject = card.value;
-        Object.keys(valueObject).forEach(key => {
-          setSelectedHandValues(prevValues => ({
+        Object.keys(valueObject).forEach((key) => {
+          setSelectedHandValues((prevValues) => ({
             ...prevValues,
             [key]: (prevValues[key] || 0) + valueObject[key],
           }));

@@ -17,7 +17,7 @@ import "./RecipeCard.css";
 //     "pileCount": 6
 //   },
 
-export const RecipeCard = props => {
+export const RecipeCard = (props) => {
   return (
     <div className="card">
       <div className="card-body">
