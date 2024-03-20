@@ -1,8 +1,37 @@
 {
-  "semi": true,
+  "semi": false,
+  "singleQuote": true,
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "es5",
   "bracketSpacing": true,
-  "jsxBracketSameLine": true
+  "jsxBracketSameLine": false,
+  "arrowParens": "avoid",
+  "printWidth": 80,
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    },
+    {
+      "files": "*.css",
+      "options": {
+        "parser": "css"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "parser": "markdown"
+      }
+    }
+  ]
 }

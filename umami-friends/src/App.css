@@ -1,13 +1,13 @@
 @font-face {
-  font-family: "Nerko One";
-  src: url("../public//NerkoOne-Regular.ttf");
-  src: url("../public//NerkoOne-Regular.ttf") format("truetype");
+  font-family: 'Nerko One';
+  src: url('../public//NerkoOne-Regular.ttf');
+  src: url('../public//NerkoOne-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 * {
-  font-family: "Nerko One";
+  font-family: 'Nerko One';
 }
 
 .App {

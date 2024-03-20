@@ -1,5 +1,5 @@
-import React from "react";
-import "./IngredientCard.css";
+import React from 'react'
+import './IngredientCard.css'
 
 // Sample Card with props
 // Future improvement could make dynamic so ez change rules instead of static whole card pics
@@ -18,16 +18,16 @@ import "./IngredientCard.css";
 //     sweet: 0
 // }
 
-export const IngredientCard = (props) => {
-  return (
-    <div className="card">
-      <div className="card-body">
-        <img
-          className="ingredientCard"
-          alt={`${props.name}`}
-          src={require(`../Pictures/${props.pictureName}.png`)}
-        />
-      </div>
-    </div>
-  );
-};
+export const IngredientCard = props => {
+    return (
+        <div className="card">
+            <div className="card-body">
+                <img
+                    className="ingredientCard"
+                    alt={`${props.name}`}
+                    src={require(`../Pictures/${props.pictureName}.png`)}
+                />
+            </div>
+        </div>
+    )
+}
