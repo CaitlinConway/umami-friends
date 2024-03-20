@@ -1,5 +1,3 @@
-
-
 export default {
   Ramona: {
     name: "Ramona",
@@ -7,13 +5,14 @@ export default {
     pictureName: "Ramona",
     start: {
       ingredientSweet: 2,
-      cards: []
+      cards: [],
     },
     cost: {
-      ingredientSweet: 1
+      ingredientSweet: 1,
     },
     energy: 1,
-    description: "Draw the top 3 cards from the discard pile. Take 1 card. Place the candy spent to use this ability on top of the discard pile.",
+    description:
+      "Draw the top 3 cards from the discard pile. Take 1 card. Place the candy spent to use this ability on top of the discard pile.",
     getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
@@ -21,15 +20,15 @@ export default {
           zone: {
             to: {
               user: userIndex,
-              zoneName: "hand"
+              zoneName: "hand",
             },
-            from : {
+            from: {
               zoneName: "discardPile",
-              indexFromEnd: actionData.indexFromEnd
-            }
+              indexFromEnd: actionData.indexFromEnd,
+            },
           },
-          cards: [actionData.selected]
-        }
+          cards: [actionData.selected],
+        },
       },
       {
         type: "moveCard",
@@ -37,17 +36,17 @@ export default {
           zone: {
             to: {
               user: "",
-              zoneName: "discard"
+              zoneName: "discard",
             },
             from: {
               user: userIndex,
-              zoneName: "hand"
-            }
+              zoneName: "hand",
+            },
           },
-          cards: [actionData.selected]
-        }
-      }
-    ]
+          cards: [actionData.selected],
+        },
+      },
+    ],
   },
   Shinra: {
     name: "Shinra",
@@ -55,15 +54,14 @@ export default {
     pictureName: "Shinra",
     start: {
       // no specific ingredients
-      cards: [
-        "spicyRamen", "spicyRamen"
-      ]
+      cards: ["spicyRamen", "spicyRamen"],
     },
     cost: {
-      ingredientSpicy: 4
+      ingredientSpicy: 4,
     },
     energy: 1,
-    description: "Steal a Basic|Common Recipe from an opponent and use its active ability immediately",
+    description:
+      "Steal a Basic|Common Recipe from an opponent and use its active ability immediately",
     getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
@@ -71,36 +69,37 @@ export default {
           zone: {
             to: {
               user: userIndex,
-              zoneName: "board"
+              zoneName: "board",
             },
             from: {
               user: actionData.chosenUser,
-              zoneName: "board"
-            }
-          }
+              zoneName: "board",
+            },
+          },
         },
-        cards: [actionData.selected]
+        cards: [actionData.selected],
       },
       {
         type: "useCard", // TODO: make sure to add this type also to cardActionHelper,
         data: {
           card: actionData.selected[0], // ??
           selected: [...actionData.selected],
-          ...actionData // ?
-        }
-      }
-    ]
+          ...actionData, // ?
+        },
+      },
+    ],
   },
   Coco: {
     name: "Coco",
     fullName: "Coco the Cat",
     pictureName: "Coco",
     start: {
-      cards: ["tacoParty"]
+      cards: ["tacoParty"],
     },
     cost: {}, // no cost
     energy: 0, // passive
-    description: "(Passive) When placing an ingredient as your only action on a turn, you may place a second ingredient as well.",
+    description:
+      "(Passive) When placing an ingredient as your only action on a turn, you may place a second ingredient as well.",
     getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
@@ -108,17 +107,17 @@ export default {
           zone: {
             to: {
               user: userIndex,
-              zoneName: "board"
+              zoneName: "board",
             },
             from: {
               user: userIndex,
-              zoneName: "hand"
-            }
-          }
+              zoneName: "hand",
+            },
+          },
         },
-        cards: [...actionData.selected]
+        cards: [...actionData.selected],
       },
-    ]
+    ],
   },
   Damien: {
     name: "Damien",
@@ -126,13 +125,14 @@ export default {
     pictureName: "Damien",
     start: {
       ingredientEgg: 2,
-      cards: []
+      cards: [],
     },
     cost: {
-      ingredientEgg: 1
+      ingredientEgg: 1,
     },
     energy: 1,
-    description: "Discard a Rare Recipe from the store. Take Okonomiyaki from the Rare Deck and add it to the store.",
+    description:
+      "Discard a Rare Recipe from the store. Take Okonomiyaki from the Rare Deck and add it to the store.",
     getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
@@ -140,15 +140,15 @@ export default {
           zone: {
             to: {
               user: "", //left blank intentionally
-              zoneName: "discard"
+              zoneName: "discard",
             },
             from: {
               user: "",
-              zoneName: "rareRecipes"
-            }
-          }
+              zoneName: "rareRecipes",
+            },
+          },
         },
-        cards: [...actionData.selected]
+        cards: [...actionData.selected],
       },
       {
         type: "moveCard",
@@ -156,17 +156,17 @@ export default {
           zone: {
             to: {
               user: "", //left blank intentionally
-              zoneName: "rareRecipes"
+              zoneName: "rareRecipes",
             },
             from: {
               user: "",
-              zoneName: "recipesDrawPile"
-            }
-          }
+              zoneName: "recipesDrawPile",
+            },
+          },
         },
-        cards: ["Okonomiyaki"] // TODO: make sure this action works...what if not in piple?
-      }
-    ]
+        cards: ["Okonomiyaki"], // TODO: make sure this action works...what if not in piple?
+      },
+    ],
   },
   Fronk: {
     name: "Fronk",
@@ -174,7 +174,7 @@ export default {
     pictureName: "Fronk",
     cost: {
       ingredientSauce: 3,
-      ingredientBurger: 2 // TODO: ??? burger ingredients?
+      ingredientBurger: 2, // TODO: ??? burger ingredients?
     },
     energy: 1,
     description: "Add 2 Fancy Burgers to your board.",
@@ -184,16 +184,16 @@ export default {
         zone: {
           to: {
             user: userIndex,
-            zoneName: "boards"
+            zoneName: "boards",
           },
           from: {
             user: "", //intentionally left blank
-            zoneName: "basicRecipes"
-          }
+            zoneName: "basicRecipes",
+          },
         },
-        cards: [...actionData.selected] // UI should pre-fill this with fancy burgers, no user selection if possible
-      }
-    ]
+        cards: [...actionData.selected], // UI should pre-fill this with fancy burgers, no user selection if possible
+      },
+    ],
   },
   Sasha: {
     name: "Sasha",
@@ -202,22 +202,23 @@ export default {
     pictureName: "Sasha",
     cost: {},
     energy: 0,
-    description: "(Passive) After every second recipe (2, 4, 6...) that you build in a single turn, draw + 1 card.",
+    description:
+      "(Passive) After every second recipe (2, 4, 6...) that you build in a single turn, draw + 1 card.",
     getActions: (actionData, userIndex) => [
       {
         type: "moveCard",
-        zone:{
+        zone: {
           to: {
             user: userIndex,
-            zoneName: "hand"
-          }, 
+            zoneName: "hand",
+          },
           from: {
             user: "",
-            zoneName: "ingredientsDrawPile"
-          }
+            zoneName: "ingredientsDrawPile",
+          },
         },
-        cards: [...actionData.selected]
-      }
-    ]
-  }
-}
+        cards: [...actionData.selected],
+      },
+    ],
+  },
+};

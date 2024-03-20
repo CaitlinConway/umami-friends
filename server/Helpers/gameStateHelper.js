@@ -17,7 +17,7 @@ export const getGameState = (roomCode) => {
     gameState.roomCode = roomCode;
     activeGames[roomCode] = gameState;
   }
-  
+
   return activeGames[roomCode];
 };
 

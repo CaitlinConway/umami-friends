@@ -21,8 +21,8 @@ export const Grid = (props) => {
               props.disabled || noEnergy
                 ? ""
                 : recipe
-                ? props.cardClick(recipe)
-                : ""
+                  ? props.cardClick(recipe)
+                  : ""
             }
           >
             <img
@@ -57,8 +57,8 @@ export const Grid = (props) => {
               props.disabled || noEnergy
                 ? ""
                 : recipe
-                ? props.cardClick(recipe)
-                : ""
+                  ? props.cardClick(recipe)
+                  : ""
             }
           >
             <img
