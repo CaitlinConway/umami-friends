@@ -9,6 +9,10 @@ export const initialGame = () => {
     Object.values(rareRecipes),
     Object.keys(rareRecipes).length
   );
+  const shuffledIngredients = shuffleCards(
+    JSON.parse(JSON.stringify(ingredients)),
+    ingredients.length
+  );
   return {
     roomCode: "",
     //either 2 or 4 users for valid game
@@ -16,10 +20,14 @@ export const initialGame = () => {
     users: [],
     //10 rare recipes
     discardPile: [],
-    ingredientsDrawPile: shuffleCards(
-      JSON.parse(JSON.stringify(ingredients)),
-      ingredients.length
-    ),
+    //five of each ingredient in draw pile
+    ingredientsDrawPile: [
+      ...shuffledIngredients,
+      ...shuffledIngredients,
+      ...shuffledIngredients,
+      ...shuffledIngredients,
+      ...shuffledIngredients,
+    ],
     recipesDrawPile: shuffledRareRecipes.splice(10),
     rareRecipes: shuffledRareRecipes.splice(0, 10),
     basicRecipes: Object.values(basicRecipes),

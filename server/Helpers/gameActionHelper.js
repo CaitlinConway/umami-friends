@@ -40,7 +40,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
   const userIndex = gameState.users.findIndex((user) => user.name === userName);
   const userRole = gameState.users[userIndex]?.role;
   const currentPlayer = gameState.users[gameState.playerTurn - 1];
-  let ingredientsCopy = [...ingredients];
+  // let ingredientsCopy = gameState.ingredientsDrawPile.slice();
 
   let playerIndex;
   let fromStack;
@@ -52,7 +52,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       gameState.playerTurn = 1;
       //TODO: fix this so it draws from gamestate ingredient draw pile
       gameState.users.forEach((user) => {
-        user.hand = shuffleCards(ingredientsCopy, 5);
+        user.hand = shuffleCards(gameState.ingredientsDrawPile, 5);
       });
       gameState.turnCount = 1;
       console.log("gameState", JSON.stringify(gameState));
@@ -79,7 +79,10 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "drawCard":
       //TODO fix this so that it pulls from the gamestate draw pile
-      currentPlayer.hand.push(...shuffleCards(ingredientsCopy, 3));
+      currentPlayer.hand.push(
+        ...shuffleCards(gameState.ingredientsDrawPile, 3)
+      );
+      console.log("ingredientlength", gameState.ingredientsDrawPile.length);
       currentPlayer.energy--;
       break;
     case "useCard":
