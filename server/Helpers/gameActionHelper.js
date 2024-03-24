@@ -1,5 +1,6 @@
 import { getGameState, updateGameState } from "./gameStateHelper.js";
 import { ingredients, playerRoles } from "../Constants/cards.js";
+import ingredientCards from "../Constants/ingredients.js";
 import basicRecipes from "../Constants/basicRecipes.js";
 import roleCards from "../Constants/roleCards.js";
 import rareRecipes from "../Constants/rareRecipes.js";
@@ -7,7 +8,12 @@ import { shuffleCards } from "./cardHelper.js";
 
 const getOpponent = (userIndex) => (userIndex === 0 ? 1 : 0);
 
-const allCards = { ...basicRecipes, ...rareRecipes, ...roleCards };
+const allCards = {
+  ...basicRecipes,
+  ...rareRecipes,
+  ...roleCards,
+  ...ingredientCards,
+};
 
 const moveCard = ({ fromStack, toStack, cards }) => {
   toStack?.push(...cards.map((each) => allCards[each]));
@@ -168,24 +174,24 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
 
     /* Data required: from, to, selected */
-    case "moveCard":
-      const fromUser = action.data.from.user;
-      const fromZone = action.data.from.zone;
-      const toUser = action.data.to.user;
-      const toZone = action.data.to.zone;
-      const fromStack = fromUser
-        ? gameState.users[fromUser][fromZone]
-        : gameState[fromZone];
-      const toStack = toUser
-        ? gameState.users[toUser][toZone]
-        : gameState[toZone];
+    // case "moveCard":
+    //   const fromUser = action.data.from.user;
+    //   const fromZone = action.data.from.zone;
+    //   const toUser = action.data.to.user;
+    //   const toZone = action.data.to.zone;
+    //   const fromStack = fromUser
+    //     ? gameState.users[fromUser][fromZone]
+    //     : gameState[fromZone];
+    //   const toStack = toUser
+    //     ? gameState.users[toUser][toZone]
+    //     : gameState[toZone];
 
-      moveCard({
-        fromStack,
-        toStack,
-        cards: [...action.data.selected],
-      });
-      break;
+    //   moveCard({
+    //     fromStack,
+    //     toStack,
+    //     cards: [...action.data.selected],
+    //   });
+    //   break;
 
     /* Data required: selected (cards), numberOfCards, from (hand or board) */
     case "stealCard":

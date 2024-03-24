@@ -48,13 +48,13 @@ const Game = (props) => {
     socket.emit(
       "gameAction",
       {
-        actionType: "moveCard",
+        actionType: "discardCard",
         data: {
-          cards: discardCards.map((card) => card.pictureName),
-          zone: {
-            from: { user: userIndex, zoneName: "hand" },
-            to: { zoneName: "discardPile", user: "" },
-          },
+          // selected: discardCards,
+          selected: discardCards.map((card) => card.pictureName),
+          numberOfCards: discardCards.length,
+          player: "me",
+          from: "hand",
         },
       },
       roomCode,
