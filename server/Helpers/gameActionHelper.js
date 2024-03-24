@@ -18,15 +18,19 @@ const allCards = {
 const moveCard = ({ fromStack, toStack, cards }) => {
   toStack?.push(...cards.map((each) => allCards[each]));
   let cardsToRemove = [...cards];
-  fromStack = fromStack.filter((each) => {
-    if (cardsToRemove.includes(each.pictureName)) {
-      cardsToRemove = cardsToRemove.filter(
-        (cardName) => cardName === each.pictureName
-      );
-      return false;
-    }
-    return true;
-  });
+  let stack = fromStack.splice(0, fromStack.length); // Clear the fromStack array
+
+  fromStack.push(
+    ...stack.filter((each) => {
+      if (cardsToRemove.includes(each.pictureName)) {
+        cardsToRemove = cardsToRemove.filter(
+          (cardName) => cardName === each.pictureName
+        );
+        return false;
+      }
+      return true;
+    })
+  );
 };
 
 const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
@@ -46,6 +50,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startGame":
       gameState.playerTurn = 1;
+      //TODO: fix this so it draws from gamestate ingredient draw pile
       gameState.users.forEach((user) => {
         user.hand = shuffleCards(ingredientsCopy, 5);
       });
@@ -73,6 +78,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       currentPlayer.energy = 1;
       break;
     case "drawCard":
+      //TODO fix this so that it pulls from the gamestate draw pile
       currentPlayer.hand.push(...shuffleCards(ingredientsCopy, 3));
       currentPlayer.energy--;
       break;
