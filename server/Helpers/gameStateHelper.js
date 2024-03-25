@@ -7,7 +7,7 @@ const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 
 // Function to create a new instance of the initial game state
 const createInitialGameState = () => {
-  return deepCopy(initialGame);
+  return deepCopy(initialGame());
 };
 
 export const getGameState = (roomCode) => {
@@ -17,7 +17,7 @@ export const getGameState = (roomCode) => {
     gameState.roomCode = roomCode;
     activeGames[roomCode] = gameState;
   }
-  
+
   return activeGames[roomCode];
 };
 

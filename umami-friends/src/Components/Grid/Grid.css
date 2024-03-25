@@ -1,50 +1,50 @@
 .grid-container {
-	display: grid;
-	grid-template-columns: repeat(5, minmax(0, 1fr));
-	grid-template-rows: repeat(4, minmax(0, 1fr));
-	gap: 10px;
-	margin: 10px;
-	padding: 1%;
-	grid-auto-flow: row;
-	flex: 0 1 auto;
-	overflow: hidden;
-	background-color: #ffdfbb;
-	border-radius: 8px;
-	border: 2px solid #ccc;
-	max-width: 40%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px;
+  padding: 1%;
+  grid-auto-flow: row;
+  flex: 0 1 auto;
+  overflow: hidden;
+  background-color: #ffdfbb;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  max-width: 40%;
 }
 
 .recipeCard {
-	max-width: 100%; /* Ensure the image doesn't exceed its container */
-	height: 100%; /* Allow the height to adjust flexibly based on the original aspect ratio */
-	display: block; /* Ensures proper rendering */
-	margin: auto;
+  max-width: 100%; /* Ensure the image doesn't exceed its container */
+  height: 100%; /* Allow the height to adjust flexibly based on the original aspect ratio */
+  display: block; /* Ensures proper rendering */
+  margin: auto;
 }
 
 .grid-item {
-	max-width: 100%;
-	/* Ensure grid items don't exceed the available width */
-	max-height: 100%;
-	/* Ensure grid items don't exceed the available height */
-	position: relative;
+  max-width: 100%;
+  /* Ensure grid items don't exceed the available width */
+  max-height: 100%;
+  /* Ensure grid items don't exceed the available height */
+  position: relative;
 }
 
 .tooltip {
-	max-width: 200%;
-	max-height: 200%;
-	z-index: 100;
-	background: none !important;
+  max-width: 200%;
+  max-height: 200%;
+  z-index: 100;
+  background: none !important;
 }
 
 .hoveredImage {
-	max-width: 100%;
-	max-height: 100%;
-	/* object-fit: contain; */
+  max-width: 100%;
+  max-height: 100%;
+  /* object-fit: contain; */
 }
 
 .tooltip-text {
-	color: black;
-	font-weight: bold;
-	opacity: 1;
-	background-color: rgb(236, 230, 72, 0.8);
+  color: black;
+  font-weight: bold;
+  opacity: 1;
+  background-color: rgb(236, 230, 72, 0.8);
 }

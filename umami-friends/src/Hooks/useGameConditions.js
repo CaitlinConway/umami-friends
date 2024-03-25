@@ -18,11 +18,11 @@ export function GameConditionsProvider(props) {
   });
 
   const { Provider } = gameContext;
-  const providerValue = { 
-    gameState, 
-    roomCode, 
-    setRoomCode, 
-    socket 
+  const providerValue = {
+    gameState,
+    roomCode,
+    setRoomCode,
+    socket,
   };
 
   return <Provider value={providerValue}>{props.children}</Provider>;

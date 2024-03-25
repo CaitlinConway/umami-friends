@@ -12,7 +12,6 @@ export const Grid = (props) => {
       {basicRecipes.map((recipe, index) => {
         const img = require(`../../Pictures/${recipe.pictureName}.png`);
         const pileCount = gameState?.basicRecipes[index]?.pileCount;
-        const enableBuy = props.enableBuy(recipe);
         const selected = props.selectedCard?.name === recipe?.name;
         return (
           <div
@@ -22,11 +21,10 @@ export const Grid = (props) => {
               props.disabled || noEnergy
                 ? ""
                 : recipe
-                ? props.cardClick(recipe)
-                : ""
+                  ? props.cardClick(recipe)
+                  : ""
             }
           >
-            {enableBuy && <button onClick={props.buyCard}>Buy Card</button>}
             <img
               data-tooltip-id={`imageTooltip${index}`}
               className="recipeCard"
@@ -49,7 +47,6 @@ export const Grid = (props) => {
       })}
       {rareRecipes.map((recipe, index) => {
         const img2 = require(`../../Pictures/${recipe.pictureName}.png`);
-        const enableBuy = props.enableBuy(recipe);
         const selected = props.selectedCards?.name === recipe?.name;
 
         return (
@@ -60,12 +57,10 @@ export const Grid = (props) => {
               props.disabled || noEnergy
                 ? ""
                 : recipe
-                ? props.cardClick(recipe)
-                : ""
+                  ? props.cardClick(recipe)
+                  : ""
             }
           >
-            {enableBuy && <button onClick={props.buyCard}>Buy Card</button>}
-
             <img
               data-tooltip-id={`rareTooltip${index}`}
               className="recipeCard"
