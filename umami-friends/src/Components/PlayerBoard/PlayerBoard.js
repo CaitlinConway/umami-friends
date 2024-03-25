@@ -4,7 +4,7 @@ import useGameConditions from "../../Hooks/useGameConditions";
 export const PlayerBoard = (props) => {
   const { userName } = useUserInfo();
   const { gameState } = useGameConditions();
-  const user = gameState?.users.find((user) => (user.name = userName));
+  const user = gameState?.users.find((user) => user.name === userName);
   // const user = props?.user;
   const playerBoard = user?.board || { candy: [], ingredients: [] };
   const noEnergy = props?.noEnergy;

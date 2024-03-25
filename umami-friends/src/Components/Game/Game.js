@@ -241,6 +241,7 @@ const Game = (props) => {
         discard={discard}
         buyCardEnabled={buyCardEnabled}
         buyCard={buyCard}
+        userIndex={userIndex}
       />
       <div className="gameContainer">
         {/* <div className="cardStackContainer">

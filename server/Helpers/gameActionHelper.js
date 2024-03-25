@@ -50,7 +50,6 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       break;
     case "startGame":
       gameState.playerTurn = 1;
-      //TODO: fix this so it draws from gamestate ingredient draw pile
       gameState.users.forEach((user) => {
         user.hand = shuffleCards(gameState.ingredientsDrawPile, 5);
       });
@@ -78,7 +77,6 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       currentPlayer.energy = 1;
       break;
     case "drawCard":
-      //TODO fix this so that it pulls from the gamestate draw pile
       currentPlayer.hand.push(
         ...shuffleCards(gameState.ingredientsDrawPile, 3)
       );
