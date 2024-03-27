@@ -70,13 +70,9 @@ const Game = (props) => {
     socket.emit(
       "gameAction",
       {
-        actionType: "moveCard",
+        actionType: "buyCard",
         data: {
           cards: [...selected.pictureName],
-          zone: {
-            from: { user: "", zoneName: "basicRecipes" },
-            to: { zoneName: "hand", user: userIndex },
-          },
         },
       },
       roomCode,

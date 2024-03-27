@@ -24,7 +24,7 @@ const moveCard = ({ fromStack, toStack, cards }) => {
     ...stack.filter((each) => {
       if (cardsToRemove.includes(each.pictureName)) {
         cardsToRemove = cardsToRemove.filter(
-          (cardName) => cardName === each.pictureName
+          (cardName) => cardName !== each.pictureName
         );
         return false;
       }
@@ -77,7 +77,7 @@ export function gameActionHelper(socket, io, action, roomCode, userName) {
       currentPlayer.energy = 1;
       break;
     case "drawCard":
-      currentPlayer.hand.push(
+      currentPlayer?.hand?.push(
         ...shuffleCards(gameState.ingredientsDrawPile, 3)
       );
       console.log("ingredientlength", gameState.ingredientsDrawPile.length);
