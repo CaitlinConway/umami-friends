@@ -11,6 +11,7 @@ import "./Game.css";
 import PlayerHand from "../PlayerHand/PlayerHand";
 import PlayerBoard from "../PlayerBoard/PlayerBoard";
 import { initialHandValue } from "../../Constants/cards";
+import { PopUp } from "../PopUp/PopUp";
 
 const Game = (props) => {
   const { userName, setUserName } = useUserInfo();
@@ -25,6 +26,9 @@ const Game = (props) => {
   const [needDiscard, setNeedDiscard] = useState(false);
   const [canBuyEnergy, setCanBuyEnergy] = useState(false);
   const [buyCardEnabled, setBuyCardEnabled] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+  //this is just a placeholder
+  const [popUpData, setPopUpData] = useState({ title: "Test", description: "This is a test" });
   let user = gameState?.users?.find((user) => user.name === userName);
   const userIndex = gameState?.users?.findIndex(
     (user) => user.name === userName
@@ -167,6 +171,9 @@ const Game = (props) => {
       userName
     );
   };
+  const closePopUp = () => {
+    setPopUp(false);
+  }
   useEffect(() => {
     let sweets = 0;
     for (let i = 0; i < selectedHand.length; i++) {
@@ -228,7 +235,7 @@ const Game = (props) => {
         opponent={opponent}
         startGame={startGame}
         drawCard={drawCard}
-        endTurn={!needDiscard ? endTurn : () => {}}
+        endTurn={!needDiscard ? endTurn : () => { }}
         currentPlayer={currentPlayer}
         noEnergy={noEnergy}
         discardEnabled={
@@ -282,11 +289,15 @@ const Game = (props) => {
         {canBuyEnergy ? <button onClick={buyEnergy}>Buy Energy</button> : ""}
         <div className="playerHandContainer">
           <div className="playerHandTitle">{opponent?.name}'s Board</div>
-          <PlayerBoard user={opponent} cardClick={() => {}} />
+          <PlayerBoard user={opponent} cardClick={() => { }} />
         </div>
         <div className="playerHandContainer">
           <Messages user={userName}></Messages>
         </div>
+        {popUp &&
+          (
+            <PopUp className="popUp" popUpData={popUpData} closePopUp={closePopUp} />
+          )}
       </div>
     </div>
   );

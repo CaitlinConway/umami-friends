@@ -74,3 +74,16 @@
 .enabled {
   border: 10px solid #27c65f !important; /* Border around enabled cards */
 }
+
+.popUp{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffdfbb;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  width: 30%;
+  height: 30%
+}
